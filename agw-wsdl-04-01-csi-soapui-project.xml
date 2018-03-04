@@ -1,0 +1,1593 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="87cce03e-e8fd-49ec-a901-d314f3d37799" activeEnvironment="Default" name="agw_wsdl_04_01_csi" resourceRoot="" soapui-version="5.1.3" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="0b25bb72-8837-4961-8e68-3a9e4dec87d3" wsaVersion="NONE" name="csiSoap11" type="wsdl" bindingName="{http://www.ericsson.com/pps/agw/04.01.00}csiSoap11" soapVersion="1_1" anonymous="optional" definition="file:/F:/ATTPrepaid/F424/agw_wsdl_04_01_csi.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:\F:\ATTPrepaid\F424\agw_wsdl_04_01_csi.wsdl"><con:part><con:url>file:\F:\ATTPrepaid\F424\agw_wsdl_04_01_csi.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://www.ericsson.com/pps/agw/04.01.00" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://www.ericsson.com/pps/agw/04.01.00" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.ericsson.com/pps/agw/04.01.00" xmlns:tnsfault="http://www.ericsson.com/pps/agw/fault/04.01.00">
+  <wsdl:types>
+    <xsd:schema elementFormDefault="qualified" targetNamespace="http://www.ericsson.com/pps/agw/04.01.00" xmlns:agw="http://www.ericsson.com/pps/agw/04.01.00" xmlns:enc="http://www.w3.org/2001/09/soap-encoding" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <!--=======================================================================
+$Id: agw_4.0.xsd,v 2.0 2017/06/06 14:36:14 Exp $
+
+(c) Ericsson Inc, 2017
+
+AGW EBI Schema
+=======================================================================-->
+      <!--=======================================================================
+                    Type definitions for Header elements
+=======================================================================-->
+      <xsd:complexType name="RequestHeader">
+        <xsd:all>
+          <xsd:element minOccurs="0" name="Transaction" type="agw:Transaction"/>
+          <xsd:element name="Userid" type="agw:Userid"/>
+          <xsd:element name="Password" type="agw:Password"/>
+          <xsd:element minOccurs="0" name="Actor" type="agw:Actor"/>
+          <xsd:element minOccurs="0" name="RequestOpId" type="agw:requestopid"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="ResponseHeader">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="Transaction" type="agw:Transaction"/>
+          <xsd:element minOccurs="0" name="RequestOpId" type="agw:requestopid"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="Transaction">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="48"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="Userid">
+        <xsd:restriction base="xsd:string">
+          <xsd:pattern value="([a-zA-Z0-9]{1,12})"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="Password">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="12"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="Actor">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="20"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="requestopid">
+        <xsd:restriction base="xsd:string">
+          <xsd:pattern value="([a-zA-Z0-9]{1,25})"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <!--=======================================================================
+                     Type definitions for Body elements
+=======================================================================-->
+      <!--body element for Echo request-->
+      <xsd:complexType name="Echo">
+        <xsd:all>
+          <xsd:element name="Data" type="xsd:string"/>
+        </xsd:all>
+      </xsd:complexType>
+      <!--EBI  RetrieveAcctInfoReq Request-->
+      <xsd:complexType name="RetrieveAcctInfoReq">
+        <xsd:all>
+          <xsd:element name="MSISDN" type="agw:MSISDN"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="RetrieveAcctInfoResp">
+        <xsd:sequence>
+          <xsd:element name="MSISDN" type="agw:MSISDN"/>
+          <xsd:element name="ResultDetails" type="agw:resultdetail"/>
+          <xsd:element name="AccountInformation" type="agw:accountinformationrai"/>
+          <xsd:element name="RatePlanInfo" type="agw:rateplaninforai"/>
+          <xsd:element maxOccurs="20" minOccurs="0" name="FeatureInfo" type="agw:featureinfo"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <!--body element for balance enquiry request-->
+      <xsd:complexType name="BalanceEnquiryReq">
+        <xsd:all>
+          <xsd:element name="MSISDN" type="agw:MSISDN"/>
+        </xsd:all>
+      </xsd:complexType>
+      <!--body element for balance enquiry response-->
+      <xsd:complexType name="BalanceEnquiryResp">
+        <xsd:all>
+          <xsd:element name="MSISDN" type="agw:MSISDN"/>
+          <xsd:element name="ResultCode" type="agw:String"/>
+          <xsd:element name="BalanceAmount" type="agw:amount"/>
+          <xsd:element name="AirTimeExpiration" type="agw:dateYMD"/>
+        </xsd:all>
+      </xsd:complexType>
+      <!--EBIRetrieveAcctDetailsReq Request-->
+      <xsd:complexType name="RetrieveAcctDetailsReq">
+        <xsd:all>
+          <xsd:element name="MSISDN" type="agw:MSISDN"/>
+          <xsd:element minOccurs="0" name="AccountBalanceFlag" type="agw:flag"/>
+          <xsd:element minOccurs="0" name="BoltonBalanceFlag" type="agw:flag"/>
+          <xsd:element minOccurs="0" name="SubscriptionStatusFlag" type="agw:flag"/>
+          <xsd:element minOccurs="0" name="LoyaltyRequestFlag" type="agw:flag"/>
+          <xsd:element minOccurs="0" name="RatePlanChangeHistoryFlag" type="agw:flag"/>
+          <xsd:element name="InvitationsListFlag" type="agw:flag" minOccurs="0"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="RetrieveAcctDetailsResp">
+        <xsd:sequence>
+          <xsd:element name="MSISDN" type="agw:MSISDN"/>
+          <xsd:element name="ResultDetails" type="agw:resultdetail"/>
+          <xsd:element name="AccountInformation" type="agw:accountinformation"/>
+          <xsd:element name="RatePlanInfo" type="agw:rateplaninfo"/>
+          <xsd:element minOccurs="0" name="LoyaltyInformation" type="agw:loyaltyinformation"/>
+          <xsd:element minOccurs="0" name="RatePlanChangeHistoryInfo" type="agw:rateplanchangehistoryinfo"/>
+          <xsd:element maxOccurs="20" minOccurs="0" name="FeatureInfo" type="agw:featureinfo"/>
+          <xsd:element name="Invites" type="agw:invites" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <!--body element for rate plan change request-->
+      <xsd:complexType name="ChangeRatePlanReq">
+        <xsd:all>
+          <xsd:element name="MSISDN" type="agw:MSISDN"/>
+          <xsd:element name="NewRatePlan" type="agw:String"/>
+          <xsd:element name="NewFeatures" type="agw:Features" minOccurs="0"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="Response">
+        <xsd:all>
+          <xsd:element name="ResultCode" type="agw:String"/>
+        </xsd:all>
+      </xsd:complexType>
+      <!--PBChangeFeaturesReq-->
+      <xsd:complexType name="PBChangeFeaturesReq">
+        <xsd:sequence>
+          <xsd:element name="MSISDN" type="agw:MSISDN"/>
+          <xsd:element name="FeatureAction" type="agw:action"/>
+          <xsd:element name="FeatureInformation" type="agw:featurereqinfo" maxOccurs="20"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="PBChangeFeaturesResp">
+        <xsd:sequence>
+          <xsd:element name="MSISDN" type="agw:MSISDN"/>
+          <xsd:element name="ResultDetails" type="agw:resultdetail"/>
+          <xsd:element name="LoyaltyInformation" type="agw:loyaltyinformation" minOccurs="0"/>
+          <xsd:element name="BalanceAmount" type="agw:amount" minOccurs="0"/>
+          <xsd:element name="AirTimeExpiration" type="agw:dateYMD" minOccurs="0"/>
+          <xsd:element name="FeatureResponseInfo" type="agw:featureresponseinfo" maxOccurs="20"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <!--body element for payment request-->
+      <xsd:complexType name="PaymentReq">
+        <xsd:all>
+          <xsd:element name="MSISDN" type="agw:MSISDN"/>
+          <xsd:element name="PaymentAmount" type="agw:Integer"/>
+          <xsd:element name="PaymentTypeCode" type="agw:paymenttypecode"/>
+          <xsd:element name="VoucherActivationNumber" type="agw:voucheractivationnumber" minOccurs="0"/>
+        </xsd:all>
+      </xsd:complexType>
+      <!--body element for payment response-->
+      <xsd:complexType name="PaymentResp">
+        <xsd:all>
+          <xsd:element name="MSISDN" type="agw:MSISDN"/>
+          <xsd:element name="ResultCode" type="agw:String"/>
+          <xsd:element name="PaymentResponseInfo" type="agw:paymentresponseinfo"/>
+          <xsd:element name="LoyaltyInformation" type="agw:loyaltyinformation" minOccurs="0"/>
+          <xsd:element name="BalanceAmount" type="agw:amount"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:simpleType name="paymenttypecode">
+        <xsd:restriction base="xsd:integer">
+          <xsd:minInclusive value="0"/>
+          <xsd:maxInclusive value="999999"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="voucheractivationnumber">
+        <xsd:restriction base="xsd:string">
+          <xsd:pattern value="[0-9]{1,20}"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="paymentresponseinfo">
+        <xsd:all>
+          <xsd:element name="AirTimeExpiration" type="agw:dateYMD"/>
+          <xsd:element name="AirTimeDays" type="agw:airtimedays"/>
+          <xsd:element name="PaymentAmount" type="agw:Integer"/>
+          <xsd:element name="PromotionalAirtimeDays" type="agw:promotionalairtimedays" minOccurs="0"/>
+          <xsd:element name="PromotionalBalanceAmount" type="agw:Integer" minOccurs="0"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="featureresponseinfo">
+        <xsd:all>
+          <xsd:element name="FeatureCode" type="agw:featurecode"/>
+          <xsd:element name="FeatureActionResultCode" type="agw:featureresultcode"/>
+          <xsd:element name="FeatureBalanceInfo" type="agw:balanceinfo" minOccurs="0"/>
+          <xsd:element name="FeatureBalanceChangeInfo" type="agw:balanceinfo" minOccurs="0"/>
+          <xsd:element name="ServiceBalance" type="agw:data12" minOccurs="0"/>
+          <xsd:element name="ServiceBalanceChange" type="agw:data12" minOccurs="0"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:simpleType name="featureresultcode">
+        <xsd:restriction base="xsd:integer">
+          <xsd:enumeration value="2000"/>
+          <xsd:enumeration value="2001"/>
+          <xsd:enumeration value="2002"/>
+          <xsd:enumeration value="2003"/>
+          <xsd:enumeration value="2004"/>
+          <xsd:enumeration value="2005"/>
+          <xsd:enumeration value="2006"/>
+          <xsd:enumeration value="2007"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="action">
+        <xsd:restriction base="xsd:integer">
+          <xsd:enumeration value="600"/>
+          <xsd:enumeration value="601"/>
+          <xsd:enumeration value="602"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="featurereqinfo">
+        <xsd:all>
+          <xsd:element name="FeatureCode" type="agw:featurecode"/>
+          <xsd:element name="FeatureChargeFlag" type="agw:flag"/>
+          <xsd:element name="CreditLoyaltyFlag" type="agw:flag"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="featureinfo">
+        <xsd:all>
+          <xsd:element name="FeatureCode" type="agw:featurecode"/>
+          <xsd:element name="FeatureStatusCode" type="agw:featurestatuscode"/>
+          <xsd:element minOccurs="0" name="FeatureBalanceInfo" type="agw:balanceinfo"/>
+          <xsd:element minOccurs="0" name="ServiceBalance" type="agw:data12"/>
+          <xsd:element minOccurs="0" name="ExpirationDate" type="agw:dateYMD"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:simpleType name="Features">
+        <xsd:restriction base="xsd:string">
+          <xsd:pattern value="([a-zA-Z0-9]{2,8},){0,19}[a-zA-Z0-9]{2,8}"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="featurecode">
+        <xsd:restriction base="xsd:string">
+          <xsd:pattern value="([a-zA-Z0-9]{2,8})"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="featurestatuscode">
+        <xsd:restriction base="xsd:integer">
+          <xsd:enumeration value="500"/>
+          <xsd:enumeration value="501"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="rateplaninfo">
+        <xsd:sequence>
+          <xsd:element name="RatePlanCode" type="agw:data10"/>
+          <xsd:element name="RatePlanName" type="agw:data80"/>
+          <xsd:element name="RatePlanStatus" type="agw:rateplanstatus"/>
+          <xsd:element name="ExpirationDate" type="agw:dateYMD" minOccurs="0"/>
+          <xsd:element name="RatePlanServiceBalanceInformation" type="agw:balanceinfo" minOccurs="0" maxOccurs="20"/>
+          <xsd:element name="RatePlanfamily" type="agw:rateplanfamily"/>
+          <xsd:element name="PrimaryMSISDN" type="agw:MSISDN" minOccurs="0"/>
+          <xsd:element name="OrphanFlag" type="agw:flag" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="rateplanfamily">
+        <xsd:restriction base="xsd:integer">
+          <xsd:minInclusive value="1"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="rateplaninforai">
+        <xsd:sequence>
+          <xsd:element name="RatePlanCode" type="agw:data10"/>
+          <xsd:element name="RatePlanName" type="agw:data80"/>
+          <xsd:element name="RatePlanStatus" type="agw:rateplanstatus"/>
+          <xsd:element name="ExpirationDate" type="agw:dateYMD" minOccurs="0"/>
+          <xsd:element name="RatePlanServiceBalanceInformation" type="agw:rateplanserviceinfo" minOccurs="0" maxOccurs="20"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="rateplanstatus">
+        <xsd:all>
+          <xsd:element name="RatePlanStatusCode" type="agw:rateplanstatuscode"/>
+          <xsd:element minOccurs="0" name="RatePlanStatusReasonCode" type="agw:rateplanstatusreasoncode"/>
+          <xsd:element minOccurs="0" name="RatePlanStatusString" type="agw:rateplanstatusstring"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:simpleType name="rateplanstatuscode">
+        <xsd:restriction base="xsd:integer">
+          <xsd:enumeration value="400"/>
+          <xsd:enumeration value="401"/>
+          <xsd:enumeration value="402"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="rateplanstatusreasoncode">
+        <xsd:restriction base="xsd:integer">
+          <xsd:enumeration value="600"/>
+          <xsd:enumeration value="601"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="rateplanstatusstring">
+        <xsd:restriction base="xsd:string">
+          <xsd:minLength value="1"/>
+          <xsd:maxLength value="200"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="balanceinfo">
+        <xsd:all>
+          <xsd:element name="Quantity" type="agw:data40"/>
+          <xsd:element name="Units" type="agw:units"/>
+          <xsd:element minOccurs="0" name="UnitsDescription" type="agw:data40"/>
+          <xsd:element minOccurs="0" name="ServiceType" type="agw:data40"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:simpleType name="airtimedays">
+        <xsd:restriction base="xsd:integer">
+          <xsd:minInclusive value="0"/>
+          <xsd:maxInclusive value="9999"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="promotionalairtimedays">
+        <xsd:restriction base="xsd:integer">
+          <xsd:minInclusive value="0"/>
+          <xsd:maxInclusive value="9999"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="rateplanserviceinfo">
+        <xsd:sequence>
+          <xsd:element name="Quantity" type="agw:data40"/>
+          <xsd:element minOccurs="0" name="TotalQuantity" type="agw:data40"/>
+          <xsd:element name="Units" type="agw:units"/>
+          <xsd:element minOccurs="0" name="UnitsDescription" type="agw:data40"/>
+          <xsd:element minOccurs="0" name="ServiceType" type="agw:data40"/>
+          <xsd:element name="ServiceCode" type="agw:data40"/>
+          <xsd:element maxOccurs="20" minOccurs="0" name="AssociatedServiceInformation" type="agw:serviceinfo"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="serviceinfo">
+        <xsd:all>
+          <xsd:element name="Quantity" type="agw:data40"/>
+          <xsd:element minOccurs="0" name="TotalQuantity" type="agw:data40"/>
+          <xsd:element name="Units" type="agw:units"/>
+          <xsd:element minOccurs="0" name="UnitsDescription" type="agw:data40"/>
+          <xsd:element minOccurs="0" name="ServiceType" type="agw:data40"/>
+          <xsd:element name="ServiceCode" type="agw:data40"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="accountinformationrai">
+        <xsd:all>
+          <xsd:element name="AccountNumber" type="agw:AccountNumber"/>
+          <xsd:element name="AccountStatusCode" type="agw:accountstatuscode"/>
+          <xsd:element name="AccountType" type="agw:accounttype"/>
+          <xsd:element minOccurs="0" name="ActivationDate" type="agw:dateYMD"/>
+          <xsd:element minOccurs="0" name="AirTimeExpiration" type="agw:dateYMD"/>
+          <xsd:element minOccurs="0" name="ServiceCancelDate" type="agw:dateYMD"/>
+          <xsd:element minOccurs="0" name="SubscriptionStatus" type="agw:subscriptionstatuscode"/>
+          <xsd:element minOccurs="0" name="IVRLanguage" type="agw:ivrlang"/>
+          <xsd:element minOccurs="0" name="BalanceAmount" type="agw:amount"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="resultdetail">
+        <xsd:all>
+          <xsd:element name="ResultCode" type="agw:String"/>
+          <xsd:element minOccurs="0" name="ResultString" type="agw:data200"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="accountinformation">
+        <xsd:all>
+          <xsd:element name="AccountNumber" type="agw:AccountNumber"/>
+          <xsd:element name="AccountStatusCode" type="agw:accountstatuscode"/>
+          <xsd:element minOccurs="0" name="SubscriberDetails" type="agw:SubscriberDetails"/>
+          <xsd:element name="Passcode" type="agw:data4"/>
+          <xsd:element name="Market" type="agw:data10"/>
+          <xsd:element name="SubMarket" type="agw:data10"/>
+          <xsd:element name="AccountType" type="agw:accounttype"/>
+          <xsd:element minOccurs="0" name="CGSA" type="agw:data10"/>
+          <xsd:element minOccurs="0" name="ActivationDate" type="agw:dateYMD"/>
+          <xsd:element minOccurs="0" name="AirTimeExpiration" type="agw:dateYMD"/>
+          <xsd:element minOccurs="0" name="ServiceCancelDate" type="agw:dateYMD"/>
+          <xsd:element minOccurs="0" name="SubscriptionStatus" type="agw:subscriptionstatuscode"/>
+          <xsd:element minOccurs="0" name="IVRLanguage" type="agw:ivrlang"/>
+          <xsd:element minOccurs="0" name="IVRUSSDStatusCode" type="agw:ivrussdstatuscode"/>
+          <xsd:element minOccurs="0" name="BalanceAmount" type="agw:amount"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:simpleType name="MSISDN">
+        <xsd:restriction base="xsd:string">
+          <xsd:pattern value="([0-9]{10})"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="String">
+        <xsd:restriction base="xsd:string">
+          <xsd:minLength value="1"/>
+          <xsd:maxLength value="10"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="AccountNumber">
+        <xsd:restriction base="xsd:string">
+          <xsd:minLength value="1"/>
+          <xsd:maxLength value="12"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="Integer">
+        <xsd:restriction base="xsd:integer">
+          <xsd:minInclusive value="0"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="dateYMD">
+        <xsd:restriction base="xsd:string">
+          <xsd:pattern value="([0-9]{4}[0-1][0-9][0-3][0-9])?"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <!--Subscriber details must at least have one of the following items-->
+      <xsd:complexType name="SubscriberDetails">
+        <xsd:all>
+          <xsd:element minOccurs="0" name="FirstName" type="agw:Name"/>
+          <xsd:element minOccurs="0" name="MiddleInitial" type="agw:Initial"/>
+          <xsd:element minOccurs="0" name="LastName" type="agw:Name"/>
+          <xsd:element minOccurs="0" name="EmailAddress" type="agw:EmailAddress"/>
+          <xsd:element minOccurs="0" name="StreetAddressLine1" type="agw:StreetAddress"/>
+          <xsd:element minOccurs="0" name="StreetAddressLine2" type="agw:StreetAddress"/>
+          <xsd:element minOccurs="0" name="StreetAddressLine3" type="agw:StreetAddress"/>
+          <xsd:element minOccurs="0" name="StreetAddressLine4" type="agw:StreetAddress"/>
+          <xsd:element minOccurs="0" name="CityAddress" type="agw:CityAddress"/>
+          <xsd:element minOccurs="0" name="StateAddress" type="agw:StateAddress"/>
+          <xsd:element minOccurs="0" name="ZipCode" type="agw:String"/>
+          <xsd:element minOccurs="0" name="Country" type="agw:Country"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:simpleType name="ivrussdstatuscode">
+        <xsd:restriction base="xsd:integer">
+          <xsd:enumeration value="600"/>
+          <xsd:enumeration value="601"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="Name">
+        <xsd:restriction base="xsd:string">
+          <xsd:minLength value="1"/>
+          <xsd:maxLength value="40"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="Initial">
+        <xsd:restriction base="xsd:string">
+          <xsd:minLength value="1"/>
+          <xsd:maxLength value="1"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="EmailAddress">
+        <xsd:restriction base="xsd:string">
+          <xsd:minLength value="3"/>
+          <xsd:maxLength value="80"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="StreetAddress">
+        <xsd:restriction base="xsd:string">
+          <xsd:minLength value="1"/>
+          <xsd:maxLength value="40"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="CityAddress">
+        <xsd:restriction base="xsd:string">
+          <xsd:minLength value="1"/>
+          <xsd:maxLength value="40"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="StateAddress">
+        <xsd:restriction base="xsd:string">
+          <xsd:minLength value="2"/>
+          <xsd:maxLength value="40"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="Country">
+        <xsd:restriction base="xsd:string">
+          <xsd:minLength value="1"/>
+          <xsd:maxLength value="40"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="ivrlang">
+        <xsd:restriction base="xsd:integer">
+          <xsd:enumeration value="700"/>
+          <xsd:enumeration value="701"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="loyaltyinformation">
+        <xsd:all>
+          <xsd:element name="LoyaltyTier" type="agw:data12"/>
+          <xsd:element name="LoyaltyBalance" type="agw:data12"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="rateplanchangehistoryinfo">
+        <xsd:all>
+          <xsd:element name="RatePlanChangeCounter" type="agw:rateplanchangecounter"/>
+          <xsd:element name="LastChangeDate" type="agw:dateYMD"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:simpleType name="rateplanchangecounter">
+        <xsd:restriction base="xsd:integer">
+          <xsd:minInclusive value="0"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="flag">
+        <xsd:restriction base="xsd:boolean">
+          <xsd:pattern value="[{0,1}]"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="accountstatuscode">
+        <xsd:restriction base="xsd:integer">
+          <xsd:enumeration value="100"/>
+          <xsd:enumeration value="101"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="accounttype">
+        <xsd:restriction base="xsd:integer">
+          <xsd:enumeration value="0"/>
+          <xsd:enumeration value="1"/>
+          <xsd:enumeration value="2"/>
+          <xsd:enumeration value="3"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="subscriptionstatuscode">
+        <xsd:restriction base="xsd:integer">
+          <xsd:enumeration value="300"/>
+          <xsd:enumeration value="301"/>
+          <xsd:enumeration value="302"/>
+          <xsd:enumeration value="303"/>
+          <xsd:enumeration value="304"/>
+          <xsd:enumeration value="305"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="units">
+        <xsd:restriction base="xsd:integer">
+          <xsd:enumeration value="501"/>
+          <xsd:enumeration value="503"/>
+          <xsd:enumeration value="506"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="data200">
+        <xsd:restriction base="xsd:string">
+          <xsd:minLength value="1"/>
+          <xsd:maxLength value="200"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="data40">
+        <xsd:restriction base="xsd:string">
+          <xsd:minLength value="1"/>
+          <xsd:maxLength value="40"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="amount">
+        <xsd:restriction base="xsd:integer">
+          <xsd:maxInclusive value="999999999999"/>
+          <xsd:minInclusive value="-999999999999"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="data10">
+        <xsd:restriction base="xsd:string">
+          <xsd:minLength value="1"/>
+          <xsd:maxLength value="10"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="data80">
+        <xsd:restriction base="xsd:string">
+          <xsd:minLength value="1"/>
+          <xsd:maxLength value="80"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="data12">
+        <xsd:restriction base="xsd:string">
+          <xsd:minLength value="1"/>
+          <xsd:maxLength value="12"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="data4">
+        <xsd:restriction base="xsd:string">
+          <xsd:minLength value="1"/>
+          <xsd:maxLength value="4"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <!--EBIGetRatePlansRequest (And related types)-->
+      <xsd:complexType name="GetRatePlansReq">
+        <xsd:all>
+          <xsd:element name="PrimaryMSISDN" type="agw:MSISDN" minOccurs="0"/>
+          <xsd:element name="MemberMSISDN" type="agw:MSISDN" minOccurs="0"/>
+          <xsd:element name="CSIconversationId" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="Mode" type="agw:mode"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:simpleType name="mode">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="ENROLL"/>
+          <xsd:enumeration value="INVITESENT"/>
+          <xsd:enumeration value="CRP"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <!--EBIGetRatePlansResponse (And related types)-->
+      <xsd:complexType name="GetRatePlansResp">
+        <xsd:sequence>
+          <xsd:element name="PrimaryMSISDN" type="agw:MSISDN" minOccurs="0"/>
+          <xsd:element name="MemberMSISDN" type="agw:MSISDN" minOccurs="0"/>
+          <xsd:element name="BillingMarket" type="agw:billingMarketInfo"/>
+          <xsd:element name="DeviceType" type="agw:deviceType"/>
+          <xsd:element name="DeviceDescription" type="agw:string90"/>
+          <xsd:element name="TechnologyType" type="agw:technologyType"/>
+          <xsd:element name="RatePlans" type="agw:ratePlansInfo" minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element name="ChangeRatePlanLimitExceeded" type="xsd:boolean" default="false"/>
+          <xsd:element name="CSIconversationId" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="ResultDetails" type="agw:resultdetail"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="billingMarketInfo">
+        <xsd:sequence>
+          <xsd:element name="billingMarket" type="agw:billingMarket"/>
+          <xsd:element name="billingSubMarket" type="agw:billingSubMarket"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="billingMarket">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="3"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="billingSubMarket">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="3"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="technologyType">
+        <xsd:annotation>
+          <xsd:documentation>Technology type of the subscriber</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="2"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="string90">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="90"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="ratePlansInfo">
+        <xsd:sequence>
+          <xsd:element name="ratePlanCode" type="agw:data10"/>
+          <xsd:element name="ratePlanDescription" type="agw:string90"/>
+          <xsd:element name="mlPlanType" type="agw:mlPlanType"/>
+          <xsd:element name="ratePlanConflicts" type="agw:ratePlanConflictsInfo" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="mlPlanType">
+        <xsd:restriction base="xsd:string">
+          <xsd:minLength value="1"/>
+          <xsd:maxLength value="50"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="ratePlanConflictsInfo">
+        <xsd:sequence>
+          <xsd:element name="conflictType" type="agw:conflictType"/>
+          <xsd:element name="resolvableConflictIndicator" type="xsd:boolean"/>
+          <xsd:element name="noncompatibleFeatures" type="agw:noncompatibleFeaturesInfo" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="conflictType">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="45"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="noncompatibleFeaturesInfo">
+        <xsd:sequence>
+          <xsd:element name="featureCode" type="agw:featurecode"/>
+          <xsd:element name="featureDescription" type="agw:string90"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <!--EBIChangeMultilineRequest (And related types)-->
+      <xsd:complexType name="ChangeMultiLineReq">
+        <xsd:sequence>
+          <xsd:element name="PrimaryInformation" type="agw:primaryMultilineInformationReq" minOccurs="0"/>
+          <xsd:element name="MemberInformation" type="agw:memberMultilineInformationReq" minOccurs="0"/>
+          <xsd:element name="CSIconversationId" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="Multilineevent" type="agw:multilineevent"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="primaryMultilineInformationReq">
+        <xsd:all>
+          <xsd:element name="MSISDN" type="agw:MSISDN"/>
+          <xsd:element name="ratePlanCode" type="agw:data10" minOccurs="0"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="memberMultilineInformationReq">
+        <xsd:all>
+          <xsd:element name="MSISDN" type="agw:MSISDN"/>
+          <xsd:element name="ratePlanCode" type="agw:data10" minOccurs="0"/>
+          <xsd:element name="sendSMS" type="xsd:boolean" default="false" minOccurs="0"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:simpleType name="multilineevent">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="ENROLL"/>
+          <xsd:enumeration value="INVITESENT"/>
+          <xsd:enumeration value="INVITEACCEPTED"/>
+          <xsd:enumeration value="INVITEDECLINED"/>
+          <xsd:enumeration value="INVITECANCELLED"/>
+          <xsd:enumeration value="PRIMARYLEAVE"/>
+          <xsd:enumeration value="MEMBERREMOVE"/>
+          <xsd:enumeration value="MEMBERLEAVE"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <!--EBIChangeMultilineResponse-->
+      <xsd:complexType name="ChangeMultiLineResp">
+        <xsd:sequence>
+          <xsd:element name="PrimaryInformation" type="agw:multilineInformationResp" minOccurs="0"/>
+          <xsd:element name="MemberInformation" type="agw:multilineInformationResp" minOccurs="0"/>
+          <xsd:element name="CSIconversationId" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="Invites" type="agw:invites" minOccurs="0"/>
+          <xsd:element name="ResultDetails" type="agw:resultdetail"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="multilineInformationResp">
+        <xsd:sequence>
+          <xsd:element name="MSISDN" type="agw:MSISDN" minOccurs="0"/>
+          <xsd:element name="newRatePlanCode" type="agw:data10" minOccurs="0"/>
+          <xsd:element name="technologyType" type="agw:technologyTypeInfo" minOccurs="0"/>
+          <xsd:element name="oldRatePlanCode" type="agw:data10" minOccurs="0"/>
+          <xsd:element name="deviceType" type="agw:deviceType" minOccurs="0"/>
+          <xsd:element name="ratePlanStatus" type="agw:rateplanstatus" minOccurs="0"/>
+          <xsd:element name="removedFeatureList" type="agw:removedFeatureList" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="technologyTypeInfo">
+        <xsd:restriction base="xsd:string">
+          <xsd:minLength value="1"/>
+          <xsd:maxLength value="2"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="removedFeatureList">
+        <xsd:sequence>
+          <xsd:element name="featureCode" type="agw:featurecode"/>
+          <xsd:element name="featureName" type="agw:featurename"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="featurename">
+        <xsd:restriction base="xsd:string"/>
+      </xsd:simpleType>
+      <!--EBIMLRetrieveAcctDetailsReq-->
+      <xsd:complexType name="MLRetrieveAcctDetailsReq">
+        <xsd:all>
+          <xsd:element name="MSISDN" type="agw:MSISDN"/>
+        </xsd:all>
+      </xsd:complexType>
+      <!--EBIMLRetrieveAcctDetailsResp-->
+      <xsd:complexType name="MLRetrieveAcctDetailsResp">
+        <xsd:sequence>
+          <xsd:element name="PrimaryInfo" type="agw:primaryInfo"/>
+          <xsd:element name="Members" type="agw:members" minOccurs="0"/>
+          <xsd:element name="Invites" type="agw:invites" minOccurs="0"/>
+          <xsd:element name="ResultDetails" type="agw:resultdetail"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="primaryInfo">
+        <xsd:sequence>
+          <xsd:element name="MSISDN" type="agw:MSISDN"/>
+          <xsd:element name="accountInfo" type="agw:accountInfo"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="accountInfo">
+        <xsd:sequence>
+          <xsd:element name="moneyBalanceInfoML" type="agw:moneybalanceinfo" minOccurs="0"/>
+          <xsd:element name="totalAmountDueDynamic" type="agw:quantity"/>
+          <xsd:element name="totalAmountMRC" type="agw:quantity"/>
+          <xsd:element name="totalSavingsAmount" type="agw:quantity"/>
+          <xsd:element name="allowedInvitations" type="agw:quantity"/>
+          <xsd:element name="proAmount" type="agw:quantity" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="moneybalanceinfo">
+        <xsd:all>
+          <xsd:element name="balanceinfo" type="agw:balanceinfo"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:simpleType name="quantity">
+        <xsd:restriction base="xsd:string"/>
+      </xsd:simpleType>
+      <xsd:simpleType name="airtimeExpiration">
+        <xsd:restriction base="xsd:string">
+          <xsd:pattern value="[0-9]{2}-[0-9]{2}-[0-9]{4}"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="members">
+        <xsd:sequence>
+          <xsd:element name="member" type="agw:member" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="member">
+        <xsd:sequence>
+          <xsd:element name="MSISDN" type="agw:MSISDN"/>
+          <xsd:element name="ratePlanCode" type="agw:data10"/>
+          <xsd:element name="ratePlanStatus" type="agw:rateplanstatus"/>
+          <xsd:element name="mldiscount" type="agw:quantity" minOccurs="0"/>
+          <xsd:element name="ratePlanAfAmount" type="agw:quantity" minOccurs="0"/>
+          <xsd:element name="invAccptDate" type="agw:invAccptDate" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="invAccptDate">
+        <xsd:restriction base="xsd:string"/>
+      </xsd:simpleType>
+      <xsd:complexType name="invites">
+        <xsd:sequence>
+          <xsd:element name="invite" type="agw:invite" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="invite">
+        <xsd:sequence>
+          <xsd:element name="MSISDN" type="agw:MSISDN"/>
+          <xsd:element name="ratePlanCode" type="agw:data10"/>
+          <xsd:element name="invitationDate" type="agw:invitationDate"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="invitationDate">
+        <xsd:restriction base="xsd:string">
+          <xsd:pattern value="[0-9]{2}-[0-9]{2}-[0-9]{4}"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <!--Other types required for EBI ML messages-->
+      <xsd:simpleType name="resultString">
+        <xsd:restriction base="xsd:string">
+          <xsd:minLength value="1"/>
+          <xsd:maxLength value="200"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="deviceType">
+        <xsd:annotation>
+          <xsd:documentation>Device type of subscriber</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="3"/>
+          <xsd:minLength value="1"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <!--======================================================================
+                         Header list
+======================================================================-->
+      <xsd:element name="ResponseHeader" type="agw:ResponseHeader"/>
+      <xsd:element name="RequestHeader" type="agw:RequestHeader"/>
+      <!--=======================================================================
+                         Method list
+=======================================================================-->
+      <xsd:element name="RetrieveAcctInfoReq" type="agw:RetrieveAcctInfoReq"/>
+      <xsd:element name="RetrieveAcctInfoResp" type="agw:RetrieveAcctInfoResp"/>
+      <xsd:element name="EchoReq" type="agw:Echo"/>
+      <xsd:element name="EchoResp" type="agw:Echo"/>
+      <xsd:element name="BalanceEnquiryReq" type="agw:BalanceEnquiryReq"/>
+      <xsd:element name="BalanceEnquiryResp" type="agw:BalanceEnquiryResp"/>
+      <xsd:element name="RetrieveAcctDetailsReq" type="agw:RetrieveAcctDetailsReq"/>
+      <xsd:element name="RetrieveAcctDetailsResp" type="agw:RetrieveAcctDetailsResp"/>
+      <xsd:element name="ChangeRatePlanReq" type="agw:ChangeRatePlanReq"/>
+      <xsd:element name="ChangeRatePlanResp" type="agw:Response"/>
+      <xsd:element name="PBChangeFeaturesReq" type="agw:PBChangeFeaturesReq"/>
+      <xsd:element name="PBChangeFeaturesResp" type="agw:PBChangeFeaturesResp"/>
+      <xsd:element name="PaymentReq" type="agw:PaymentReq"/>
+      <xsd:element name="PaymentResp" type="agw:PaymentResp"/>
+      <xsd:element name="GetRatePlansReq" type="agw:GetRatePlansReq"/>
+      <xsd:element name="GetRatePlansResp" type="agw:GetRatePlansResp"/>
+      <xsd:element name="ChangeMultiLineReq" type="agw:ChangeMultiLineReq"/>
+      <xsd:element name="ChangeMultiLineResp" type="agw:ChangeMultiLineResp"/>
+      <xsd:element name="MLRetrieveAcctDetailsReq" type="agw:MLRetrieveAcctDetailsReq"/>
+      <xsd:element name="MLRetrieveAcctDetailsResp" type="agw:MLRetrieveAcctDetailsResp"/>
+    </xsd:schema>
+    <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:import namespace="http://www.ericsson.com/pps/agw/fault/04.01.00" schemaLocation="ebiFault_4.1.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ChangeRatePlanReq">
+    <wsdl:part element="tns:RequestHeader" name="RequestHeader"/>
+    <wsdl:part element="tns:ChangeRatePlanReq" name="ChangeRatePlanReq"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ChangeRatePlanResp">
+    <wsdl:part element="tns:ResponseHeader" name="ResponseHeader"/>
+    <wsdl:part element="tns:ChangeRatePlanResp" name="ChangeRatePlanResp"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="PBChangeFeaturesReq">
+    <wsdl:part element="tns:RequestHeader" name="RequestHeader"/>
+    <wsdl:part element="tns:PBChangeFeaturesReq" name="PBChangeFeaturesReq"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="PBChangeFeaturesResp">
+    <wsdl:part element="tns:ResponseHeader" name="ResponseHeader"/>
+    <wsdl:part element="tns:PBChangeFeaturesResp" name="PBChangeFeaturesResp"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="PaymentReq">
+    <wsdl:part element="tns:RequestHeader" name="RequestHeader"/>
+    <wsdl:part element="tns:PaymentReq" name="PaymentReq"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="PaymentResp">
+    <wsdl:part element="tns:ResponseHeader" name="ResponseHeader"/>
+    <wsdl:part element="tns:PaymentResp" name="PaymentResp"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="BalanceEnquiryResp">
+    <wsdl:part element="tns:ResponseHeader" name="ResponseHeader"/>
+    <wsdl:part element="tns:BalanceEnquiryResp" name="BalanceEnquiryResp"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="RetrieveAcctDetailsResp">
+    <wsdl:part element="tns:ResponseHeader" name="ResponseHeader"/>
+    <wsdl:part element="tns:RetrieveAcctDetailsResp" name="RetrieveAcctDetailsResp"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="EchoResp">
+    <wsdl:part element="tns:ResponseHeader" name="ResponseHeader"/>
+    <wsdl:part element="tns:EchoResp" name="EchoResp"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="BalanceEnquiryReq">
+    <wsdl:part element="tns:RequestHeader" name="RequestHeader"/>
+    <wsdl:part element="tns:BalanceEnquiryReq" name="BalanceEnquiryReq"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="EchoReq">
+    <wsdl:part element="tns:RequestHeader" name="RequestHeader"/>
+    <wsdl:part element="tns:EchoReq" name="EchoReq"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="RetrieveAcctDetailsReq">
+    <wsdl:part element="tns:RequestHeader" name="RequestHeader"/>
+    <wsdl:part element="tns:RetrieveAcctDetailsReq" name="RetrieveAcctDetailsReq"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="RetrieveAcctInfoResp">
+    <wsdl:part element="tns:ResponseHeader" name="ResponseHeader"/>
+    <wsdl:part element="tns:RetrieveAcctInfoResp" name="RetrieveAcctInfoResp"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="RetrieveAcctInfoReq">
+    <wsdl:part element="tns:RequestHeader" name="RequestHeader"/>
+    <wsdl:part element="tns:RetrieveAcctInfoReq" name="RetrieveAcctInfoReq"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetRatePlansResp">
+    <wsdl:part element="tns:ResponseHeader" name="ResponseHeader"/>
+    <wsdl:part element="tns:GetRatePlansResp" name="GetRatePlansResp"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetRatePlansReq">
+    <wsdl:part element="tns:RequestHeader" name="RequestHeader"/>
+    <wsdl:part element="tns:GetRatePlansReq" name="GetRatePlansReq"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ChangeMultiLineResp">
+    <wsdl:part element="tns:ResponseHeader" name="ResponseHeader"/>
+    <wsdl:part element="tns:ChangeMultiLineResp" name="ChangeMultiLineResp"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ChangeMultiLineReq">
+    <wsdl:part element="tns:RequestHeader" name="RequestHeader"/>
+    <wsdl:part element="tns:ChangeMultiLineReq" name="ChangeMultiLineReq"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="MLRetrieveAcctDetailsResp">
+    <wsdl:part element="tns:ResponseHeader" name="ResponseHeader"/>
+    <wsdl:part element="tns:MLRetrieveAcctDetailsResp" name="MLRetrieveAcctDetailsResp"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="MLRetrieveAcctDetailsReq">
+    <wsdl:part element="tns:RequestHeader" name="RequestHeader"/>
+    <wsdl:part element="tns:MLRetrieveAcctDetailsReq" name="MLRetrieveAcctDetailsReq"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="FaultDetails">
+    <wsdl:part element="tnsfault:FaultDetails" name="FaultDetails"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="csi">
+    <wsdl:operation name="PBChangeFeatures">
+      <wsdl:input message="tns:PBChangeFeaturesReq" name="PBChangeFeaturesReq"></wsdl:input>
+      <wsdl:output message="tns:PBChangeFeaturesResp" name="PBChangeFeaturesResp"></wsdl:output>
+      <wsdl:fault name="FaultDetails" message="tns:FaultDetails"/>
+    </wsdl:operation>
+    <wsdl:operation name="Payment">
+      <wsdl:input message="tns:PaymentReq" name="PaymentReq"></wsdl:input>
+      <wsdl:output message="tns:PaymentResp" name="PaymentResp"></wsdl:output>
+      <wsdl:fault name="FaultDetails" message="tns:FaultDetails"/>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeRatePlan">
+      <wsdl:input message="tns:ChangeRatePlanReq" name="ChangeRatePlanReq"></wsdl:input>
+      <wsdl:output message="tns:ChangeRatePlanResp" name="ChangeRatePlanResp"></wsdl:output>
+      <wsdl:fault name="FaultDetails" message="tns:FaultDetails"/>
+    </wsdl:operation>
+    <wsdl:operation name="BalanceEnquiry">
+      <wsdl:input message="tns:BalanceEnquiryReq" name="BalanceEnquiryReq"></wsdl:input>
+      <wsdl:output message="tns:BalanceEnquiryResp" name="BalanceEnquiryResp"></wsdl:output>
+      <wsdl:fault name="FaultDetails" message="tns:FaultDetails"/>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveAcctDetails">
+      <wsdl:input message="tns:RetrieveAcctDetailsReq" name="RetrieveAcctDetailsReq"></wsdl:input>
+      <wsdl:output message="tns:RetrieveAcctDetailsResp" name="RetrieveAcctDetailsResp"></wsdl:output>
+      <wsdl:fault name="FaultDetails" message="tns:FaultDetails"/>
+    </wsdl:operation>
+    <wsdl:operation name="Echo">
+      <wsdl:input message="tns:EchoReq" name="EchoReq"></wsdl:input>
+      <wsdl:output message="tns:EchoResp" name="EchoResp"></wsdl:output>
+      <wsdl:fault name="FaultDetails" message="tns:FaultDetails"/>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveAcctInfo">
+      <wsdl:input message="tns:RetrieveAcctInfoReq" name="RetrieveAcctInfoReq"></wsdl:input>
+      <wsdl:output message="tns:RetrieveAcctInfoResp" name="RetrieveAcctInfoResp"></wsdl:output>
+      <wsdl:fault name="FaultDetails" message="tns:FaultDetails"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetRatePlans">
+      <wsdl:input message="tns:GetRatePlansReq" name="GetRatePlansReq"></wsdl:input>
+      <wsdl:output message="tns:GetRatePlansResp" name="GetRatePlansResp"></wsdl:output>
+      <wsdl:fault name="FaultDetails" message="tns:FaultDetails"/>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeMultiLine">
+      <wsdl:input message="tns:ChangeMultiLineReq" name="ChangeMultiLineReq"></wsdl:input>
+      <wsdl:output message="tns:ChangeMultiLineResp" name="ChangeMultiLineResp"></wsdl:output>
+      <wsdl:fault name="FaultDetails" message="tns:FaultDetails"/>
+    </wsdl:operation>
+    <wsdl:operation name="MLRetrieveAcctDetails">
+      <wsdl:input message="tns:MLRetrieveAcctDetailsReq" name="MLRetrieveAcctDetailsReq"></wsdl:input>
+      <wsdl:output message="tns:MLRetrieveAcctDetailsResp" name="MLRetrieveAcctDetailsResp"></wsdl:output>
+      <wsdl:fault name="FaultDetails" message="tns:FaultDetails"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="csiSoap11" type="tns:csi">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="ChangeRatePlan">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="ChangeRatePlanReq">
+        <soap:header message="tns:ChangeRatePlanReq" part="RequestHeader" use="literal"/>
+        <soap:body parts="ChangeRatePlanReq" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="ChangeRatePlanResp">
+        <soap:header message="tns:ChangeRatePlanResp" part="ResponseHeader" use="literal"/>
+        <soap:body parts="ChangeRatePlanResp" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="FaultDetails">
+        <soap:fault name="FaultDetails" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="PBChangeFeatures">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="PBChangeFeaturesReq">
+        <soap:header message="tns:PBChangeFeaturesReq" part="RequestHeader" use="literal"/>
+        <soap:body parts="PBChangeFeaturesReq" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="PBChangeFeaturesResp">
+        <soap:header message="tns:PBChangeFeaturesResp" part="ResponseHeader" use="literal"/>
+        <soap:body parts="PBChangeFeaturesResp" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="FaultDetails">
+        <soap:fault name="FaultDetails" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Payment">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="PaymentReq">
+        <soap:header message="tns:PaymentReq" part="RequestHeader" use="literal"/>
+        <soap:body parts="PaymentReq" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="PaymentResp">
+        <soap:header message="tns:PaymentResp" part="ResponseHeader" use="literal"/>
+        <soap:body parts="PaymentResp" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="FaultDetails">
+        <soap:fault name="FaultDetails" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="BalanceEnquiry">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="BalanceEnquiryReq">
+        <soap:header message="tns:BalanceEnquiryReq" part="RequestHeader" use="literal"/>
+        <soap:body parts="BalanceEnquiryReq" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="BalanceEnquiryResp">
+        <soap:header message="tns:BalanceEnquiryResp" part="ResponseHeader" use="literal"/>
+        <soap:body parts="BalanceEnquiryResp" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="FaultDetails">
+        <soap:fault name="FaultDetails" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveAcctDetails">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="RetrieveAcctDetailsReq">
+        <soap:header message="tns:RetrieveAcctDetailsReq" part="RequestHeader" use="literal"/>
+        <soap:body parts="RetrieveAcctDetailsReq" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="RetrieveAcctDetailsResp">
+        <soap:header message="tns:RetrieveAcctDetailsResp" part="ResponseHeader" use="literal"/>
+        <soap:body parts="RetrieveAcctDetailsResp" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="FaultDetails">
+        <soap:fault name="FaultDetails" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Echo">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="EchoReq">
+        <soap:header message="tns:EchoReq" part="RequestHeader" use="literal"/>
+        <soap:body parts="EchoReq" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="EchoResp">
+        <soap:header message="tns:EchoResp" part="ResponseHeader" use="literal"/>
+        <soap:body parts="EchoResp" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="FaultDetails">
+        <soap:fault name="FaultDetails" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveAcctInfo">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="RetrieveAcctInfoReq">
+        <soap:header message="tns:RetrieveAcctInfoReq" part="RequestHeader" use="literal"/>
+        <soap:body parts="RetrieveAcctInfoReq" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="RetrieveAcctInfoResp">
+        <soap:header message="tns:RetrieveAcctInfoResp" part="ResponseHeader" use="literal"/>
+        <soap:body parts="RetrieveAcctInfoResp" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="FaultDetails">
+        <soap:fault name="FaultDetails" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetRatePlans">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetRatePlansReq">
+        <soap:header message="tns:GetRatePlansReq" part="RequestHeader" use="literal"/>
+        <soap:body parts="GetRatePlansReq" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetRatePlansResp">
+        <soap:header message="tns:GetRatePlansResp" part="ResponseHeader" use="literal"/>
+        <soap:body parts="GetRatePlansResp" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="FaultDetails">
+        <soap:fault name="FaultDetails" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeMultiLine">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="ChangeMultiLineReq">
+        <soap:header message="tns:ChangeMultiLineReq" part="RequestHeader" use="literal"/>
+        <soap:body parts="ChangeMultiLineReq" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="ChangeMultiLineResp">
+        <soap:header message="tns:ChangeMultiLineResp" part="ResponseHeader" use="literal"/>
+        <soap:body parts="ChangeMultiLineResp" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="FaultDetails">
+        <soap:fault name="FaultDetails" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="MLRetrieveAcctDetails">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="MLRetrieveAcctDetailsReq">
+        <soap:header message="tns:MLRetrieveAcctDetailsReq" part="RequestHeader" use="literal"/>
+        <soap:body parts="MLRetrieveAcctDetailsReq" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="MLRetrieveAcctDetailsResp">
+        <soap:header message="tns:MLRetrieveAcctDetailsResp" part="ResponseHeader" use="literal"/>
+        <soap:body parts="MLRetrieveAcctDetailsResp" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="FaultDetails">
+        <soap:fault name="FaultDetails" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="csiService">
+    <wsdl:port binding="tns:csiSoap11" name="csiSoap11">
+      <soap:address location="/agw/EbiService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>file:\F:\ATTPrepaid\F424\ebiFault_4.1.xsd</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://www.ericsson.com/pps/agw/fault/04.01.00" elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:enc="http://www.w3.org/2001/09/soap-encoding" xmlns:ebifault="http://www.ericsson.com/pps/agw/fault/04.01.00" xmlns:agw="http://www.ericsson.com/pps/agw/04.01.00">
+  <!--<xsd:import namespace="http://www.ericsson.com/pps/agw/04.01.00" schemaLocation="agw_4.1.xsd"/>-->
+  <!--=======================================================================
+                    Type definitions for ebi fault detail elements
+=======================================================================-->
+  <xsd:complexType name="FaultDetails">
+    <xsd:all>
+      <xsd:element name="FaultCode" type="ebifault:FaultCode"/>
+      <xsd:element name="FaultString" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="Params" type="ebifault:Params" minOccurs="0"/>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="Params">
+    <xsd:all>
+      <xsd:element name="Userid" type="agw:Userid" minOccurs="0"/>
+      <xsd:element name="Password" type="agw:Password" minOccurs="0"/>
+      <xsd:element name="MSISDN" type="agw:MSISDN" minOccurs="0"/>
+      <xsd:element name="OldMSISDN" type="agw:MSISDN" minOccurs="0"/>
+      <xsd:element name="NewMSISDN" type="agw:MSISDN" minOccurs="0"/>
+      <xsd:element name="ReasonCode" type="agw:String" minOccurs="0"/>
+      <xsd:element name="MasterMSISDN" type="agw:MSISDN" minOccurs="0"/>
+      <xsd:element name="AccountNumber" type="agw:AccountNumber" minOccurs="0"/>
+      <xsd:element name="FirstName" type="agw:Name" minOccurs="0"/>
+      <xsd:element name="MiddleInitial" type="agw:Initial" minOccurs="0"/>
+      <xsd:element name="LastName" type="agw:Name" minOccurs="0"/>
+      <xsd:element name="OwnerCode" type="agw:String" minOccurs="0"/>
+      <xsd:element name="ResellerInd" type="xsd:boolean" minOccurs="0"/>
+      <xsd:element name="MarketCode" type="agw:String" minOccurs="0"/>
+      <xsd:element name="SubmarketCode" type="agw:String" minOccurs="0"/>
+      <xsd:element name="CGSA" type="agw:String" minOccurs="0"/>
+      <xsd:element name="RatePlan" type="agw:String" minOccurs="0"/>
+      <xsd:element name="NewRatePlan" type="agw:String" minOccurs="0"/>
+      <xsd:element name="Features" type="agw:Features" minOccurs="0"/>
+      <xsd:element name="NewFeatures" type="agw:Features" minOccurs="0"/>
+      <xsd:element name="EmailAddress" type="agw:EmailAddress" minOccurs="0"/>
+      <xsd:element name="StreetAddressLine1" type="agw:StreetAddress" minOccurs="0"/>
+      <xsd:element name="StreetAddressLine2" type="agw:StreetAddress" minOccurs="0"/>
+      <xsd:element name="StreetAddressLine3" type="agw:StreetAddress" minOccurs="0"/>
+      <xsd:element name="StreetAddressLine4" type="agw:StreetAddress" minOccurs="0"/>
+      <xsd:element name="CityAddress" type="agw:CityAddress" minOccurs="0"/>
+      <xsd:element name="StateAddress" type="agw:StateAddress" minOccurs="0"/>
+      <xsd:element name="ZipCode" type="agw:String" minOccurs="0"/>
+      <xsd:element name="Country" type="agw:Country" minOccurs="0"/>
+      <xsd:element name="PrimaryMSISDN" type="agw:MSISDN" minOccurs="0"/>
+      <xsd:element name="MemberMSISDN" type="agw:MSISDN" minOccurs="0"/>
+      <xsd:element name="CSIconversationId" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="PrimaryInformation" type="agw:primaryMultilineInformationReq" minOccurs="0"/>
+      <xsd:element name="MemberInformation" type="agw:memberMultilineInformationReq" minOccurs="0"/>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:simpleType name="FaultCode">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="1000"/>
+      <!--AGW_SERVICE_SUCCESS-->
+      <xsd:enumeration value="1001"/>
+      <!--AGW_SERVICE_PARTIAL_SUCCESS-->
+      <xsd:enumeration value="1002"/>
+      <!--AGW_UPDATED_EXISTING_SUB-->
+      <xsd:enumeration value="1003"/>
+      <!--AGW_SERVICE_NOT_IMPLEMENTED-->
+      <!--<xsd:enumeration value="2001"/>    FOR FUTURE USE-->
+      <xsd:enumeration value="3001"/>
+      <!--VERSION_MISMATCH-->
+      <xsd:enumeration value="4001"/>
+      <!--INTERNAL_FAILURE-->
+      <xsd:enumeration value="4002"/>
+      <!--BACKEND_NOT_AVAILABLE-->
+      <!--<xsd:enumeration value="4003"/>    CHANGE_IN_PROGRESS-->
+      <xsd:enumeration value="4004"/>
+      <!--BACKEND_TIMEOUT-->
+      <xsd:enumeration value="4005"/>
+      <!--CBS_NOT_AVAILABLE-->
+      <xsd:enumeration value="4006"/>
+      <!--AGW_CBS_INVALID_MESSAGE_FORMAT-->
+      <xsd:enumeration value="5001"/>
+      <!--INVALID_REQUEST-->
+      <xsd:enumeration value="5002"/>
+      <!--INVALID_MSISDN-->
+      <xsd:enumeration value="5003"/>
+      <!--DISCONNECTED_ACCOUNT-->
+      <!--<xsd:enumeration value="5004"/>-->
+      <!--AGW_INVALID_POSI_REQUEST-->
+      <!--<xsd:enumeration value="5005"/>    FOR FUTURE USE-->
+      <xsd:enumeration value="5006"/>
+      <!--INVALID_CREDENTIALS-->
+      <!--<xsd:enumeration value="5007"/>    FOR FUTURE USE-->
+      <!--<xsd:enumeration value="5008"/>    MISSING_MAND_PARAM-->
+      <!--<xsd:enumeration value="5009"/>    INVALID_MAND_PARAM-->
+      <!--<xsd:enumeration value="5010"/>    FOR FUTURE USE-->
+      <!--<xsd:enumeration value="5011"/>    FOR FUTURE USE-->
+      <xsd:enumeration value="5013"/>
+      <!--INVALID_RATE_PLAN-->
+      <!--<xsd:enumeration value="5014"/>    FOR FUTURE USE-->
+      <xsd:enumeration value="5015"/>
+      <!--INVALID_OPT_PARAM-->
+      <xsd:enumeration value="5016"/>
+      <!--INVALID_MESSAGE_FORMAT-->
+      <xsd:enumeration value="5017"/>
+      <!--AGW_SERV_OR_AIR_PER_TOO_LONG-->
+      <xsd:enumeration value="5018"/>
+      <!--AGW_VOUCHER_ALREADY_USED_BY_CUST-->
+      <xsd:enumeration value="5019"/>
+      <!--AGW_CUST_IS_BARRED-->
+      <xsd:enumeration value="5020"/>
+      <!--AGW_VOUCHER_NOT_AVAILABLE-->
+      <xsd:enumeration value="5021"/>
+      <!--AGW_CARD_GROUP_NOT_AVAILABLE-->
+      <xsd:enumeration value="5022"/>
+      <!--AGW_EXCEEDS_MAX_BALANCE-->
+      <xsd:enumeration value="5023"/>
+      <!--SYSTEM_BUSY-->
+      <xsd:enumeration value="5024"/>
+      <!--NOT_AUTHORIZED-->
+      <!--<xsd:enumeration value="5033"/>-->
+      <!--INVALID LANGUAGE-->
+      <xsd:enumeration value="5036"/>
+      <!--INVALID_ACCCOUNT_TYPE_MESSAGE-->
+      <xsd:enumeration value="4008"/>
+      <!--CSI_UNAVAILABLE-->
+      <xsd:enumeration value="5037"/>
+      <!--SERVICE_NOT_AVAILABLE-->
+      <xsd:enumeration value="5040"/>
+      <!--GENERIC ERROR-->
+      <xsd:enumeration value="5052"/>
+      <!--INSUFFICIENT_BALANCE-->
+      <xsd:enumeration value="5054"/>
+      <!--TEMPORARY_CONNECTION_ERROR-->
+      <xsd:enumeration value="5055"/>
+      <!--TEMPORARY_TIMED_OUT-->
+      <xsd:enumeration value="5060"/>
+      <!--SUBSCRIBER IN INVALID RATE PLAN STATE-->
+      <xsd:enumeration value="5070"/>
+      <!--INVALID_SUBSCRIBER_RATE_PLAN_TYPE-->
+      <xsd:enumeration value="5071"/>
+      <!--INVALID_MULTILINE_RATE_PLAN-->
+      <xsd:enumeration value="5072"/>
+      <!--NO_MATCHING_INVITATION-->
+      <xsd:enumeration value="5073"/>
+      <!--AN_INVITATION_ALREADY_EXISTS_FOR_INVITEE-->
+      <xsd:enumeration value="5074"/>
+      <!--NUMBER_OF_AO_INVITES_EXCEEDED-->
+      <xsd:enumeration value="5075"/>
+      <!--INVITEE_ALREADY_HAS_MAX_NUMBER_OF_INVITES-->
+      <xsd:enumeration value="5076"/>
+      <!--ACCOUNT_HAS_MEMBERS-->
+      <xsd:enumeration value="5077"/>
+      <!--MEMBER_NOT_FOUND-->
+    </xsd:restriction>
+  </xsd:simpleType>
+  <!--=======================================================================
+                         Element list
+=======================================================================-->
+  <xsd:element name="FaultDetails" type="ebifault:FaultDetails"/>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>/agw/EbiService</con:endpoint></con:endpoints><con:operation id="0d4acc0b-1fd6-45ae-9d10-e212deac4289" isOneWay="false" action="" name="BalanceEnquiry" bindingOperationName="BalanceEnquiry" type="Request-Response" outputName="BalanceEnquiryResp" inputName="BalanceEnquiryReq" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="d4ef4fe4-989f-47cb-b901-10dcbeb93ddd" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.107.138.205:8080/agw/EbiService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.ericsson.com/pps/agw/04.01.00">\r
+   <soapenv:Header>\r
+      <ns:RequestHeader>\r
+        <!--You may enter the following 5 items in any order-->
+         <!--Optional:-->
+         <ns:Transaction>TPE100</ns:Transaction>
+         <ns:Userid>webcc</ns:Userid>
+         <ns:Password>ewcbc2</ns:Password>
+         <!--Optional:-->
+         <ns:Actor>EBS</ns:Actor>
+         <!--Optional:-->
+         <ns:RequestOpId>AGW01TC3</ns:RequestOpId>
+      </ns:RequestHeader>\r
+   </soapenv:Header>\r
+   <soapenv:Body>\r
+      <ns:BalanceEnquiryReq>\r
+         <ns:MSISDN>7210000102</ns:MSISDN>\r
+      </ns:BalanceEnquiryReq>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ericsson.com/pps/agw/04.01.00/csi/BalanceEnquiryReq"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="9393ca90-d891-432a-b8c7-96ad4dc3759d" isOneWay="false" action="" name="ChangeMultiLine" bindingOperationName="ChangeMultiLine" type="Request-Response" outputName="ChangeMultiLineResp" inputName="ChangeMultiLineReq" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="1fc64515-0442-4e4a-aed2-3b4523934ba7" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.107.138.205:8080/agw/EbiService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.ericsson.com/pps/agw/04.01.00">\r
+   <soapenv:Header>\r
+      <ns:RequestHeader>
+         <!--You may enter the following 5 items in any order-->
+         <!--Optional:-->
+         <ns:Transaction>TPE100</ns:Transaction>
+         <ns:Userid>webcc</ns:Userid>
+         <ns:Password>ewcbc2</ns:Password>
+         <!--Optional:-->
+         <ns:Actor>EBS</ns:Actor>
+         <!--Optional:-->
+         <ns:RequestOpId>AGW01TC3</ns:RequestOpId>
+      </ns:RequestHeader>
+   </soapenv:Header>\r
+   <soapenv:Body>\r
+      <ns:ChangeMultiLineReq>\r
+         <!--Optional:-->\r
+         <ns:PrimaryInformation>\r
+            <!--You may enter the following 2 items in any order-->\r
+            <ns:MSISDN>7210000102</ns:MSISDN>\r
+            <!--Optional:-->\r
+            <ns:ratePlanCode>MUL1</ns:ratePlanCode>\r
+         </ns:PrimaryInformation>\r
+         <!--Optional:-->\r
+         <ns:MemberInformation>\r
+            <!--You may enter the following 3 items in any order-->\r
+            <ns:MSISDN>7210000103</ns:MSISDN>\r
+            <!--Optional:-->\r
+            <ns:ratePlanCode>GPM2</ns:ratePlanCode>\r
+            <!--Optional:-->\r
+            <ns:sendSMS>false</ns:sendSMS>\r
+         </ns:MemberInformation>\r
+         <!--Optional:-->\r
+         <ns:CSIconversationId>123456789</ns:CSIconversationId>\r
+         <ns:Multilineevent>INVITESENT</ns:Multilineevent>\r
+      </ns:ChangeMultiLineReq>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ericsson.com/pps/agw/04.01.00/csi/ChangeMultiLineReq"/><con:wsrmConfig version="1.2"/></con:call><con:call id="ab6c0f6c-856b-43f0-b1fa-775385e3be8c" name="Change_Multiline_new"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.107.138.205:8080/agw/EbiService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:agw="http://www.ericsson.com/pps/agw/04.01.00">
+   <soapenv:Header>
+      <agw:RequestHeader>
+         <agw:Transaction>222</agw:Transaction>
+         <agw:Userid>user1</agw:Userid>
+         <agw:Password>pw1</agw:Password>
+         <agw:Actor>OPUS</agw:Actor>
+         <agw:RequestOpId>root</agw:RequestOpId>
+      </agw:RequestHeader>
+   </soapenv:Header>
+   <soapenv:Body>
+      <agw:ChangeMultiLineReq>
+         <agw:PrimaryInformation>
+            <agw:MSISDN>7210000102</agw:MSISDN>
+            <agw:ratePlanCode>MUL1</agw:ratePlanCode>
+         </agw:PrimaryInformation>
+         <agw:CSIconversationId>123</agw:CSIconversationId>
+         <agw:Multilineevent>ENROLL</agw:Multilineevent>
+      </agw:ChangeMultiLineReq>
+   </soapenv:Body>
+</soapenv:Envelope> ]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ericsson.com/pps/agw/04.01.00/csi/ChangeMultiLineReq"/><con:wsrmConfig version="1.2"/></con:call><con:call id="fad30b2e-1a3d-4226-98af-aa96b5dd54a8" name="changeMultiline-invitesent"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.107.138.205:8080/agw/EbiService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:agw="http://www.ericsson.com/pps/agw/04.01.00">
+	<soapenv:Header>
+		<agw:RequestHeader>
+			 <agw:Actor>OPUS</agw:Actor>
+			<agw:Userid>Test01</agw:Userid>
+			<agw:Password>Test01</agw:Password>
+			<agw:Transaction>-4747911719709294587</agw:Transaction>
+			<agw:RequestOpId>root</agw:RequestOpId>
+		</agw:RequestHeader>
+	</soapenv:Header>
+	<soapenv:Body>
+		<agw:ChangeMultiLineReq>
+			<agw:PrimaryInformation>
+				<agw:MSISDN>7210000102</agw:MSISDN>
+				<agw:LanguagePref>en</agw:LanguagePref>
+				<agw:sendSMS>false</agw:sendSMS>
+			</agw:PrimaryInformation>
+			<agw:MemberInformation>
+				<agw:MSISDN>7210000103</agw:MSISDN>
+				<agw:ratePlanCode>GPM2</agw:ratePlanCode>
+				<agw:ratePlanAction>607</agw:ratePlanAction>
+				<agw:LanguagePref>en</agw:LanguagePref>
+				<agw:sendSMS>false</agw:sendSMS>
+			</agw:MemberInformation>
+			 <agw:CSIconversationId>123</agw:CSIconversationId>
+          	<agw:multilineevent>INVITESENT</agw:multilineevent>
+		</agw:ChangeMultiLineReq>
+	</soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ericsson.com/pps/agw/04.01.00/csi/ChangeMultiLineReq"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="b47555ba-7d22-4a6d-80eb-11c88d815279" isOneWay="false" action="" name="ChangeRatePlan" bindingOperationName="ChangeRatePlan" type="Request-Response" outputName="ChangeRatePlanResp" inputName="ChangeRatePlanReq" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="bb4c9eb8-d3dc-470d-ac00-06ae4ff4032e" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.107.138.205:8080/agw/EbiService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.ericsson.com/pps/agw/04.01.00">\r
+   <soapenv:Header>\r
+      <ns:RequestHeader>\r
+           <!--You may enter the following 5 items in any order-->
+         <!--Optional:-->
+         <ns:Transaction>TPE100</ns:Transaction>
+         <ns:Userid>webcc</ns:Userid>
+         <ns:Password>ewcbc2</ns:Password>
+         <!--Optional:-->
+         <ns:Actor>EBS</ns:Actor>
+         <!--Optional:-->
+         <ns:RequestOpId>AGW01TC3</ns:RequestOpId>
+      </ns:RequestHeader>\r
+   </soapenv:Header>\r
+   <soapenv:Body>\r
+      <ns:ChangeRatePlanReq>\r
+         <!--You may enter the following 3 items in any order-->\r
+         <ns:MSISDN>7210000062</ns:MSISDN>\r
+         <ns:NewRatePlan>GP13</ns:NewRatePlan>\r
+         <!--Optional:-->\r
+         <ns:NewFeatures>GBBB</ns:NewFeatures>\r
+      </ns:ChangeRatePlanReq>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ericsson.com/pps/agw/04.01.00/csi/ChangeRatePlanReq"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="96a07b88-a724-4484-8027-fda72017f7a8" isOneWay="false" action="" name="Echo" bindingOperationName="Echo" type="Request-Response" outputName="EchoResp" inputName="EchoReq" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="2d2eecdd-2c67-4b03-98f3-7cad9fd279bf" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>/agw/EbiService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.ericsson.com/pps/agw/04.01.00">\r
+   <soapenv:Header>\r
+      <ns:RequestHeader>\r
+         <!--You may enter the following 5 items in any order-->\r
+         <!--Optional:-->\r
+         <ns:Transaction>?</ns:Transaction>\r
+         <ns:Userid>?</ns:Userid>\r
+         <ns:Password>?</ns:Password>\r
+         <!--Optional:-->\r
+         <ns:Actor>?</ns:Actor>\r
+         <!--Optional:-->\r
+         <ns:RequestOpId>?</ns:RequestOpId>\r
+      </ns:RequestHeader>\r
+   </soapenv:Header>\r
+   <soapenv:Body>\r
+      <ns:EchoReq>\r
+         <ns:Data>?</ns:Data>\r
+      </ns:EchoReq>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ericsson.com/pps/agw/04.01.00/csi/EchoReq"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="67de67e3-e179-49e8-a5b0-36fafb26ba6b" isOneWay="false" action="" name="GetRatePlans" bindingOperationName="GetRatePlans" type="Request-Response" outputName="GetRatePlansResp" inputName="GetRatePlansReq" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="91a3e657-9c09-4abf-8654-7ea4d2368f91" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.107.138.205:8080/agw/EbiService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.ericsson.com/pps/agw/04.01.00">\r
+   <soapenv:Header>\r
+      <ns:RequestHeader>\r
+         <!--You may enter the following 5 items in any order-->\r
+         <!--Optional:-->\r
+         <ns:Transaction>TPE100</ns:Transaction>\r
+         <ns:Userid>webcc</ns:Userid>\r
+         <ns:Password>ewcbc2</ns:Password>\r
+         <!--Optional:-->\r
+         <ns:Actor>EBS</ns:Actor>\r
+         <!--Optional:-->\r
+         <ns:RequestOpId>AGW01TC3</ns:RequestOpId>\r
+      </ns:RequestHeader>\r
+   </soapenv:Header>\r
+   <soapenv:Body>\r
+      <ns:GetRatePlansReq>\r
+         <!--You may enter the following 4 items in any order-->\r
+         <!--Optional:-->\r
+         <ns:PrimaryMSISDN>7210000102</ns:PrimaryMSISDN>\r
+         <!--Optional:-->\r
+         <ns:MemberMSISDN>7210000103</ns:MemberMSISDN>\r
+         <!--Optional:-->\r
+         <ns:CSIconversationId>123456789</ns:CSIconversationId>\r
+         <ns:Mode>INVITERPLIST</ns:Mode>\r
+      </ns:GetRatePlansReq>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ericsson.com/pps/agw/04.01.00/csi/GetRatePlansReq"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="48d16188-ed2a-4f16-ab27-273bb2b9806c" isOneWay="false" action="" name="MLRetrieveAcctDetails" bindingOperationName="MLRetrieveAcctDetails" type="Request-Response" outputName="MLRetrieveAcctDetailsResp" inputName="MLRetrieveAcctDetailsReq" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="a94d554c-d14d-42b8-ba40-8da020287cb4" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.107.138.205:8080/agw/EbiService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.ericsson.com/pps/agw/04.01.00">\r
+   <soapenv:Header>\r
+      <ns:RequestHeader>\r
+         <!--You may enter the following 5 items in any order-->
+         <!--Optional:-->
+         <ns:Transaction>TPE100</ns:Transaction>
+         <ns:Userid>webcc</ns:Userid>
+         <ns:Password>ewcbc2</ns:Password>
+         <!--Optional:-->
+         <ns:Actor>EBS</ns:Actor>
+         <!--Optional:-->
+         <ns:RequestOpId>AGW01TC3</ns:RequestOpId>
+      </ns:RequestHeader>\r
+   </soapenv:Header>\r
+   <soapenv:Body>\r
+      <ns:MLRetrieveAcctDetailsReq>\r
+         <ns:MSISDN>7210000102</ns:MSISDN>\r
+      </ns:MLRetrieveAcctDetailsReq>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ericsson.com/pps/agw/04.01.00/csi/MLRetrieveAcctDetailsReq"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="1a666ef9-58c9-4192-a782-27cdca404ed4" isOneWay="false" action="" name="Payment" bindingOperationName="Payment" type="Request-Response" outputName="PaymentResp" inputName="PaymentReq" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="edb665af-fe49-4629-a0ba-c52f62a11ded" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.107.138.205:8080/agw/EbiService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.ericsson.com/pps/agw/04.01.00">\r
+   <soapenv:Header>\r
+      <ns:RequestHeader>\r
+         <!--You may enter the following 5 items in any order-->
+         <!--Optional:-->
+         <ns:Transaction>TPE100</ns:Transaction>
+         <ns:Userid>webcc</ns:Userid>
+         <ns:Password>ewcbc2</ns:Password>
+         <!--Optional:-->
+         <ns:Actor>EBS</ns:Actor>
+         <!--Optional:-->
+         <ns:RequestOpId>AGW01TC3</ns:RequestOpId>
+      </ns:RequestHeader>\r
+   </soapenv:Header>\r
+   <soapenv:Body>\r
+      <ns:PaymentReq>\r
+         <!--You may enter the following 4 items in any order-->\r
+         <ns:MSISDN>7210000102</ns:MSISDN>\r
+         <ns:PaymentAmount>1500</ns:PaymentAmount>\r
+         <ns:PaymentTypeCode>101</ns:PaymentTypeCode>\r
+         <!--Optional:-->\r
+         <ns:VoucherActivationNumber>0123456789</ns:VoucherActivationNumber>\r
+      </ns:PaymentReq>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ericsson.com/pps/agw/04.01.00/csi/PaymentReq"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="5fbbc552-3d00-4dcb-8a8b-83f173ea162f" isOneWay="false" action="" name="PBChangeFeatures" bindingOperationName="PBChangeFeatures" type="Request-Response" outputName="PBChangeFeaturesResp" inputName="PBChangeFeaturesReq" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="c9f1d69d-bb24-4524-b385-35d9346ce056" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.107.138.205:8080/agw/EbiService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.ericsson.com/pps/agw/03.00.00">\r
+   <soapenv:Header>\r
+      <ns:RequestHeader>\r
+         <!--You may enter the following 5 items in any order-->
+         <!--Optional:-->
+         <ns:Transaction>TPE100</ns:Transaction>
+         <ns:Userid>Test01</ns:Userid>
+         <ns:Password>Test01</ns:Password>
+         <!--Optional:-->
+         <ns:Actor>EBS</ns:Actor>
+         <!--Optional:-->
+         <ns:RequestOpId>AGW01TC3</ns:RequestOpId>
+      </ns:RequestHeader>\r
+   </soapenv:Header>\r
+   <soapenv:Body>\r
+      <ns:PBChangeFeaturesReq>\r
+         <ns:MSISDN>7210000100</ns:MSISDN>\r
+         <ns:FeatureAction>601</ns:FeatureAction>\r
+         <!--1 to 20 repetitions:-->\r
+         <ns:FeatureInformation>\r
+            <!--You may enter the following 3 items in any order-->\r
+            <ns:FeatureCode>GBBB</ns:FeatureCode>\r
+            <ns:FeatureChargeFlag>1</ns:FeatureChargeFlag>\r
+            <ns:CreditLoyaltyFlag>1</ns:CreditLoyaltyFlag>\r
+         </ns:FeatureInformation>\r
+      </ns:PBChangeFeaturesReq>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ericsson.com/pps/agw/04.01.00/csi/PBChangeFeaturesReq"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="397e87ba-0f61-456c-b8a0-e7eb3f276ac5" isOneWay="false" action="" name="RetrieveAcctDetails" bindingOperationName="RetrieveAcctDetails" type="Request-Response" outputName="RetrieveAcctDetailsResp" inputName="RetrieveAcctDetailsReq" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="fa34fd5e-d3fd-4f21-aa66-103ca6aead64" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.107.138.205:8080/agw/EbiService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.ericsson.com/pps/agw/04.01.00">\r
+   <soapenv:Header>\r
+      <ns:RequestHeader>\r
+         <!--You may enter the following 5 items in any order-->
+         <!--Optional:-->
+         <ns:Transaction>TPE100</ns:Transaction>
+         <ns:Userid>webcc</ns:Userid>
+         <ns:Password>ewcbc2</ns:Password>
+         <!--Optional:-->
+         <ns:Actor>EBS</ns:Actor>
+         <!--Optional:-->
+         <ns:RequestOpId>AGW01TC3</ns:RequestOpId>
+      </ns:RequestHeader>\r
+   </soapenv:Header>\r
+   <soapenv:Body>\r
+      <ns:RetrieveAcctDetailsReq>\r
+         <!--You may enter the following 7 items in any order-->\r
+         <ns:MSISDN>7210000100</ns:MSISDN>\r
+         <!--Optional:-->\r
+         <ns:AccountBalanceFlag>1</ns:AccountBalanceFlag>\r
+         <!--Optional:-->\r
+         <ns:BoltonBalanceFlag>1</ns:BoltonBalanceFlag>\r
+         <!--Optional:-->\r
+         <ns:SubscriptionStatusFlag>1</ns:SubscriptionStatusFlag>\r
+         <!--Optional:-->\r
+         <ns:LoyaltyRequestFlag>1</ns:LoyaltyRequestFlag>\r
+         <!--Optional:-->\r
+         <ns:RatePlanChangeHistoryFlag>1</ns:RatePlanChangeHistoryFlag>\r
+         <!--Optional:-->\r
+          <ns:InvitationsListFlag>1</ns:InvitationsListFlag>\r
+
+      </ns:RetrieveAcctDetailsReq>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ericsson.com/pps/agw/04.01.00/csi/RetrieveAcctDetailsReq"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="093b3e87-167d-4d5e-9168-8ad211274d75" isOneWay="false" action="" name="RetrieveAcctInfo" bindingOperationName="RetrieveAcctInfo" type="Request-Response" outputName="RetrieveAcctInfoResp" inputName="RetrieveAcctInfoReq" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="38477119-2ecb-4754-9e76-976c2ce4a398" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.107.138.205:8080/agw/EbiService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.ericsson.com/pps/agw/04.01.00">
+  <soapenv:Header>\r
+      <ns:RequestHeader>\r
+         <!--You may enter the following 5 items in any order-->\r
+         <!--Optional:-->\r
+         <ns:Transaction>TPE100</ns:Transaction>\r
+         <ns:Userid>webcc</ns:Userid>\r
+         <ns:Password>ewcbc2</ns:Password>\r
+         <!--Optional:-->\r
+         <ns:Actor>EBS</ns:Actor>\r
+         <!--Optional:-->\r
+         <ns:RequestOpId>AGW01TC3</ns:RequestOpId>\r
+      </ns:RequestHeader>\r
+   </soapenv:Header>\r
+   <soapenv:Body>\r
+      <ns:RetrieveAcctInfoReq>\r
+         <ns:MSISDN>7210000100</ns:MSISDN>\r
+      </ns:RetrieveAcctInfoReq>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ericsson.com/pps/agw/04.01.00/csi/RetrieveAcctInfoReq"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>

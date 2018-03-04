@@ -1,0 +1,1807 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="346e6583-8e1c-4e56-8c56-e3d7fd000b0e" activeEnvironment="Default" name="tpsp_wsdl_03_02_tracfone" resourceRoot="" soapui-version="5.1.3" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="2ba93f5f-0a94-4fa3-9604-a11f56a83fb0" wsaVersion="NONE" name="tpspagw_3_2Soap11" type="wsdl" bindingName="{http://www.ericsson.com/pps/tpspagw/03.02.00}tpspagw_3_2Soap11" soapVersion="1_1" anonymous="optional" definition="file:/C:/Users/edhanvi/Dhanvir/ATTPrepaid/SoapUI/Tracfone-WSDL-3.2/Tracfone-WSDL/tpsp_wsdl_03_02_tracfone.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:\C:\Users\edhanvi\Dhanvir\ATTPrepaid\SoapUI\Tracfone-WSDL-3.2\Tracfone-WSDL\tpsp_wsdl_03_02_tracfone.wsdl"><con:part><con:url>file:\C:\Users\edhanvi\Dhanvir\ATTPrepaid\SoapUI\Tracfone-WSDL-3.2\Tracfone-WSDL\tpsp_wsdl_03_02_tracfone.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://www.ericsson.com/pps/tpspagw/03.02.00" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://www.ericsson.com/pps/tpspagw/03.02.00" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.ericsson.com/pps/tpspagw/03.02.00" xmlns:tnsfault="http://www.ericsson.com/pps/tpspagw/fault/03.02.00">
+  <wsdl:types>
+    <xsd:schema elementFormDefault="qualified" targetNamespace="http://www.ericsson.com/pps/tpspagw/03.02.00" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:enc="http://www.w3.org/2001/09/soap-encoding" xmlns:tpspagw="http://www.ericsson.com/pps/tpspagw/03.02.00">
+      <!--======================================================================= 
+		Messages and Headers =======================================================================-->
+      <xsd:element name="RequestHeader">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element name="Userid" type="tpspagw:Userid"/>
+            <xsd:element name="Password" type="tpspagw:Password"/>
+            <xsd:element name="actor" type="tpspagw:actor"/>
+            <xsd:element name="Transaction" type="tpspagw:Transaction" minOccurs="0"/>
+            <xsd:element name="requestopid" type="tpspagw:requestopid" minOccurs="0"/>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ResponseHeader">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element name="Transaction" type="tpspagw:Transaction" minOccurs="0"/>
+            <xsd:element name="requestopid" type="tpspagw:requestopid" minOccurs="0"/>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="TPSPGetAccountsReq">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element name="msisdn" type="tpspagw:msisdn"/>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="TPSPGetAccountsResp">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="resultdetails" type="tpspagw:resultdetails"/>
+            <xsd:element name="msisdn" type="tpspagw:msisdn"/>
+            <xsd:element name="rateplanfamily" type="tpspagw:rateplanfamily"/>
+            <xsd:element name="multilineinfo" type="tpspagw:multilineinfo" minOccurs="0" maxOccurs="1"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="TPSPChangeRatePlanReq">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element name="msisdn" type="tpspagw:msisdn"/>
+            <xsd:element name="rateplancode" type="tpspagw:rateplancode"/>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="TPSPChangeRatePlanResp">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element name="msisdn" type="tpspagw:msisdn"/>
+            <xsd:element name="resultdetails" type="tpspagw:resultdetails"/>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="TPSPRetrieveAcctDetailsReq">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element name="msisdn" type="tpspagw:msisdn"/>
+            <xsd:element name="accountbalanceflag" type="tpspagw:accountbalanceflag" minOccurs="0"/>
+            <xsd:element name="boltonbalanceflag" type="tpspagw:boltonbalanceflag" minOccurs="0"/>
+            <xsd:element name="subscriptionstatusflag" type="tpspagw:subscriptionstatusflag" minOccurs="0"/>
+            <xsd:element name="rateplanchangehistoryflag" type="tpspagw:rateplanchangehistoryflag" minOccurs="0"/>
+            <xsd:element name="autorenewflag" type="tpspagw:autorenewflag" minOccurs="0"/>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="TPSPRetrieveAcctDetailsResp">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="msisdn" type="tpspagw:msisdn"/>
+            <xsd:element name="resultdetails" type="tpspagw:resultdetails"/>
+            <xsd:element name="accountinformation" type="tpspagw:accountinformation"/>
+            <xsd:element name="rateplaninfo" type="tpspagw:rateplaninfo"/>
+            <xsd:element name="rateplanchangehistoryinfo" type="tpspagw:rateplanchangehistoryinfo" minOccurs="0"/>
+            <xsd:element name="featureinfo" type="tpspagw:featureinfo" minOccurs="0" maxOccurs="20"/>
+            <xsd:element name="autorenewinfo" type="tpspagw:autorenewinfo" minOccurs="0"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="TPSPEchoReq">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element name="data" type="tpspagw:data"/>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="TPSPEchoResp">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element name="data" type="tpspagw:data"/>
+            <xsd:element name="resultdetails" type="tpspagw:resultdetails"/>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="TPSPChangeFeatureReq">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="msisdn" type="tpspagw:msisdn"/>
+            <xsd:element name="featureactioninfo" type="tpspagw:featureactioninfo" maxOccurs="100"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="TPSPChangeFeatureResp">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="msisdn" type="tpspagw:msisdn"/>
+            <xsd:element name="resultdetails" type="tpspagw:resultdetails"/>
+            <xsd:element name="featureactionresponseinfo" type="tpspagw:featureactionresponseinfo" maxOccurs="100"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="TPSPPaymentReq">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element name="msisdn" type="tpspagw:msisdn"/>
+            <xsd:element name="paymentinfo" type="tpspagw:paymentinfo"/>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="TPSPPaymentResp">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element name="msisdn" type="tpspagw:msisdn"/>
+            <xsd:element name="resultdetails" type="tpspagw:resultdetails"/>
+            <xsd:element name="paymentresponseinfo" type="tpspagw:paymentresponseinfo"/>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="TPSPRechargeReq">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element name="msisdn" type="tpspagw:msisdn"/>
+            <xsd:element name="rechargeinfo" type="tpspagw:rechargeinfo"/>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="TPSPRechargeResp">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element name="msisdn" type="tpspagw:msisdn"/>
+            <xsd:element name="resultdetails" type="tpspagw:resultdetails"/>
+            <xsd:element name="rechargeresultinfo" type="tpspagw:rechargeresultinfo"/>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="TPSPUpdateSubInfoReq">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element name="msisdn" type="tpspagw:msisdn"/>
+            <xsd:element name="passcodeupdateinfo" type="tpspagw:passcodeupdateinfo" minOccurs="0"/>
+            <xsd:element name="languageupdateinfo" type="tpspagw:languageupdateinfo" minOccurs="0"/>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="TPSPUpdateSubInfoResp">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element name="msisdn" type="tpspagw:msisdn"/>
+            <xsd:element name="resultdetails" type="tpspagw:resultdetails"/>
+            <xsd:element name="passcodeupdateresponseinfo" type="tpspagw:passcodeupdateresponseinfo" minOccurs="0"/>
+            <xsd:element name="languageupdateresponseinfo" type="tpspagw:languageupdateresponseinfo" minOccurs="0"/>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="TPSPAdjustmentReq">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element name="msisdn" type="tpspagw:msisdn"/>
+            <xsd:element name="moneyinformation" type="tpspagw:moneyinformation"/>
+            <xsd:element name="adjustmenttypecode" type="tpspagw:adjustmenttypecode" minOccurs="0"/>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="TPSPAdjustmentResp">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element name="msisdn" type="tpspagw:msisdn"/>
+            <xsd:element name="resultdetails" type="tpspagw:resultdetails"/>
+            <xsd:element name="adjustmentresultinfo" type="tpspagw:adjustmentresultinfo"/>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="TPSPRetrieveRefillHistoryReq">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element name="msisdn" type="tpspagw:msisdn"/>
+            <xsd:element name="numberofrecords" type="tpspagw:numberofrecords" minOccurs="0"/>
+            <xsd:element name="startdate" type="tpspagw:startdate" minOccurs="0"/>
+            <xsd:element name="enddate" type="tpspagw:enddate" minOccurs="0"/>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="TPSPRetrieveRefillHistoryResp">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element name="msisdn" type="tpspagw:msisdn"/>
+            <xsd:element name="resultdetails" type="tpspagw:resultdetails"/>
+            <xsd:element name="refillhistory" type="tpspagw:refillhistory"/>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="TPSPUpdateAirtimeExpirationDateReq">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element name="msisdn" type="tpspagw:msisdn"/>
+            <xsd:element name="airtimeexpiration" type="tpspagw:airtimeexpiration"/>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="TPSPUpdateAirtimeExpirationDateResp">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element name="msisdn" type="tpspagw:msisdn"/>
+            <xsd:element name="resultdetails" type="tpspagw:resultdetails"/>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="TPSPUpdateServicePackageReq">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="msisdn" type="tpspagw:msisdn"/>
+            <xsd:element name="serviceactioninfo" type="tpspagw:serviceactioninfo" maxOccurs="20"/>
+          </xsd:sequence>
+        </xsd:complexType>
+        <xsd:unique name="UniqueServiceType">
+          <xsd:selector xpath="tpspagw:serviceactioninfo"/>
+          <xsd:field xpath="tpspagw:servicetype"/>
+        </xsd:unique>
+      </xsd:element>
+      <xsd:element name="TPSPUpdateServicePackageResp">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="msisdn" type="tpspagw:msisdn"/>
+            <xsd:element name="resultdetails" type="tpspagw:resultdetails"/>
+            <xsd:element name="serviceactionresponse" type="tpspagw:serviceactionresponseinfo" maxOccurs="20"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="TPSPChangeAutoRenewReq">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element name="msisdn" type="tpspagw:msisdn"/>
+            <xsd:element name="autorenewaction" type="tpspagw:autorenewaction"/>
+            <xsd:element name="autorenewexecutiondate" type="tpspagw:autorenewexecutiondate" minOccurs="0"/>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="TPSPChangeAutoRenewResp">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element name="msisdn" type="tpspagw:msisdn"/>
+            <xsd:element name="resultdetails" type="tpspagw:resultdetails"/>
+            <xsd:element name="autorenewinfo" type="tpspagw:autorenewinfo" minOccurs="0"/>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <!--======================================================================= 
+		Information Elements =======================================================================-->
+      <xsd:complexType name="accountinformation">
+        <xsd:all>
+          <xsd:element name="accountnumber" type="tpspagw:accountnumber"/>
+          <xsd:element name="accountstatus" type="tpspagw:accountstatus"/>
+          <xsd:element name="passcode" type="tpspagw:passcode"/>
+          <xsd:element name="market" type="tpspagw:market"/>
+          <xsd:element name="submarket" type="tpspagw:submarket"/>
+          <xsd:element name="accounttype" type="tpspagw:accounttype"/>
+          <xsd:element name="activationdate" type="tpspagw:activationdate" minOccurs="0"/>
+          <xsd:element name="airtimeexpiration" type="tpspagw:airtimeexpiration" minOccurs="0"/>
+          <xsd:element name="servicecanceldate" type="tpspagw:servicecanceldate" minOccurs="0"/>
+          <xsd:element name="subscriptionstatus" type="tpspagw:subscriptionstatus" minOccurs="0"/>
+          <xsd:element name="ivrlanguage" type="tpspagw:ivrlanguage" minOccurs="0"/>
+          <xsd:element name="ivrussdstatus" type="tpspagw:ivrussdstatus" minOccurs="0"/>
+          <xsd:element name="cgsa" type="tpspagw:cgsa" minOccurs="0"/>
+          <xsd:element name="moneybalanceinfo" type="tpspagw:moneybalanceinfo" minOccurs="0"/>
+          <xsd:element name="passcodestatus" type="tpspagw:passcodestatus" minOccurs="0"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="adjustmentresultinfo">
+        <xsd:all>
+          <xsd:element name="moneybalanceinfo" type="tpspagw:moneybalanceinfo"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="accountstatus">
+        <xsd:all>
+          <xsd:element name="status" type="tpspagw:status"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="balanceinfo">
+        <xsd:all>
+          <xsd:element name="quantity" type="tpspagw:quantity"/>
+          <xsd:element name="units" type="tpspagw:units"/>
+          <xsd:element name="unitsdescription" type="tpspagw:unitsdescription" minOccurs="0"/>
+          <xsd:element name="servicetype" type="tpspagw:servicetype" minOccurs="0"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="rateplanserviceinfo">
+        <xsd:sequence>
+          <xsd:element name="quantity" type="tpspagw:quantity"/>
+          <xsd:element name="totalquantity" type="tpspagw:quantity"/>
+          <xsd:element name="units" type="tpspagw:units"/>
+          <xsd:element name="unitsdescription" type="tpspagw:unitsdescription" minOccurs="0"/>
+          <xsd:element name="servicetype" type="tpspagw:servicetype" minOccurs="0"/>
+          <xsd:element name="servicecode" type="tpspagw:servicecode" minOccurs="0"/>
+          <xsd:element name="assocserviceinfo" type="tpspagw:serviceinfo" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="serviceinfo">
+        <xsd:all>
+          <xsd:element name="quantity" type="tpspagw:quantity"/>
+          <xsd:element name="totalquantity" type="tpspagw:quantity"/>
+          <xsd:element name="units" type="tpspagw:units"/>
+          <xsd:element name="unitsdescription" type="tpspagw:unitsdescription" minOccurs="0"/>
+          <xsd:element name="servicetype" type="tpspagw:servicetype" minOccurs="0"/>
+          <xsd:element name="servicecode" type="tpspagw:servicecode" minOccurs="0"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="featureactioninfo">
+        <xsd:all>
+          <xsd:element name="featurecode" type="tpspagw:featurecode"/>
+          <xsd:element name="action" type="tpspagw:action"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="featureactionresponseinfo">
+        <xsd:all>
+          <xsd:element name="featurecode" type="tpspagw:featurecode"/>
+          <xsd:element name="featureactionresultcode" type="tpspagw:featureactionresultcode"/>
+          <xsd:element name="featurebalanceinfo" type="tpspagw:featurebalanceinfo" minOccurs="0"/>
+          <xsd:element name="featurebalancechangeinfo" type="tpspagw:featurebalancechangeinfo" minOccurs="0"/>
+          <xsd:element name="servicebalanceinfo" type="tpspagw:servicebalanceinfo" minOccurs="0"/>
+          <xsd:element name="servicebalancechangeinfo" type="tpspagw:servicebalancechangeinfo" minOccurs="0"/>
+          <xsd:element name="genericstring" type="tpspagw:genericstring" minOccurs="0"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="featurebalancechangeinfo">
+        <xsd:all>
+          <xsd:element name="balanceinfo" type="tpspagw:balanceinfo"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="featurebalanceinfo">
+        <xsd:all>
+          <xsd:element name="balanceinfo" type="tpspagw:balanceinfo"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="featureinfo">
+        <xsd:all>
+          <xsd:element name="featurecode" type="tpspagw:featurecode"/>
+          <xsd:element name="featurestatus" type="tpspagw:featurestatus"/>
+          <xsd:element name="featurechargeinfo" type="tpspagw:featurechargeinfo" minOccurs="0"/>
+          <xsd:element name="featurebalanceinfo" type="tpspagw:featurebalanceinfo" minOccurs="0"/>
+          <xsd:element name="servicebalanceinfo" type="tpspagw:servicebalanceinfo" minOccurs="0"/>
+          <xsd:element name="expirationdate" type="tpspagw:expirationdate" minOccurs="0"/>
+          <!--Feature F446 : Grace Period Expiration date is the date after which the feature will be removed from the account.
+			 Grace Period End Date will only be returned for Built-In features. The value will be returned if present on the 
+			 Ericsson system, whether the subscriber is in grace period or not.-->
+          <xsd:element name="graceperiodexpirationdate" type="tpspagw:expirationdate" minOccurs="0"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="featurechargeinfo">
+        <xsd:all>
+          <xsd:element name="moneyinformation" type="tpspagw:moneyinformation"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="featurestatus">
+        <xsd:all>
+          <xsd:element name="status" type="tpspagw:status"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="ivrussdstatus">
+        <xsd:all>
+          <xsd:element name="status" type="tpspagw:status"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="languageupdateinfo">
+        <xsd:all>
+          <xsd:element name="ivrlanguage" type="tpspagw:ivrlanguage"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="languageupdateresponseinfo">
+        <xsd:all>
+          <xsd:element name="subupdateresultcode" type="tpspagw:subupdateresultcode"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="moneybalancechangeinfo">
+        <xsd:all>
+          <xsd:element name="balanceinfo" type="tpspagw:balanceinfo"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="moneybalanceinfo">
+        <xsd:all>
+          <xsd:element name="balanceinfo" type="tpspagw:balanceinfo"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="moneyinformation">
+        <xsd:all>
+          <xsd:element name="quantity" type="tpspagw:quantity"/>
+          <xsd:element name="units" type="tpspagw:units"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="passcodeupdateinfo">
+        <xsd:all>
+          <xsd:element name="passcode" type="tpspagw:passcode" minOccurs="0"/>
+          <xsd:element name="resetpasscodeflag" type="tpspagw:resetpasscodeflag"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="passcodeupdateresponseinfo">
+        <xsd:all>
+          <xsd:element name="subupdateresultcode" type="tpspagw:subupdateresultcode"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="paymentinfo">
+        <xsd:all>
+          <xsd:element name="moneyinformation" type="tpspagw:moneyinformation"/>
+          <xsd:element name="paymenttypecode" type="tpspagw:paymenttypecode"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="paymentresponseinfo">
+        <xsd:all>
+          <xsd:element name="airtimeexpiration" type="tpspagw:airtimeexpiration"/>
+          <xsd:element name="servicebalancechangeinfo" type="tpspagw:servicebalancechangeinfo"/>
+          <xsd:element name="moneybalanceinfo" type="tpspagw:moneybalanceinfo"/>
+          <xsd:element name="promotionalairtimedays" type="tpspagw:promotionalairtimedays" minOccurs="0"/>
+          <xsd:element name="promotionalvalue" type="tpspagw:promotionalvalue" minOccurs="0"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="promotionalvalue">
+        <xsd:all>
+          <xsd:element name="balanceinfo" type="tpspagw:balanceinfo"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="rateplaninfo">
+        <xsd:sequence>
+          <xsd:element name="rateplancode" type="tpspagw:rateplancode"/>
+          <xsd:element name="rateplanstatus" type="tpspagw:rateplanstatus"/>
+          <xsd:element name="rateplanexpirationdate" type="tpspagw:expirationdate" minOccurs="0"/>
+          <xsd:element name="rateplanserviceinfo" type="tpspagw:rateplanserviceinfo" minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element name="rateplanfamily" type="tpspagw:rateplanfamily"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="rateplanchangehistoryinfo">
+        <xsd:all>
+          <xsd:element name="rateplanchangecounter" type="tpspagw:rateplanchangecounter"/>
+          <xsd:element name="lastchangedate" type="tpspagw:datetime"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="rateplanstatus">
+        <xsd:all>
+          <xsd:element name="status" type="tpspagw:status"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="rechargeinfo">
+        <xsd:all>
+          <xsd:element name="voucheractivationnumber" type="tpspagw:voucheractivationnumber"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="rechargeresultinfo">
+        <xsd:all>
+          <xsd:element name="moneybalancechangeinfo" type="tpspagw:moneybalancechangeinfo"/>
+          <xsd:element name="moneybalanceinfo" type="tpspagw:moneybalanceinfo"/>
+          <xsd:element name="airtimeexpiration" type="tpspagw:airtimeexpiration"/>
+          <xsd:element name="airtimedays" type="tpspagw:airtimedays"/>
+          <xsd:element name="promotionalairtimedays" type="tpspagw:promotionalairtimedays" minOccurs="0"/>
+          <xsd:element name="promotionalvalue" type="tpspagw:promotionalvalue" minOccurs="0"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="resultdetails">
+        <xsd:all>
+          <xsd:element name="resultcode" type="tpspagw:resultcode"/>
+          <xsd:element name="resultstring" type="tpspagw:resultstring" minOccurs="0"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="multilineinfo">
+        <xsd:all>
+          <xsd:element name="primaryinfo" type="tpspagw:primaryinfo"/>
+          <xsd:element name="members" type="tpspagw:members" minOccurs="0"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="servicebalancechangeinfo">
+        <xsd:all>
+          <xsd:element name="balanceinfo" type="tpspagw:balanceinfo"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="servicebalanceinfo">
+        <xsd:all>
+          <xsd:element name="balanceinfo" type="tpspagw:balanceinfo"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="status">
+        <xsd:all>
+          <xsd:element name="statuscode" type="tpspagw:statuscode"/>
+          <xsd:element name="statusreasoncode" type="tpspagw:statusreasoncode" minOccurs="0"/>
+          <xsd:element name="genericstring" type="tpspagw:genericstring" minOccurs="0"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="subscriptionstatus">
+        <xsd:all>
+          <xsd:element name="status" type="tpspagw:status"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="rechargehistory">
+        <xsd:all>
+          <xsd:element name="recharge" type="tpspagw:recharge"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="recharge">
+        <xsd:all>
+          <xsd:element name="voucheractivationnumber" type="tpspagw:voucheractivationnumber"/>
+          <xsd:element name="rechargevalue" type="tpspagw:quantity"/>
+          <xsd:element name="rechargedatetime" type="tpspagw:datetime"/>
+          <xsd:element name="rechargetimezone" type="tpspagw:timezone"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="paymenthistory">
+        <xsd:all>
+          <xsd:element name="payment" type="tpspagw:payment"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="payment">
+        <xsd:all>
+          <xsd:element name="paymentamount" type="tpspagw:quantity"/>
+          <xsd:element name="paymentdatetime" type="tpspagw:datetime"/>
+          <xsd:element name="paymenttimezone" type="tpspagw:timezone"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="promotionalhistory">
+        <xsd:all>
+          <xsd:element name="promotioncredit" type="tpspagw:promotioncredit"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="promotioncredit">
+        <xsd:all>
+          <xsd:element name="promotioncreditamount" type="tpspagw:quantity"/>
+          <xsd:element name="promotioncreditdatetime" type="tpspagw:datetime"/>
+          <xsd:element name="promotioncredittimezone" type="tpspagw:timezone"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="refillhistory">
+        <xsd:sequence>
+          <xsd:element name="rechargehistory" type="tpspagw:rechargehistory" minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element name="paymenthistory" type="tpspagw:paymenthistory" minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element name="promotionalhistory" type="tpspagw:promotionalhistory" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="serviceactioninfo">
+        <xsd:all>
+          <xsd:element name="serviceaction" type="tpspagw:serviceaction"/>
+          <xsd:element name="servicequantity" type="tpspagw:servicequantity"/>
+          <xsd:element name="servicetype" type="tpspagw:servicetype"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="serviceactionresponseinfo">
+        <xsd:all>
+          <xsd:element name="servicetype" type="tpspagw:servicetype"/>
+          <xsd:element name="serviceactionresultcode" type="tpspagw:serviceactionresultcode"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="autorenewinfo">
+        <xsd:all>
+          <xsd:element name="autorenewstatus" type="tpspagw:autorenewstatus"/>
+          <xsd:element name="autorenewexpirationdate" type="tpspagw:autorenewexpirationdate" minOccurs="0"/>
+          <xsd:element name="autorenewexecutiondate" type="tpspagw:autorenewexecutiondate" minOccurs="0"/>
+        </xsd:all>
+      </xsd:complexType>
+      <!--======================================================================= 
+		Parameters begin =======================================================================-->
+      <xsd:simpleType name="accountbalanceflag">
+        <xsd:restriction base="xsd:integer">
+          <xsd:enumeration value="0"/>
+          <xsd:enumeration value="1"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="accountnumber">
+        <xsd:restriction base="xsd:string">
+          <xsd:minLength value="1"/>
+          <xsd:maxLength value="12"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="accounttype">
+        <xsd:restriction base="xsd:integer">
+          <xsd:enumeration value="0"/>
+          <xsd:enumeration value="1"/>
+          <xsd:enumeration value="2"/>
+          <xsd:enumeration value="3"/>
+          <xsd:enumeration value="4"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="action">
+        <xsd:restriction base="xsd:integer">
+          <xsd:enumeration value="600"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="activationdate">
+        <xsd:restriction base="xsd:string">
+          <xsd:pattern value="[0-9]{2}-[0-9]{2}-[0-9]{4}"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="actor">
+        <xsd:restriction base="xsd:string">
+          <xsd:minLength value="1"/>
+          <xsd:maxLength value="10"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="airtimedays">
+        <xsd:restriction base="xsd:integer">
+          <xsd:minInclusive value="0"/>
+          <xsd:maxInclusive value="9999"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="airtimeexpiration">
+        <xsd:restriction base="xsd:string">
+          <xsd:pattern value="[0-9]{2}-[0-9]{2}-[0-9]{4}"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="boltonbalanceflag">
+        <xsd:restriction base="xsd:integer">
+          <xsd:enumeration value="0"/>
+          <xsd:enumeration value="1"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="cgsa">
+        <xsd:restriction base="xsd:string">
+          <xsd:minLength value="1"/>
+          <xsd:maxLength value="10"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="data">
+        <xsd:restriction base="xsd:string">
+          <xsd:minLength value="1"/>
+          <xsd:maxLength value="200"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="expirationdate">
+        <xsd:restriction base="xsd:string">
+          <xsd:pattern value="[0-9]{2}-[0-9]{2}-[0-9]{4}"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="featureactionresultcode">
+        <xsd:restriction base="xsd:integer">
+          <xsd:enumeration value="2000"/>
+          <xsd:enumeration value="2001"/>
+          <xsd:enumeration value="2002"/>
+          <xsd:enumeration value="2003"/>
+          <xsd:enumeration value="2004"/>
+          <xsd:enumeration value="2005"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="featurecode">
+        <xsd:restriction base="xsd:string">
+          <xsd:minLength value="2"/>
+          <xsd:maxLength value="8"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="genericstring">
+        <xsd:restriction base="xsd:string">
+          <xsd:minLength value="1"/>
+          <xsd:maxLength value="200"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="ivrlanguage">
+        <xsd:restriction base="xsd:integer">
+          <xsd:enumeration value="700"/>
+          <xsd:enumeration value="701"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="rateplanchangecounter">
+        <xsd:restriction base="xsd:integer">
+          <xsd:minInclusive value="0"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="market">
+        <xsd:restriction base="xsd:string">
+          <xsd:minLength value="1"/>
+          <xsd:maxLength value="10"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="msisdn">
+        <xsd:restriction base="xsd:integer">
+          <xsd:minInclusive value="0"/>
+          <xsd:maxInclusive value="9999999999"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="passcode">
+        <xsd:restriction base="xsd:string">
+          <xsd:pattern value="[0-9]{4}"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="passcodestatus">
+        <xsd:restriction base="xsd:integer">
+          <xsd:enumeration value="0"/>
+          <xsd:enumeration value="1"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="Password">
+        <xsd:restriction base="xsd:string">
+          <xsd:minLength value="1"/>
+          <xsd:maxLength value="12"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="paymenttypecode">
+        <xsd:restriction base="xsd:integer">
+          <xsd:minInclusive value="0"/>
+          <xsd:maxInclusive value="999999"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="promotionalairtimedays">
+        <xsd:restriction base="xsd:integer">
+          <xsd:minInclusive value="0"/>
+          <xsd:maxInclusive value="9999"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="quantity">
+        <xsd:restriction base="xsd:string"/>
+      </xsd:simpleType>
+      <xsd:simpleType name="rateplancode">
+        <xsd:restriction base="xsd:string">
+          <xsd:minLength value="1"/>
+          <xsd:maxLength value="10"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="requestopid">
+        <xsd:restriction base="xsd:string">
+          <xsd:minLength value="1"/>
+          <xsd:maxLength value="8"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="resultcode">
+        <xsd:restriction base="xsd:integer">
+          <xsd:enumeration value="1000"/>
+          <xsd:enumeration value="1001"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="resultstring">
+        <xsd:restriction base="xsd:string">
+          <xsd:minLength value="1"/>
+          <xsd:maxLength value="200"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="servicecanceldate">
+        <xsd:restriction base="xsd:string">
+          <xsd:pattern value="[0-9]{2}-[0-9]{2}-[0-9]{4}"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="statuscode">
+        <xsd:restriction base="xsd:integer">
+          <xsd:enumeration value="100"/>
+          <xsd:enumeration value="101"/>
+          <xsd:enumeration value="300"/>
+          <xsd:enumeration value="301"/>
+          <xsd:enumeration value="302"/>
+          <xsd:enumeration value="303"/>
+          <xsd:enumeration value="305"/>
+          <xsd:enumeration value="400"/>
+          <xsd:enumeration value="401"/>
+          <xsd:enumeration value="402"/>
+          <xsd:enumeration value="500"/>
+          <xsd:enumeration value="501"/>
+          <xsd:enumeration value="600"/>
+          <xsd:enumeration value="601"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="statusreasoncode">
+        <xsd:restriction base="xsd:integer">
+          <xsd:enumeration value="600"/>
+          <xsd:enumeration value="601"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="submarket">
+        <xsd:restriction base="xsd:string">
+          <xsd:minLength value="1"/>
+          <xsd:maxLength value="10"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="subupdateresultcode">
+        <xsd:restriction base="xsd:integer">
+          <xsd:enumeration value="4000"/>
+          <xsd:enumeration value="4001"/>
+          <xsd:enumeration value="4002"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="subscriptionstatusflag">
+        <xsd:restriction base="xsd:integer">
+          <xsd:enumeration value="0"/>
+          <xsd:enumeration value="1"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="rateplanchangehistoryflag">
+        <xsd:restriction base="xsd:integer">
+          <xsd:enumeration value="0"/>
+          <xsd:enumeration value="1"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="Transaction">
+        <xsd:restriction base="xsd:string">
+          <xsd:minLength value="1"/>
+          <xsd:maxLength value="32"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="units">
+        <xsd:restriction base="xsd:integer">
+          <xsd:enumeration value="501"/>
+          <xsd:enumeration value="503"/>
+          <xsd:enumeration value="506"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="unitsdescription">
+        <xsd:restriction base="xsd:string">
+          <xsd:minLength value="1"/>
+          <xsd:maxLength value="40"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="servicetype">
+        <xsd:restriction base="xsd:string">
+          <xsd:minLength value="1"/>
+          <xsd:maxLength value="40"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="Userid">
+        <xsd:restriction base="xsd:string">
+          <xsd:minLength value="1"/>
+          <xsd:maxLength value="12"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="voucheractivationnumber">
+        <xsd:restriction base="xsd:string">
+          <xsd:pattern value="[0-9]{1,20}"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="startdate">
+        <xsd:restriction base="xsd:string">
+          <xsd:pattern value="[0-9]{2}-[0-9]{2}-[0-9]{4}"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="enddate">
+        <xsd:restriction base="xsd:string">
+          <xsd:pattern value="[0-9]{2}-[0-9]{2}-[0-9]{4}"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="datetime">
+        <xsd:restriction base="xsd:string">
+          <xsd:pattern value="[0-9]{2}-[a-zA-Z]{3}-[0-9]{4} [0-9]{2}:[0-9]{2}:[0-9]{2}"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="timezone">
+        <xsd:restriction base="xsd:string"/>
+      </xsd:simpleType>
+      <xsd:simpleType name="numberofrecords">
+        <xsd:restriction base="xsd:integer">
+          <xsd:minInclusive value="0"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="adjustmenttypecode">
+        <xsd:restriction base="xsd:integer">
+          <xsd:minInclusive value="0"/>
+          <xsd:maxInclusive value="999999"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="servicequantity">
+        <xsd:restriction base="xsd:integer">
+          <xsd:minInclusive value="0"/>
+          <xsd:maxInclusive value="2147483647"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="serviceaction">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="ADD"/>
+          <xsd:enumeration value="SUBTRACT"/>
+          <xsd:enumeration value="SET"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="serviceactionresultcode">
+        <xsd:restriction base="xsd:integer">
+          <xsd:enumeration value="2100"/>
+          <xsd:enumeration value="2101"/>
+          <xsd:enumeration value="2102"/>
+          <xsd:enumeration value="2103"/>
+          <xsd:enumeration value="2104"/>
+          <xsd:enumeration value="2105"/>
+          <xsd:enumeration value="2106"/>
+          <xsd:enumeration value="2107"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="autorenewaction">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="ADD"/>
+          <xsd:enumeration value="REMOVE"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="autorenewstatus">
+        <xsd:restriction base="xsd:integer">
+          <xsd:enumeration value="500"/>
+          <xsd:enumeration value="501"/>
+          <xsd:enumeration value="502"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="autorenewflag">
+        <xsd:restriction base="xsd:integer">
+          <xsd:enumeration value="0"/>
+          <xsd:enumeration value="1"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="autorenewexpirationdate">
+        <xsd:restriction base="xsd:string">
+          <xsd:pattern value="[0-9]{2}-[0-9]{2}-[0-9]{4}"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="autorenewexecutiondate">
+        <xsd:restriction base="xsd:string">
+          <xsd:pattern value="[0-9]{2}-[0-9]{2}-[0-9]{4}"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="rateplanfamily">
+        <xsd:restriction base="xsd:integer">
+          <xsd:minInclusive value="1"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="servicecode">
+        <xsd:restriction base="xsd:string">
+          <xsd:minLength value="1"/>
+          <xsd:maxLength value="40"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="members">
+        <xsd:sequence>
+          <xsd:element name="member" type="tpspagw:member" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="member">
+        <xsd:sequence>
+          <xsd:element name="msisdn" type="tpspagw:msisdn"/>
+          <xsd:element name="rateplancode" type="tpspagw:rateplancode"/>
+          <xsd:element name="rateplanstatus" type="tpspagw:rateplanstatus"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="primaryinfo">
+        <xsd:sequence>
+          <xsd:element name="msisdn" type="tpspagw:msisdn"/>
+          <xsd:element name="totalamtdue" type="tpspagw:moneybalanceinfo"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="resetpasscodeflag">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="0"/>
+          <xsd:enumeration value="1"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:schema>
+    <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:import namespace="http://www.ericsson.com/pps/tpspagw/fault/03.02.00" schemaLocation="tpspFault_3.2.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="TPSPAdjustmentReq">
+    <wsdl:part element="tns:RequestHeader" name="RequestHeader"/>
+    <wsdl:part element="tns:TPSPAdjustmentReq" name="TPSPAdjustmentReq"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="TPSPEchoReq">
+    <wsdl:part element="tns:RequestHeader" name="RequestHeader"/>
+    <wsdl:part element="tns:TPSPEchoReq" name="TPSPEchoReq"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="TPSPChangeAutoRenewReq">
+    <wsdl:part element="tns:RequestHeader" name="RequestHeader"/>
+    <wsdl:part element="tns:TPSPChangeAutoRenewReq" name="TPSPChangeAutoRenewReq"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="TPSPRetrieveAcctDetailsReq">
+    <wsdl:part element="tns:RequestHeader" name="RequestHeader"/>
+    <wsdl:part element="tns:TPSPRetrieveAcctDetailsReq" name="TPSPRetrieveAcctDetailsReq"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="TPSPPaymentResp">
+    <wsdl:part element="tns:ResponseHeader" name="ResponseHeader"/>
+    <wsdl:part element="tns:TPSPPaymentResp" name="TPSPPaymentResp"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="TPSPRetrieveAcctDetailsResp">
+    <wsdl:part element="tns:ResponseHeader" name="ResponseHeader"/>
+    <wsdl:part element="tns:TPSPRetrieveAcctDetailsResp" name="TPSPRetrieveAcctDetailsResp"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="TPSPChangeAutoRenewResp">
+    <wsdl:part element="tns:ResponseHeader" name="ResponseHeader"/>
+    <wsdl:part element="tns:TPSPChangeAutoRenewResp" name="TPSPChangeAutoRenewResp"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="TPSPPaymentReq">
+    <wsdl:part element="tns:RequestHeader" name="RequestHeader"/>
+    <wsdl:part element="tns:TPSPPaymentReq" name="TPSPPaymentReq"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="TPSPUpdateServicePackageReq">
+    <wsdl:part element="tns:RequestHeader" name="RequestHeader"/>
+    <wsdl:part element="tns:TPSPUpdateServicePackageReq" name="TPSPUpdateServicePackageReq"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="TPSPUpdateServicePackageResp">
+    <wsdl:part element="tns:ResponseHeader" name="ResponseHeader"/>
+    <wsdl:part element="tns:TPSPUpdateServicePackageResp" name="TPSPUpdateServicePackageResp"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="TPSPUpdateServicePackageReq">
+    <wsdl:part element="tns:RequestHeader" name="RequestHeader"/>
+    <wsdl:part element="tns:TPSPUpdateServicePackageReq" name="TPSPUpdateServicePackageReq"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="TPSPEchoResp">
+    <wsdl:part element="tns:ResponseHeader" name="ResponseHeader"/>
+    <wsdl:part element="tns:TPSPEchoResp" name="TPSPEchoResp"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="FaultDetails">
+    <wsdl:part element="tnsfault:FaultDetails" name="FaultDetails"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="TPSPChangeFeatureReq">
+    <wsdl:part element="tns:RequestHeader" name="RequestHeader"/>
+    <wsdl:part element="tns:TPSPChangeFeatureReq" name="TPSPChangeFeatureReq"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="TPSPChangeFeatureResp">
+    <wsdl:part element="tns:ResponseHeader" name="ResponseHeader"/>
+    <wsdl:part element="tns:TPSPChangeFeatureResp" name="TPSPChangeFeatureResp"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="TPSPChangeRatePlanReq">
+    <wsdl:part element="tns:RequestHeader" name="RequestHeader"/>
+    <wsdl:part element="tns:TPSPChangeRatePlanReq" name="TPSPChangeRatePlanReq"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="TPSPChangeRatePlanResp">
+    <wsdl:part element="tns:ResponseHeader" name="ResponseHeader"/>
+    <wsdl:part element="tns:TPSPChangeRatePlanResp" name="TPSPChangeRatePlanResp"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="TPSPRechargeReq">
+    <wsdl:part element="tns:RequestHeader" name="RequestHeader"/>
+    <wsdl:part element="tns:TPSPRechargeReq" name="TPSPRechargeReq"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="TPSPRechargeResp">
+    <wsdl:part element="tns:ResponseHeader" name="ResponseHeader"/>
+    <wsdl:part element="tns:TPSPRechargeResp" name="TPSPRechargeResp"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="TPSPUpdateAirtimeExpirationDateReq">
+    <wsdl:part element="tns:RequestHeader" name="RequestHeader"/>
+    <wsdl:part element="tns:TPSPUpdateAirtimeExpirationDateReq" name="TPSPUpdateAirtimeExpirationDateReq"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="TPSPUpdateAirtimeExpirationDateResp">
+    <wsdl:part element="tns:ResponseHeader" name="ResponseHeader"/>
+    <wsdl:part element="tns:TPSPUpdateAirtimeExpirationDateResp" name="TPSPUpdateAirtimeExpirationDateResp"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="TPSPGetAccountsReq">
+    <wsdl:part element="tns:RequestHeader" name="RequestHeader"/>
+    <wsdl:part element="tns:TPSPGetAccountsReq" name="TPSPGetAccountsReq"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="TPSPGetAccountsResp">
+    <wsdl:part element="tns:ResponseHeader" name="ResponseHeader"/>
+    <wsdl:part element="tns:TPSPGetAccountsResp" name="TPSPGetAccountsResp"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="TPSPRetrieveRefillHistoryReq">
+    <wsdl:part element="tns:RequestHeader" name="RequestHeader"/>
+    <wsdl:part element="tns:TPSPRetrieveRefillHistoryReq" name="TPSPRetrieveRefillHistoryReq"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="TPSPRetrieveRefillHistoryResp">
+    <wsdl:part element="tns:ResponseHeader" name="ResponseHeader"/>
+    <wsdl:part element="tns:TPSPRetrieveRefillHistoryResp" name="TPSPRetrieveRefillHistoryResp"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="TPSPUpdateSubInfoReq">
+    <wsdl:part element="tns:RequestHeader" name="RequestHeader"/>
+    <wsdl:part element="tns:TPSPUpdateSubInfoReq" name="TPSPUpdateSubInfoReq"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="TPSPUpdateSubInfoResp">
+    <wsdl:part element="tns:ResponseHeader" name="ResponseHeader"/>
+    <wsdl:part element="tns:TPSPUpdateSubInfoResp" name="TPSPUpdateSubInfoResp"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="tpspagw_3_2">
+    <wsdl:operation name="TPSPEcho">
+      <wsdl:input message="tns:TPSPEchoReq" name="TPSPEchoReq"></wsdl:input>
+      <wsdl:output message="tns:TPSPEchoResp" name="TPSPEchoResp"></wsdl:output>
+      <wsdl:fault name="FaultDetails" message="tns:FaultDetails"/>
+    </wsdl:operation>
+    <wsdl:operation name="TPSPChangeAutoRenew">
+      <wsdl:input message="tns:TPSPChangeAutoRenewReq" name="TPSPChangeAutoRenewReq"></wsdl:input>
+      <wsdl:output message="tns:TPSPChangeAutoRenewResp" name="TPSPChangeAutoRenewResp"></wsdl:output>
+      <wsdl:fault name="FaultDetails" message="tns:FaultDetails"/>
+    </wsdl:operation>
+    <wsdl:operation name="TPSPRetrieveAcctDetails">
+      <wsdl:input message="tns:TPSPRetrieveAcctDetailsReq" name="TPSPRetrieveAcctDetailsReq"></wsdl:input>
+      <wsdl:output message="tns:TPSPRetrieveAcctDetailsResp" name="TPSPRetrieveAcctDetailsResp"></wsdl:output>
+      <wsdl:fault name="FaultDetails" message="tns:FaultDetails"/>
+    </wsdl:operation>
+    <wsdl:operation name="TPSPPayment">
+      <wsdl:input message="tns:TPSPPaymentReq" name="TPSPPaymentReq"></wsdl:input>
+      <wsdl:output message="tns:TPSPPaymentResp" name="TPSPPaymentResp"></wsdl:output>
+      <wsdl:fault name="FaultDetails" message="tns:FaultDetails"/>
+    </wsdl:operation>
+    <wsdl:operation name="TPSPAdjustment">
+      <wsdl:input message="tns:TPSPAdjustmentReq" name="TPSPAdjustmentReq"></wsdl:input>
+      <wsdl:output message="tns:TPSPAdjustmentResp" name="TPSPAdjustmentResp"></wsdl:output>
+      <wsdl:fault name="FaultDetails" message="tns:FaultDetails"/>
+    </wsdl:operation>
+    <wsdl:operation name="TPSPUpdateServicePackage">
+      <wsdl:input message="tns:TPSPUpdateServicePackageReq" name="TPSPUpdateServicePackageReq"></wsdl:input>
+      <wsdl:output message="tns:TPSPUpdateServicePackageResp" name="TPSPUpdateServicePackageResp"></wsdl:output>
+      <wsdl:fault name="FaultDetails" message="tns:FaultDetails"/>
+    </wsdl:operation>
+    <wsdl:operation name="TPSPChangeFeature">
+      <wsdl:input message="tns:TPSPChangeFeatureReq" name="TPSPChangeFeatureReq"></wsdl:input>
+      <wsdl:output message="tns:TPSPChangeFeatureResp" name="TPSPChangeFeatureResp"></wsdl:output>
+      <wsdl:fault name="FaultDetails" message="tns:FaultDetails"/>
+    </wsdl:operation>
+    <wsdl:operation name="TPSPChangeRatePlan">
+      <wsdl:input message="tns:TPSPChangeRatePlanReq" name="TPSPChangeRatePlanReq"></wsdl:input>
+      <wsdl:output message="tns:TPSPChangeRatePlanResp" name="TPSPChangeRatePlanResp"></wsdl:output>
+      <wsdl:fault name="FaultDetails" message="tns:FaultDetails"/>
+    </wsdl:operation>
+    <wsdl:operation name="TPSPRecharge">
+      <wsdl:input message="tns:TPSPRechargeReq" name="TPSPRechargeReq"></wsdl:input>
+      <wsdl:output message="tns:TPSPRechargeResp" name="TPSPRechargeResp"></wsdl:output>
+      <wsdl:fault name="FaultDetails" message="tns:FaultDetails"/>
+    </wsdl:operation>
+    <wsdl:operation name="TPSPUpdateAirtimeExpirationDate">
+      <wsdl:input message="tns:TPSPUpdateAirtimeExpirationDateReq" name="TPSPUpdateAirtimeExpirationDateReq"></wsdl:input>
+      <wsdl:output message="tns:TPSPUpdateAirtimeExpirationDateResp" name="TPSPUpdateAirtimeExpirationDateResp"></wsdl:output>
+      <wsdl:fault name="FaultDetails" message="tns:FaultDetails"/>
+    </wsdl:operation>
+    <wsdl:operation name="TPSPGetAccounts">
+      <wsdl:input message="tns:TPSPGetAccountsReq" name="TPSPGetAccountsReq"></wsdl:input>
+      <wsdl:output message="tns:TPSPGetAccountsResp" name="TPSPGetAccountsResp"></wsdl:output>
+      <wsdl:fault name="FaultDetails" message="tns:FaultDetails"/>
+    </wsdl:operation>
+    <wsdl:operation name="TPSPRetrieveRefillHistory">
+      <wsdl:input message="tns:TPSPRetrieveRefillHistoryReq" name="TPSPRetrieveRefillHistoryReq"></wsdl:input>
+      <wsdl:output message="tns:TPSPRetrieveRefillHistoryResp" name="TPSPRetrieveRefillHistoryResp"></wsdl:output>
+      <wsdl:fault name="FaultDetails" message="tns:FaultDetails"/>
+    </wsdl:operation>
+    <wsdl:operation name="TPSPUpdateSubInfo">
+      <wsdl:input message="tns:TPSPUpdateSubInfoReq" name="TPSPUpdateSubInfoReq"></wsdl:input>
+      <wsdl:output message="tns:TPSPUpdateSubInfoResp" name="TPSPUpdateSubInfoResp"></wsdl:output>
+      <wsdl:fault name="FaultDetails" message="tns:FaultDetails"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="tpspagw_3_2Soap11" type="tns:tpspagw_3_2">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="TPSPEcho">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="TPSPEchoReq">
+        <soap:header message="tns:TPSPEchoReq" part="RequestHeader" use="literal"/>
+        <soap:body parts="TPSPEchoReq" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="TPSPEchoResp">
+        <soap:header message="tns:TPSPEchoResp" part="ResponseHeader" use="literal"/>
+        <soap:body parts="TPSPEchoResp" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="FaultDetails">
+        <soap:fault name="FaultDetails" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="TPSPChangeAutoRenew">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="TPSPChangeAutoRenewReq">
+        <soap:header message="tns:TPSPChangeAutoRenewReq" part="RequestHeader" use="literal"/>
+        <soap:body parts="TPSPChangeAutoRenewReq" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="TPSPChangeAutoRenewResp">
+        <soap:header message="tns:TPSPChangeAutoRenewResp" part="ResponseHeader" use="literal"/>
+        <soap:body parts="TPSPChangeAutoRenewResp" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="FaultDetails">
+        <soap:fault name="FaultDetails" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="TPSPRetrieveAcctDetails">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="TPSPRetrieveAcctDetailsReq">
+        <soap:header message="tns:TPSPRetrieveAcctDetailsReq" part="RequestHeader" use="literal"/>
+        <soap:body parts="TPSPRetrieveAcctDetailsReq" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="TPSPRetrieveAcctDetailsResp">
+        <soap:header message="tns:TPSPRetrieveAcctDetailsResp" part="ResponseHeader" use="literal"/>
+        <soap:body parts="TPSPRetrieveAcctDetailsResp" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="FaultDetails">
+        <soap:fault name="FaultDetails" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="TPSPPayment">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="TPSPPaymentReq">
+        <soap:header message="tns:TPSPPaymentReq" part="RequestHeader" use="literal"/>
+        <soap:body parts="TPSPPaymentReq" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="TPSPPaymentResp">
+        <soap:header message="tns:TPSPPaymentResp" part="ResponseHeader" use="literal"/>
+        <soap:body parts="TPSPPaymentResp" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="FaultDetails">
+        <soap:fault name="FaultDetails" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="TPSPAdjustment">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="TPSPAdjustmentReq">
+        <soap:header message="tns:TPSPAdjustmentReq" part="RequestHeader" use="literal"/>
+        <soap:body parts="TPSPAdjustmentReq" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="TPSPAdjustmentResp">
+        <soap:header message="tns:TPSPAdjustmentResp" part="ResponseHeader" use="literal"/>
+        <soap:body parts="TPSPAdjustmentResp" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="FaultDetails">
+        <soap:fault name="FaultDetails" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="TPSPUpdateServicePackage">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="TPSPUpdateServicePackageReq">
+        <soap:header message="tns:TPSPUpdateServicePackageReq" part="RequestHeader" use="literal"/>
+        <soap:body parts="TPSPUpdateServicePackageReq" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="TPSPUpdateServicePackageResp">
+        <soap:header message="tns:TPSPUpdateServicePackageResp" part="ResponseHeader" use="literal"/>
+        <soap:body parts="TPSPUpdateServicePackageResp" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="FaultDetails">
+        <soap:fault name="FaultDetails" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="TPSPChangeFeature">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="TPSPChangeFeatureReq">
+        <soap:header message="tns:TPSPChangeFeatureReq" part="RequestHeader" use="literal"/>
+        <soap:body parts="TPSPChangeFeatureReq" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="TPSPChangeFeatureResp">
+        <soap:header message="tns:TPSPChangeFeatureResp" part="ResponseHeader" use="literal"/>
+        <soap:body parts="TPSPChangeFeatureResp" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="FaultDetails">
+        <soap:fault name="FaultDetails" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="TPSPChangeRatePlan">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="TPSPChangeRatePlanReq">
+        <soap:header message="tns:TPSPChangeRatePlanReq" part="RequestHeader" use="literal"/>
+        <soap:body parts="TPSPChangeRatePlanReq" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="TPSPChangeRatePlanResp">
+        <soap:header message="tns:TPSPChangeRatePlanResp" part="ResponseHeader" use="literal"/>
+        <soap:body parts="TPSPChangeRatePlanResp" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="FaultDetails">
+        <soap:fault name="FaultDetails" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="TPSPRecharge">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="TPSPRechargeReq">
+        <soap:header message="tns:TPSPRechargeReq" part="RequestHeader" use="literal"/>
+        <soap:body parts="TPSPRechargeReq" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="TPSPRechargeResp">
+        <soap:header message="tns:TPSPRechargeResp" part="ResponseHeader" use="literal"/>
+        <soap:body parts="TPSPRechargeResp" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="FaultDetails">
+        <soap:fault name="FaultDetails" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="TPSPUpdateAirtimeExpirationDate">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="TPSPUpdateAirtimeExpirationDateReq">
+        <soap:header message="tns:TPSPUpdateAirtimeExpirationDateReq" part="RequestHeader" use="literal"/>
+        <soap:body parts="TPSPUpdateAirtimeExpirationDateReq" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="TPSPUpdateAirtimeExpirationDateResp">
+        <soap:header message="tns:TPSPUpdateAirtimeExpirationDateResp" part="ResponseHeader" use="literal"/>
+        <soap:body parts="TPSPUpdateAirtimeExpirationDateResp" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="FaultDetails">
+        <soap:fault name="FaultDetails" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="TPSPGetAccounts">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="TPSPGetAccountsReq">
+        <soap:header message="tns:TPSPGetAccountsReq" part="RequestHeader" use="literal"/>
+        <soap:body parts="TPSPGetAccountsReq" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="TPSPGetAccountsResp">
+        <soap:header message="tns:TPSPGetAccountsResp" part="ResponseHeader" use="literal"/>
+        <soap:body parts="TPSPGetAccountsResp" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="FaultDetails">
+        <soap:fault name="FaultDetails" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    -->
+    <wsdl:operation name="TPSPRetrieveRefillHistory">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="TPSPRetrieveRefillHistoryReq">
+        <soap:header message="tns:TPSPRetrieveRefillHistoryReq" part="RequestHeader" use="literal"/>
+        <soap:body parts="TPSPRetrieveRefillHistoryReq" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="TPSPRetrieveRefillHistoryResp">
+        <soap:header message="tns:TPSPRetrieveRefillHistoryResp" part="ResponseHeader" use="literal"/>
+        <soap:body parts="TPSPRetrieveRefillHistoryResp" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="FaultDetails">
+        <soap:fault name="FaultDetails" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="TPSPUpdateSubInfo">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="TPSPUpdateSubInfoReq">
+        <soap:header message="tns:TPSPUpdateSubInfoReq" part="RequestHeader" use="literal"/>
+        <soap:body parts="TPSPUpdateSubInfoReq" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="TPSPUpdateSubInfoResp">
+        <soap:header message="tns:TPSPUpdateSubInfoResp" part="ResponseHeader" use="literal"/>
+        <soap:body parts="TPSPUpdateSubInfoResp" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="FaultDetails">
+        <soap:fault name="FaultDetails" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="tpspagw_3_2Service">
+    <wsdl:port binding="tns:tpspagw_3_2Soap11" name="tpspagw_3_2Soap11">
+      <soap:address location="/agw/EbiService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>file:\C:\Users\edhanvi\Dhanvir\ATTPrepaid\SoapUI\Tracfone-WSDL-3.2\Tracfone-WSDL\tpspFault_3.2.xsd</con:url><con:content><![CDATA[<!--*===========================================================================
+    *
+    * FILE:   tpsFault_3.2.xsd
+    *
+    * MODULE DESCRIPTION:
+    * XML Schema defining the TPSP interface version 3.2 for AGW.
+    * (c) COPYRIGHT 2010 Ericsson Inc.  All Rights Reserved
+    .
+    * Ericsson Proprietary.
+    * Created: Mon Mar 27 2017
+    * based on the TPSP IWD, 5/155 19-FAR 901 189/3 Uen, Rev H.
+    *
+    *==========================================================================-->
+<xsd:schema targetNamespace="http://www.ericsson.com/pps/tpspagw/fault/03.02.00" elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:enc="http://www.w3.org/2001/09/soap-encoding" xmlns:tpspfault="http://www.ericsson.com/pps/tpspagw/fault/03.02.00" xmlns:tpspagw="http://www.ericsson.com/pps/tpspagw/03.02.00">
+  <!--=======================================================================
+		Type definitions for TPSP fault detail elements
+		=======================================================================-->
+  <xsd:element name="FaultDetails" type="tpspfault:FaultDetails"/>
+  <xsd:complexType name="FaultDetails">
+    <xsd:all>
+      <xsd:element name="FaultCode" type="tpspfault:FaultCode"/>
+      <xsd:element name="FaultString" type="tpspfault:FaultString" minOccurs="0"/>
+      <xsd:element name="Params" type="tpspfault:Params" minOccurs="0"/>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:simpleType name="FaultString">
+    <xsd:restriction base="xsd:string">
+      <xsd:minLength value="1"/>
+      <xsd:maxLength value="200"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="Params">
+    <xsd:restriction base="xsd:string">
+      <xsd:minLength value="1"/>
+      <xsd:maxLength value="200"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="FaultCode">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="3001"/>
+      <!--VERSION_MISMATCH-->
+      <xsd:enumeration value="4001"/>
+      <!--INTERNAL_FAILURE-->
+      <xsd:enumeration value="4002"/>
+      <!--BACKEND_NOT_AVAILABLE-->
+      <xsd:enumeration value="4004"/>
+      <!--BACKEND_TIMEOUT-->
+      <xsd:enumeration value="4102"/>
+      <!--BACKEND_NOT_AVAILABLE_MODIFIED-->
+      <xsd:enumeration value="4104"/>
+      <!--BACKEND_TIMEOUT_MODIFIED-->
+      <xsd:enumeration value="4005"/>
+      <!--CBS_NOT_AVAILABLE-->
+      <xsd:enumeration value="4006"/>
+      <!--CBS_INVALID_MESSAGE_FORMAT-->
+      <xsd:enumeration value="5001"/>
+      <!--INVALID_REQUEST-->
+      <xsd:enumeration value="5002"/>
+      <!--INVALID_MSISDN-->
+      <xsd:enumeration value="5003"/>
+      <!--DISCONNECTED_ACCOUNT-->
+      <xsd:enumeration value="5004"/>
+      <!--INVALID_POSI_REQUEST-->
+      <xsd:enumeration value="5006"/>
+      <!--INVALID_CREDENTIALS-->
+      <xsd:enumeration value="5013"/>
+      <!--INVALID_RATE_PLAN-->
+      <xsd:enumeration value="5016"/>
+      <!--INVALID_MESSAGE_FORMAT-->
+      <xsd:enumeration value="5017"/>
+      <!--SERV_OR_AIR_PER_TOO_LONG-->
+      <xsd:enumeration value="5018"/>
+      <!--VOUCHER_ALREADY_USED_BY_CUST-->
+      <xsd:enumeration value="5019"/>
+      <!--AGW_CUST_IS_BARRED-->
+      <xsd:enumeration value="5020"/>
+      <!--VOUCHER_NOT_AVAILABLE-->
+      <xsd:enumeration value="5021"/>
+      <!--INVALID_CARD_TYPE-->
+      <xsd:enumeration value="5022"/>
+      <!--EXCEEDS_MAX_BALANCE-->
+      <xsd:enumeration value="5023"/>
+      <!--SYSTEM_BUSY-->
+      <xsd:enumeration value="5024"/>
+      <!--NOT_AUTHORIZED-->
+      <xsd:enumeration value="5028"/>
+      <!--SERVICE_EXPIRY_DATE HIGHER THAN CONFIGURED-->
+      <xsd:enumeration value="5029"/>
+      <!--AIRTIME_EXPIRY_DATE HIGHER THAN CONFIGURED-->
+      <xsd:enumeration value="5060"/>
+      <!--SUBSCRIBER IN INVALID RATE PLAN STATE-->
+      <xsd:enumeration value="5061"/>
+      <!--SERVICE REQUESTED NOT IN SUBSCRIBERS RATE PLAN-->
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>/agw/EbiService</con:endpoint></con:endpoints><con:operation id="882e8165-66f2-4b07-a3c0-d35883d58fdf" isOneWay="false" action="" name="TPSPAdjustment" bindingOperationName="TPSPAdjustment" type="Request-Response" outputName="TPSPAdjustmentResp" inputName="TPSPAdjustmentReq" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="8223ae79-a480-4bef-945f-75c6654ef02d" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.107.138.205:8080/agw/EbiService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.ericsson.com/pps/tpspagw/03.02.00">\r
+<soapenv:Header>
+      <ns:RequestHeader>
+         <!--You may enter the following 5 items in any order-->
+         <ns:Userid>Test02</ns:Userid>
+         <ns:Password>Test02</ns:Password>
+         <ns:actor>EBS</ns:actor>
+         <!--Optional:-->
+         <ns:Transaction>103</ns:Transaction>
+         <!--Optional:-->
+         <ns:requestopid>12345678</ns:requestopid>
+      </ns:RequestHeader>
+   </soapenv:Header>
+   <soapenv:Body>\r
+      <ns:TPSPAdjustmentReq>\r
+         <!--You may enter the following 3 items in any order-->\r
+         <ns:msisdn>7210000120</ns:msisdn>\r
+         <ns:moneyinformation>\r
+            <!--You may enter the following 2 items in any order-->\r
+            <ns:quantity>3000</ns:quantity>\r
+            <ns:units>501</ns:units>\r
+         </ns:moneyinformation>\r
+         <!--Optional:-->\r
+         <ns:adjustmenttypecode>700</ns:adjustmenttypecode>\r
+      </ns:TPSPAdjustmentReq>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ericsson.com/pps/tpspagw/03.02.00/tpspagw_3_2/TPSPAdjustmentReq"/><con:wsrmConfig version="1.2"/></con:call><con:call id="5c2a36fc-c3c8-4444-be08-45010a102223" name="ICPaymentReq"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.107.138.205:8080/agw/EbiService</con:endpoint><con:request><![CDATA[<SOAP-ENV:Envelope
+	xmlns:SOAP-ENV='http://schemas.xmlsoap.org/soap/envelope/'
+	xmlns:ic='http://www.ericsson.com/agw/ic'>
+	<SOAP-ENV:Header>
+		<ic:RequestHeader>
+			<ic:version>01.00.01</ic:version>
+			<ic:userId>IncommIC</ic:userId>
+			<ic:password>IncommIC</ic:password>
+			<ic:clientTransactionId>TPE100</ic:clientTransactionId>
+			<ic:date>02072015</ic:date>
+			<ic:time>10:10:10</ic:time>
+		</ic:RequestHeader>
+	</SOAP-ENV:Header>
+	<SOAP-ENV:Body>
+		<ic:ICPaymentReq>
+			<ic:msisdn>2139588363</ic:msisdn>
+			<ic:messageType>ICPaymentReq</ic:messageType>
+			<ic:reversibleFlag>false</ic:reversibleFlag>
+			<ic:amount>6000</ic:amount>
+			<ic:paymentTypeCode>102</ic:paymentTypeCode>
+		</ic:ICPaymentReq>
+	</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ericsson.com/pps/tpspagw/03.02.00/tpspagw_3_2/TPSPAdjustmentReq"/><con:wsrmConfig version="1.2"/></con:call><con:call id="e35ab50e-e219-45d6-ba15-8f1ae23b09aa" name="ICReversePaymentReq"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.107.138.205:8080/agw/EbiService</con:endpoint><con:request><![CDATA[<SOAP-ENV:Envelope
+	xmlns:SOAP-ENV='http://schemas.xmlsoap.org/soap/envelope/'
+	xmlns:ic='http://www.ericsson.com/agw/ic'>
+	<SOAP-ENV:Header>
+		<ic:RequestHeader>
+			<ic:version>01.00.01</ic:version>
+			<ic:userId>IncommIC</ic:userId>
+			<ic:password>IncommIC</ic:password>
+			<ic:clientTransactionId>TPE100</ic:clientTransactionId>
+			<ic:date>02072015</ic:date>
+			<ic:time>10:10:10</ic:time>
+		</ic:RequestHeader>
+	</SOAP-ENV:Header>
+	<SOAP-ENV:Body>
+		<ic:ICReversePaymentReq>
+			<ic:msisdn>2139588363</ic:msisdn>
+			<ic:messageType>ICReversePaymentReq</ic:messageType>
+			<ic:paymentTransactionId>7538504967531917</ic:paymentTransactionId>
+			<ic:amount>6000</ic:amount>
+			<ic:paymentTypeCode>102</ic:paymentTypeCode>
+		</ic:ICReversePaymentReq>
+	</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ericsson.com/pps/tpspagw/03.02.00/tpspagw_3_2/TPSPAdjustmentReq"/><con:wsrmConfig version="1.2"/></con:call><con:call id="3a44be40-2f84-448b-a0fb-d30fb69768c6" name="ICRetrieveAccountDetailsReq"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.107.138.205:8080/agw/EbiService</con:endpoint><con:request><![CDATA[<SOAP-ENV:Envelope
+	xmlns:SOAP-ENV='http://schemas.xmlsoap.org/soap/envelope/'
+	xmlns:ic='http://www.ericsson.com/agw/ic'>
+	<SOAP-ENV:Header>
+		<ic:RequestHeader>
+			<ic:version>01.00.01</ic:version>
+			<ic:userId>IncommIC</ic:userId>
+			<ic:password>IncommIC</ic:password>
+			<ic:clientTransactionId>TPE100</ic:clientTransactionId>
+			<ic:date>05102015</ic:date>
+			<ic:time>10:10:10</ic:time>
+		</ic:RequestHeader>
+	</SOAP-ENV:Header>
+	<SOAP-ENV:Body>
+		<ic:ICRetrieveAccountDetailsReq>
+			<ic:msisdn>2139588364</ic:msisdn>
+			<ic:messageType>ICRetrieveAccountDetailsReq</ic:messageType>
+			 <ic:accountBalance>1</ic:accountBalance>
+               <ic:subscriptionStatus>1</ic:subscriptionStatus>
+		</ic:ICRetrieveAccountDetailsReq>
+	</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ericsson.com/pps/tpspagw/03.02.00/tpspagw_3_2/TPSPAdjustmentReq"/><con:wsrmConfig version="1.2"/></con:call><con:call id="60a4c04d-33d2-4e57-8481-ee93dfa835da" name="ICPreAuthorizationReq"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.107.138.205:8080/agw/EbiService</con:endpoint><con:request><![CDATA[<SOAP-ENV:Envelope
+	xmlns:SOAP-ENV='http://schemas.xmlsoap.org/soap/envelope/'
+	xmlns:ic='http://www.ericsson.com/agw/ic'>
+	<SOAP-ENV:Header>
+		<ic:RequestHeader>
+			<ic:version>01.00.01</ic:version>
+			<ic:userId>IncommIC</ic:userId>
+			<ic:password>IncommIC</ic:password>
+			<ic:clientTransactionId>TPE100</ic:clientTransactionId>
+			<ic:date>02072015</ic:date>
+			<ic:time>10:10:10</ic:time>
+		</ic:RequestHeader>
+	</SOAP-ENV:Header>
+	<SOAP-ENV:Body>
+		<ic:ICPreAuthorizationReq>
+			<ic:msisdn>2139588364</ic:msisdn>
+			<ic:messageType>ICPreAuthorizationReq</ic:messageType>
+			<ic:amount>6000</ic:amount>
+			<ic:paymentTypeCode>102</ic:paymentTypeCode>
+		</ic:ICPreAuthorizationReq>
+	</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ericsson.com/pps/tpspagw/03.02.00/tpspagw_3_2/TPSPAdjustmentReq"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="ff02d2fc-9d75-44f0-aeff-2603097ac6a3" isOneWay="false" action="" name="TPSPChangeAutoRenew" bindingOperationName="TPSPChangeAutoRenew" type="Request-Response" outputName="TPSPChangeAutoRenewResp" inputName="TPSPChangeAutoRenewReq" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="355e628f-1daf-4720-bc86-459885268c35" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.107.138.205:8080/agw/EbiService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.ericsson.com/pps/tpspagw/03.02.00">\r
+<soapenv:Header>
+      <ns:RequestHeader>
+         <!--You may enter the following 5 items in any order-->
+         <ns:Userid>Test02</ns:Userid>
+         <ns:Password>Test02</ns:Password>
+         <ns:actor>EBS</ns:actor>
+         <!--Optional:-->
+         <ns:Transaction>103</ns:Transaction>
+         <!--Optional:-->
+         <ns:requestopid>12345678</ns:requestopid>
+      </ns:RequestHeader>
+   </soapenv:Header>
+   <soapenv:Body>\r
+      <ns:TPSPChangeAutoRenewReq>\r
+         <!--You may enter the following 3 items in any order-->\r
+         <ns:msisdn>7210000121</ns:msisdn>\r
+         <ns:autorenewaction>ADD</ns:autorenewaction>\r
+         <!--Optional:-->\r
+         <ns:autorenewexecutiondate>05-10-2017</ns:autorenewexecutiondate>\r
+      </ns:TPSPChangeAutoRenewReq>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ericsson.com/pps/tpspagw/03.02.00/tpspagw_3_2/TPSPChangeAutoRenewReq"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="e7bfa9b7-c7ec-4ce8-8e3a-70ab245065cd" isOneWay="false" action="" name="TPSPChangeFeature" bindingOperationName="TPSPChangeFeature" type="Request-Response" outputName="TPSPChangeFeatureResp" inputName="TPSPChangeFeatureReq" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="f206eef4-45c7-4232-b996-e25bf1074a32" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.107.138.205:8080/agw/EbiService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.ericsson.com/pps/tpspagw/03.02.00">\r
+<soapenv:Header>
+      <ns:RequestHeader>
+         <!--You may enter the following 5 items in any order-->
+         <ns:Userid>Test02</ns:Userid>
+         <ns:Password>Test02</ns:Password>
+         <ns:actor>EBS</ns:actor>
+         <!--Optional:-->
+         <ns:Transaction>103</ns:Transaction>
+         <!--Optional:-->
+         <ns:requestopid>12345678</ns:requestopid>
+      </ns:RequestHeader>
+   </soapenv:Header>
+   <soapenv:Body>\r
+      <ns:TPSPChangeFeatureReq>\r
+         <ns:msisdn>7210000121</ns:msisdn>\r
+         <!--1 to 100 repetitions:-->\r
+         <ns:featureactioninfo>\r
+            <!--You may enter the following 2 items in any order-->\r
+            <ns:featurecode>GBBB</ns:featurecode>\r
+            <ns:action>601</ns:action>\r
+         </ns:featureactioninfo>\r
+      </ns:TPSPChangeFeatureReq>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ericsson.com/pps/tpspagw/03.02.00/tpspagw_3_2/TPSPChangeFeatureReq"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="98c8823a-7dd2-42c7-9fca-29e288f3d813" isOneWay="false" action="" name="TPSPChangeRatePlan" bindingOperationName="TPSPChangeRatePlan" type="Request-Response" outputName="TPSPChangeRatePlanResp" inputName="TPSPChangeRatePlanReq" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="ffcea448-acab-47ee-be8c-35f4426dd753" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.107.138.205:8080/agw/EbiService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.ericsson.com/pps/tpspagw/03.02.00">\r
+<soapenv:Header>
+      <ns:RequestHeader>
+         <!--You may enter the following 5 items in any order-->
+         <ns:Userid>Test02</ns:Userid>
+         <ns:Password>Test02</ns:Password>
+         <ns:actor>EBS</ns:actor>
+         <!--Optional:-->
+         <ns:Transaction>103</ns:Transaction>
+         <!--Optional:-->
+         <ns:requestopid>12345678</ns:requestopid>
+      </ns:RequestHeader>
+   </soapenv:Header>
+   <soapenv:Body>\r
+      <ns:TPSPChangeRatePlanReq>\r
+         <!--You may enter the following 2 items in any order-->\r
+         <ns:msisdn>7210000121</ns:msisdn>\r
+         <ns:rateplancode>MUL1</ns:rateplancode>\r
+      </ns:TPSPChangeRatePlanReq>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ericsson.com/pps/tpspagw/03.02.00/tpspagw_3_2/TPSPChangeRatePlanReq"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="0850515a-b24d-4c20-87cb-4f144b4b446e" isOneWay="false" action="" name="TPSPEcho" bindingOperationName="TPSPEcho" type="Request-Response" outputName="TPSPEchoResp" inputName="TPSPEchoReq" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="b9596432-bb57-48f8-93cd-671688f598e3" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.107.138.205:8080/agw/EbiService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.ericsson.com/pps/tpspagw/03.02.00">\r
+<soapenv:Header>
+      <ns:RequestHeader>
+         <!--You may enter the following 5 items in any order-->
+         <ns:Userid>Test02</ns:Userid>
+         <ns:Password>Test02</ns:Password>
+         <ns:actor>EBS</ns:actor>
+         <!--Optional:-->
+         <ns:Transaction>103</ns:Transaction>
+         <!--Optional:-->
+         <ns:requestopid>12345678</ns:requestopid>
+      </ns:RequestHeader>
+   </soapenv:Header>
+   <soapenv:Body>\r
+      <ns:TPSPEchoReq>\r
+         <ns:data>testing e cho</ns:data>\r
+      </ns:TPSPEchoReq>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ericsson.com/pps/tpspagw/03.02.00/tpspagw_3_2/TPSPEchoReq"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="c071b22b-75ef-4d6c-a819-c6fe7da8c83f" isOneWay="false" action="" name="TPSPGetAccounts" bindingOperationName="TPSPGetAccounts" type="Request-Response" outputName="TPSPGetAccountsResp" inputName="TPSPGetAccountsReq" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="a8726195-07e4-4ba2-8972-604f98ffa264" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.107.138.205:8080/agw/EbiService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.ericsson.com/pps/tpspagw/03.02.00">\r
+<soapenv:Header>
+      <ns:RequestHeader>
+         <!--You may enter the following 5 items in any order-->
+         <ns:Userid>Test02</ns:Userid>
+         <ns:Password>Test02</ns:Password>
+         <ns:actor>EBS</ns:actor>
+         <!--Optional:-->
+         <ns:Transaction>103</ns:Transaction>
+         <!--Optional:-->
+         <ns:requestopid>12345678</ns:requestopid>
+      </ns:RequestHeader>
+   </soapenv:Header>
+   <soapenv:Body>\r
+      <ns:TPSPGetAccountsReq>\r
+         <ns:msisdn>7210000121</ns:msisdn>\r
+      </ns:TPSPGetAccountsReq>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ericsson.com/pps/tpspagw/03.02.00/tpspagw_3_2/TPSPGetAccountsReq"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="5279bb01-1d0a-4f3b-bba7-2d987de2ee59" isOneWay="false" action="" name="TPSPPayment" bindingOperationName="TPSPPayment" type="Request-Response" outputName="TPSPPaymentResp" inputName="TPSPPaymentReq" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="01856169-f5c4-4d89-808f-c9f3a82cea70" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.107.138.205:8080/agw/EbiService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.ericsson.com/pps/tpspagw/03.02.00">\r
+<soapenv:Header>
+      <ns:RequestHeader>
+         <!--You may enter the following 5 items in any order-->
+         <ns:Userid>Test02</ns:Userid>
+         <ns:Password>Test02</ns:Password>
+         <ns:actor>EBS</ns:actor>
+         <!--Optional:-->
+         <ns:Transaction>103</ns:Transaction>
+         <!--Optional:-->
+         <ns:requestopid>12345678</ns:requestopid>
+      </ns:RequestHeader>
+   </soapenv:Header>\r
+   <soapenv:Body>\r
+      <ns:TPSPPaymentReq>\r
+         <!--You may enter the following 2 items in any order-->\r
+         <ns:msisdn>2139588364</ns:msisdn>\r
+         <ns:paymentinfo>\r
+            <!--You may enter the following 2 items in any order-->\r
+            <ns:moneyinformation>\r
+               <!--You may enter the following 2 items in any order-->\r
+               <ns:quantity>1000</ns:quantity>\r
+               <ns:units>501</ns:units>\r
+            </ns:moneyinformation>\r
+            <ns:paymenttypecode>101</ns:paymenttypecode>\r
+         </ns:paymentinfo>\r
+      </ns:TPSPPaymentReq>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ericsson.com/pps/tpspagw/03.02.00/tpspagw_3_2/TPSPPaymentReq"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="9000746c-5b19-42cd-8900-485f23a8b35f" isOneWay="false" action="" name="TPSPRecharge" bindingOperationName="TPSPRecharge" type="Request-Response" outputName="TPSPRechargeResp" inputName="TPSPRechargeReq" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="cc93b266-2bbc-4fea-8875-6acb36a6ea45" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.107.138.205:8080/agw/EbiService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.ericsson.com/pps/tpspagw/03.02.00">\r
+<soapenv:Header>
+      <ns:RequestHeader>
+         <!--You may enter the following 5 items in any order-->
+         <ns:Userid>BEVOCAL</ns:Userid>
+         <ns:Password>BEVOCAL1</ns:Password>
+         <ns:actor>EBS</ns:actor>
+         <!--Optional:-->
+         <ns:Transaction>103</ns:Transaction>
+         <!--Optional:-->
+         <ns:requestopid>12345678</ns:requestopid>
+      </ns:RequestHeader>
+   </soapenv:Header>
+   <soapenv:Body>\r
+      <ns:TPSPRechargeReq>\r
+         <!--You may enter the following 2 items in any order-->\r
+         <ns:msisdn>7210001001</ns:msisdn>\r
+         <ns:rechargeinfo>\r
+            <ns:voucheractivationnumber>023927285084</ns:voucheractivationnumber>\r
+         </ns:rechargeinfo>\r
+      </ns:TPSPRechargeReq>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ericsson.com/pps/tpspagw/03.02.00/tpspagw_3_2/TPSPRechargeReq"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="0cad0e6d-6bf3-498d-bd60-4511dd55fd3a" isOneWay="false" action="" name="TPSPRetrieveAcctDetails" bindingOperationName="TPSPRetrieveAcctDetails" type="Request-Response" outputName="TPSPRetrieveAcctDetailsResp" inputName="TPSPRetrieveAcctDetailsReq" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="e57bf79e-e980-456d-948e-3e5b3810b648" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.107.138.205:8080/agw/EbiService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.ericsson.com/pps/tpspagw/03.02.00">\r
+<soapenv:Header>
+      <ns:RequestHeader>
+         <!--You may enter the following 5 items in any order-->
+         <ns:Userid>Test02</ns:Userid>
+         <ns:Password>Test02</ns:Password>
+         <ns:actor>EBS</ns:actor>
+         <!--Optional:-->
+         <ns:Transaction>103</ns:Transaction>
+         <!--Optional:-->
+         <ns:requestopid>12345678</ns:requestopid>
+      </ns:RequestHeader>
+   </soapenv:Header>
+   <soapenv:Body>\r
+      <ns:TPSPRetrieveAcctDetailsReq>\r
+         <!--You may enter the following 6 items in any order-->\r
+         <ns:msisdn>023927285084</ns:msisdn>\r
+         <!--Optional:-->\r
+         <ns:accountbalanceflag>1</ns:accountbalanceflag>\r
+         <!--Optional:-->\r
+         <ns:boltonbalanceflag>1</ns:boltonbalanceflag>\r
+         <!--Optional:-->\r
+         <ns:subscriptionstatusflag>1</ns:subscriptionstatusflag>\r
+         <!--Optional:-->\r
+         <ns:rateplanchangehistoryflag>1</ns:rateplanchangehistoryflag>\r
+         <!--Optional:-->\r
+         <ns:autorenewflag>1</ns:autorenewflag>\r
+      </ns:TPSPRetrieveAcctDetailsReq>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ericsson.com/pps/tpspagw/03.02.00/tpspagw_3_2/TPSPRetrieveAcctDetailsReq"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="f76de75b-7894-49b3-8935-3ae8ad78f675" isOneWay="false" action="" name="TPSPRetrieveRefillHistory" bindingOperationName="TPSPRetrieveRefillHistory" type="Request-Response" outputName="TPSPRetrieveRefillHistoryResp" inputName="TPSPRetrieveRefillHistoryReq" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="aad4f057-5fb8-4127-8028-98407a16efd8" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.107.138.205:8080/agw/EbiService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.ericsson.com/pps/tpspagw/03.02.00">\r
+ <soapenv:Header>
+      <ns:RequestHeader>
+         <!--You may enter the following 5 items in any order-->
+         <ns:Userid>Test02</ns:Userid>
+         <ns:Password>Test02</ns:Password>
+         <ns:actor>EBS</ns:actor>
+         <!--Optional:-->
+         <ns:Transaction>103</ns:Transaction>
+         <!--Optional:-->
+         <ns:requestopid>12345678</ns:requestopid>
+      </ns:RequestHeader>
+   </soapenv:Header>
+   <soapenv:Body>\r
+      <ns:TPSPRetrieveRefillHistoryReq>\r
+         <!--You may enter the following 4 items in any order-->\r
+         <ns:msisdn>7400000010</ns:msisdn>\r
+         <!--Optional:-->\r
+         <ns:numberofrecords>10</ns:numberofrecords>\r
+         <!--Optional:-->\r
+         <ns:startdate>09-09-2017</ns:startdate>\r
+         <!--Optional:-->\r
+         <ns:enddate>04-10-2017</ns:enddate>\r
+      </ns:TPSPRetrieveRefillHistoryReq>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ericsson.com/pps/tpspagw/03.02.00/tpspagw_3_2/TPSPRetrieveRefillHistoryReq"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="e71422f7-f74a-43b3-94b4-84e57db0dac9" isOneWay="false" action="" name="TPSPUpdateAirtimeExpirationDate" bindingOperationName="TPSPUpdateAirtimeExpirationDate" type="Request-Response" outputName="TPSPUpdateAirtimeExpirationDateResp" inputName="TPSPUpdateAirtimeExpirationDateReq" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="30861b37-35a7-46cb-8c83-b754bce28418" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.107.138.205:8080/agw/EbiService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.ericsson.com/pps/tpspagw/03.02.00">\r
+ <soapenv:Header>
+      <ns:RequestHeader>
+         <!--You may enter the following 5 items in any order-->
+         <ns:Userid>Test02</ns:Userid>
+         <ns:Password>Test02</ns:Password>
+         <ns:actor>EBS</ns:actor>
+         <!--Optional:-->
+         <ns:Transaction>103</ns:Transaction>
+         <!--Optional:-->
+         <ns:requestopid>12345678</ns:requestopid>
+      </ns:RequestHeader>
+   </soapenv:Header>
+   <soapenv:Body>\r
+      <ns:TPSPUpdateAirtimeExpirationDateReq>\r
+         <!--You may enter the following 2 items in any order-->\r
+         <ns:msisdn>7400000010</ns:msisdn>\r
+         <ns:airtimeexpiration>06-10-2017</ns:airtimeexpiration>\r
+      </ns:TPSPUpdateAirtimeExpirationDateReq>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ericsson.com/pps/tpspagw/03.02.00/tpspagw_3_2/TPSPUpdateAirtimeExpirationDateReq"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="e1776d5b-4596-4045-9fd1-a686734ae026" isOneWay="false" action="" name="TPSPUpdateServicePackage" bindingOperationName="TPSPUpdateServicePackage" type="Request-Response" outputName="TPSPUpdateServicePackageResp" inputName="TPSPUpdateServicePackageReq" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="2897d062-4cab-4892-b67b-8385622c2274" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.107.138.205:8080/agw/EbiService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.ericsson.com/pps/tpspagw/02.02.00">\r
+ <soapenv:Header>
+      <ns:RequestHeader>
+         <!--You may enter the following 5 items in any order-->
+         <ns:Userid>Test02</ns:Userid>
+         <ns:Password>Test02</ns:Password>
+         <ns:actor>EBS</ns:actor>
+         <!--Optional:-->
+         <ns:Transaction>103</ns:Transaction>
+         <!--Optional:-->
+         <ns:requestopid>12345678</ns:requestopid>
+      </ns:RequestHeader>
+   </soapenv:Header>
+   <soapenv:Body>\r
+      <ns:TPSPUpdateServicePackageReq>\r
+         <ns:msisdn>7400000010</ns:msisdn>\r
+         <!--1 to 20 repetitions:-->\r
+         <ns:serviceactioninfo>\r
+            <!--You may enter the following 3 items in any order-->\r
+            <ns:serviceaction>SET</ns:serviceaction>\r
+            <ns:servicequantity>2345367</ns:servicequantity>\r
+            <ns:servicetype>HIGHDATA</ns:servicetype>\r
+         </ns:serviceactioninfo>\r
+      </ns:TPSPUpdateServicePackageReq>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ericsson.com/pps/tpspagw/03.02.00/tpspagw_3_2/TPSPUpdateServicePackageReq"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="eab801eb-a64a-446e-b33a-a87946bba551" isOneWay="false" action="" name="TPSPUpdateSubInfo" bindingOperationName="TPSPUpdateSubInfo" type="Request-Response" outputName="TPSPUpdateSubInfoResp" inputName="TPSPUpdateSubInfoReq" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="2aaec2d5-1661-4050-ab33-287d51b90728" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.107.138.205:8080/agw/EbiService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.ericsson.com/pps/tpspagw/03.02.00">\r
+<soapenv:Header>
+      <ns:RequestHeader>
+         <!--You may enter the following 5 items in any order-->
+         <ns:Userid>Test02</ns:Userid>
+         <ns:Password>Test02</ns:Password>
+         <ns:actor>EBS</ns:actor>
+         <!--Optional:-->
+         <ns:Transaction>103</ns:Transaction>
+         <!--Optional:-->
+         <ns:requestopid>12345678</ns:requestopid>
+      </ns:RequestHeader>
+   </soapenv:Header>
+   <soapenv:Body>\r
+      <ns:TPSPUpdateSubInfoReq>\r
+         <!--You may enter the following 3 items in any order-->\r
+         <ns:msisdn>7400000010</ns:msisdn>\r
+         <!--Optional:-->\r
+         <ns:passcodeupdateinfo>\r
+            <!--You may enter the following 2 items in any order-->\r
+            <!--Optional:-->\r
+            <ns:passcode>1017</ns:passcode>\r
+            <ns:resetpasscodeflag>1</ns:resetpasscodeflag>\r
+         </ns:passcodeupdateinfo>\r
+         <!--Optional:-->\r
+         <ns:languageupdateinfo>\r
+            <ns:ivrlanguage>700</ns:ivrlanguage>\r
+         </ns:languageupdateinfo>\r
+      </ns:TPSPUpdateSubInfoReq>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ericsson.com/pps/tpspagw/03.02.00/tpspagw_3_2/TPSPUpdateSubInfoReq"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>

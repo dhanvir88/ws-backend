@@ -1,0 +1,4 @@
+2018-03-04 15:38:33,354 WARN  [SoapUI] Missing folder [F:\workspace\ws-validation-eric\.\ext] for external libraries
+2018-03-04 15:38:33,615 INFO  [DefaultSoapUICore] initialized soapui-settings from [C:\Users\edhanvi\soapui-settings.xml]
+2018-03-04 15:38:34,726 INFO  [WsdlProject] Loaded project from [file:/F:/workspace/ws-validation-eric/agw-wsdl-04-01-csi-soapui-project.xml]
+2018-03-04 15:38:34,727 WARN  [WsdlProject] Project 'agw_wsdl_04_01_csi' is from a newer version (5.1.3) of SoapUI than this (4.6.1) and parts of it may be incompatible or incorrect. Saving this project with this version of SoapUI may cause it to function differently.

@@ -1,0 +1,1537 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://www.ericsson.com/pps/tpspagw/03.02.00" 
+xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.ericsson.com/pps/tpspagw/03.02.00" 
+xmlns:tnsfault="http://www.ericsson.com/pps/tpspagw/fault/03.02.00" targetNamespace="http://www.ericsson.com/pps/tpspagw/03.02.00">
+  <wsdl:types>
+	<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:enc="http://www.w3.org/2001/09/soap-encoding" xmlns:tpspagw="http://www.ericsson.com/pps/tpspagw/03.02.00"
+	elementFormDefault="qualified" targetNamespace="http://www.ericsson.com/pps/tpspagw/03.02.00">
+	<!-- ======================================================================= 
+		Messages and Headers ======================================================================= -->
+	<xsd:element name="RequestHeader">
+		<xsd:complexType>
+			<xsd:all>
+				<xsd:element name="Userid" type="tpspagw:Userid" />
+				<xsd:element name="Password" type="tpspagw:Password" />
+				<xsd:element name="actor" type="tpspagw:actor" />
+				<xsd:element name="Transaction" type="tpspagw:Transaction"
+					minOccurs="0" />
+				<xsd:element name="requestopid" type="tpspagw:requestopid"
+					minOccurs="0" />
+			</xsd:all>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="ResponseHeader">
+		<xsd:complexType>
+			<xsd:all>
+				<xsd:element name="Transaction" type="tpspagw:Transaction"
+					minOccurs="0" />
+				<xsd:element name="requestopid" type="tpspagw:requestopid"
+					minOccurs="0" />
+			</xsd:all>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="TPSPGetAccountsReq">
+		<xsd:complexType>
+			<xsd:all>
+				<xsd:element name="msisdn" type="tpspagw:msisdn" />
+			</xsd:all>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="TPSPGetAccountsResp">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="resultdetails" type="tpspagw:resultdetails" />
+				<xsd:element name="msisdn" type="tpspagw:msisdn" />
+				<xsd:element name="rateplanfamily" type="tpspagw:rateplanfamily" />
+				<xsd:element name="multilineinfo" type="tpspagw:multilineinfo" minOccurs="0" maxOccurs="1"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="TPSPChangeRatePlanReq">
+		<xsd:complexType>
+			<xsd:all>
+				<xsd:element name="msisdn" type="tpspagw:msisdn" />
+				<xsd:element name="rateplancode" type="tpspagw:rateplancode" />
+			</xsd:all>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="TPSPChangeRatePlanResp">
+		<xsd:complexType>
+			<xsd:all>
+				<xsd:element name="msisdn" type="tpspagw:msisdn" />
+				<xsd:element name="resultdetails" type="tpspagw:resultdetails" />
+			</xsd:all>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="TPSPRetrieveAcctDetailsReq">
+		<xsd:complexType>
+			<xsd:all>
+				<xsd:element name="msisdn" type="tpspagw:msisdn" />
+				<xsd:element name="accountbalanceflag" type="tpspagw:accountbalanceflag"
+					minOccurs="0" />
+				<xsd:element name="boltonbalanceflag" type="tpspagw:boltonbalanceflag"
+					minOccurs="0" />
+				<xsd:element name="subscriptionstatusflag" type="tpspagw:subscriptionstatusflag"
+					minOccurs="0" />
+				<xsd:element name="rateplanchangehistoryflag" type="tpspagw:rateplanchangehistoryflag"
+					minOccurs="0" />
+				<xsd:element name="autorenewflag" type="tpspagw:autorenewflag"
+					minOccurs="0" />
+			</xsd:all>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="TPSPRetrieveAcctDetailsResp">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="msisdn" type="tpspagw:msisdn" />
+				<xsd:element name="resultdetails" type="tpspagw:resultdetails" />
+				<xsd:element name="accountinformation" type="tpspagw:accountinformation" />
+				<xsd:element name="rateplaninfo" type="tpspagw:rateplaninfo" />
+				<xsd:element name="rateplanchangehistoryinfo" type="tpspagw:rateplanchangehistoryinfo"
+					minOccurs="0" />
+				<xsd:element name="featureinfo" type="tpspagw:featureinfo"
+					minOccurs="0" maxOccurs="20" />
+				<xsd:element name="autorenewinfo" type="tpspagw:autorenewinfo"
+					minOccurs="0" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="TPSPEchoReq">
+		<xsd:complexType>
+			<xsd:all>
+				<xsd:element name="data" type="tpspagw:data" />
+			</xsd:all>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="TPSPEchoResp">
+		<xsd:complexType>
+			<xsd:all>
+				<xsd:element name="data" type="tpspagw:data" />
+				<xsd:element name="resultdetails" type="tpspagw:resultdetails" />
+			</xsd:all>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="TPSPChangeFeatureReq">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="msisdn" type="tpspagw:msisdn" />
+				<xsd:element name="featureactioninfo" type="tpspagw:featureactioninfo"
+					maxOccurs="100" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="TPSPChangeFeatureResp">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="msisdn" type="tpspagw:msisdn" />
+				<xsd:element name="resultdetails" type="tpspagw:resultdetails" />
+				<xsd:element name="featureactionresponseinfo" type="tpspagw:featureactionresponseinfo"
+					maxOccurs="100" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="TPSPPaymentReq">
+		<xsd:complexType>
+			<xsd:all>
+				<xsd:element name="msisdn" type="tpspagw:msisdn" />
+				<xsd:element name="paymentinfo" type="tpspagw:paymentinfo" />
+			</xsd:all>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="TPSPPaymentResp">
+		<xsd:complexType>
+			<xsd:all>
+				<xsd:element name="msisdn" type="tpspagw:msisdn" />
+				<xsd:element name="resultdetails" type="tpspagw:resultdetails" />
+				<xsd:element name="paymentresponseinfo" type="tpspagw:paymentresponseinfo" />
+			</xsd:all>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="TPSPRechargeReq">
+		<xsd:complexType>
+			<xsd:all>
+				<xsd:element name="msisdn" type="tpspagw:msisdn" />
+				<xsd:element name="rechargeinfo" type="tpspagw:rechargeinfo" />
+			</xsd:all>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="TPSPRechargeResp">
+		<xsd:complexType>
+			<xsd:all>
+				<xsd:element name="msisdn" type="tpspagw:msisdn" />
+				<xsd:element name="resultdetails" type="tpspagw:resultdetails" />
+				<xsd:element name="rechargeresultinfo" type="tpspagw:rechargeresultinfo" />
+			</xsd:all>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="TPSPUpdateSubInfoReq">
+		<xsd:complexType>
+			<xsd:all>
+				<xsd:element name="msisdn" type="tpspagw:msisdn" />
+				<xsd:element name="passcodeupdateinfo" type="tpspagw:passcodeupdateinfo"
+					minOccurs="0" />
+				<xsd:element name="languageupdateinfo" type="tpspagw:languageupdateinfo"
+					minOccurs="0" />
+			</xsd:all>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="TPSPUpdateSubInfoResp">
+		<xsd:complexType>
+			<xsd:all>
+				<xsd:element name="msisdn" type="tpspagw:msisdn" />
+				<xsd:element name="resultdetails" type="tpspagw:resultdetails" />
+				<xsd:element name="passcodeupdateresponseinfo" type="tpspagw:passcodeupdateresponseinfo"
+					minOccurs="0" />
+				<xsd:element name="languageupdateresponseinfo" type="tpspagw:languageupdateresponseinfo"
+					minOccurs="0" />
+			</xsd:all>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="TPSPAdjustmentReq">
+		<xsd:complexType>
+			<xsd:all>
+				<xsd:element name="msisdn" type="tpspagw:msisdn" />
+				<xsd:element name="moneyinformation" type="tpspagw:moneyinformation" />
+				<xsd:element name="adjustmenttypecode" type="tpspagw:adjustmenttypecode"
+					minOccurs="0" />
+			</xsd:all>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="TPSPAdjustmentResp">
+		<xsd:complexType>
+			<xsd:all>
+				<xsd:element name="msisdn" type="tpspagw:msisdn" />
+				<xsd:element name="resultdetails" type="tpspagw:resultdetails" />
+				<xsd:element name="adjustmentresultinfo" type="tpspagw:adjustmentresultinfo" />
+			</xsd:all>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="TPSPRetrieveRefillHistoryReq">
+		<xsd:complexType>
+			<xsd:all>
+				<xsd:element name="msisdn" type="tpspagw:msisdn" />
+				<xsd:element name="numberofrecords" type="tpspagw:numberofrecords"
+					minOccurs="0" />
+				<xsd:element name="startdate" type="tpspagw:startdate"
+					minOccurs="0" />
+				<xsd:element name="enddate" type="tpspagw:enddate"
+					minOccurs="0" />
+			</xsd:all>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="TPSPRetrieveRefillHistoryResp">
+		<xsd:complexType>
+			<xsd:all>
+				<xsd:element name="msisdn" type="tpspagw:msisdn" />
+				<xsd:element name="resultdetails" type="tpspagw:resultdetails" />
+				<xsd:element name="refillhistory" type="tpspagw:refillhistory" />
+			</xsd:all>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="TPSPUpdateAirtimeExpirationDateReq">
+		<xsd:complexType>
+			<xsd:all>
+				<xsd:element name="msisdn" type="tpspagw:msisdn" />
+				<xsd:element name="airtimeexpiration" type="tpspagw:airtimeexpiration" />
+			</xsd:all>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="TPSPUpdateAirtimeExpirationDateResp">
+		<xsd:complexType>
+			<xsd:all>
+				<xsd:element name="msisdn" type="tpspagw:msisdn" />
+				<xsd:element name="resultdetails" type="tpspagw:resultdetails" />
+			</xsd:all>
+		</xsd:complexType>
+	</xsd:element>
+
+
+
+	<xsd:element name="TPSPUpdateServicePackageReq">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="msisdn" type="tpspagw:msisdn" />
+				<xsd:element name="serviceactioninfo" type="tpspagw:serviceactioninfo"
+					maxOccurs="20" />
+			</xsd:sequence>
+		</xsd:complexType>
+		<xsd:unique name="UniqueServiceType">
+			<xsd:selector xpath="tpspagw:serviceactioninfo" />
+			<xsd:field xpath="tpspagw:servicetype" />
+		</xsd:unique>
+	</xsd:element>
+
+	<xsd:element name="TPSPUpdateServicePackageResp">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="msisdn" type="tpspagw:msisdn" />
+				<xsd:element name="resultdetails" type="tpspagw:resultdetails" />
+				<xsd:element name="serviceactionresponse" type="tpspagw:serviceactionresponseinfo"
+					maxOccurs="20" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="TPSPChangeAutoRenewReq">
+		<xsd:complexType>
+			<xsd:all>
+				<xsd:element name="msisdn" type="tpspagw:msisdn" />
+				<xsd:element name="autorenewaction" type="tpspagw:autorenewaction" />
+				<xsd:element name="autorenewexecutiondate" type="tpspagw:autorenewexecutiondate"
+					minOccurs="0" />
+			</xsd:all>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="TPSPChangeAutoRenewResp">
+		<xsd:complexType>
+			<xsd:all>
+				<xsd:element name="msisdn" type="tpspagw:msisdn" />
+				<xsd:element name="resultdetails" type="tpspagw:resultdetails" />
+				<xsd:element name="autorenewinfo" type="tpspagw:autorenewinfo"
+					minOccurs="0" />
+
+			</xsd:all>
+		</xsd:complexType>
+	</xsd:element>
+
+	<!-- ======================================================================= 
+		Information Elements ======================================================================= -->
+	<xsd:complexType name="accountinformation">
+		<xsd:all>
+			<xsd:element name="accountnumber" type="tpspagw:accountnumber" />
+			<xsd:element name="accountstatus" type="tpspagw:accountstatus" />
+			<xsd:element name="passcode" type="tpspagw:passcode" />
+			<xsd:element name="market" type="tpspagw:market" />
+			<xsd:element name="submarket" type="tpspagw:submarket" />
+			<xsd:element name="accounttype" type="tpspagw:accounttype" />
+			<xsd:element name="activationdate" type="tpspagw:activationdate"
+				minOccurs="0" />
+			<xsd:element name="airtimeexpiration" type="tpspagw:airtimeexpiration"
+				minOccurs="0" />
+			<xsd:element name="servicecanceldate" type="tpspagw:servicecanceldate"
+				minOccurs="0" />
+			<xsd:element name="subscriptionstatus" type="tpspagw:subscriptionstatus"
+				minOccurs="0" />
+			<xsd:element name="ivrlanguage" type="tpspagw:ivrlanguage"
+				minOccurs="0" />
+			<xsd:element name="ivrussdstatus" type="tpspagw:ivrussdstatus"
+				minOccurs="0" />
+			<xsd:element name="cgsa" type="tpspagw:cgsa" minOccurs="0" />
+			<xsd:element name="moneybalanceinfo" type="tpspagw:moneybalanceinfo"
+				minOccurs="0" />
+			<xsd:element name="passcodestatus" type="tpspagw:passcodestatus"
+				minOccurs="0" />
+		</xsd:all>
+	</xsd:complexType>
+	<xsd:complexType name="adjustmentresultinfo">
+		<xsd:all>
+			<xsd:element name="moneybalanceinfo" type="tpspagw:moneybalanceinfo" />
+		</xsd:all>
+	</xsd:complexType>
+	<xsd:complexType name="accountstatus">
+		<xsd:all>
+			<xsd:element name="status" type="tpspagw:status" />
+		</xsd:all>
+	</xsd:complexType>
+	<xsd:complexType name="balanceinfo">
+		<xsd:all>
+			<xsd:element name="quantity" type="tpspagw:quantity" />
+			<xsd:element name="units" type="tpspagw:units" />
+			<xsd:element name="unitsdescription" type="tpspagw:unitsdescription"
+				minOccurs="0" />
+			<xsd:element name="servicetype" type="tpspagw:servicetype"
+				minOccurs="0" />
+		</xsd:all>
+	</xsd:complexType>
+	<xsd:complexType name="rateplanserviceinfo">
+		<xsd:sequence>
+			<xsd:element name="quantity" type="tpspagw:quantity" />
+			<xsd:element name="totalquantity" type="tpspagw:quantity" />
+			<xsd:element name="units" type="tpspagw:units" />
+			<xsd:element name="unitsdescription" type="tpspagw:unitsdescription"
+				minOccurs="0" />
+			<xsd:element name="servicetype" type="tpspagw:servicetype"
+				minOccurs="0" />
+			<xsd:element name="servicecode" type="tpspagw:servicecode"
+				minOccurs="0" />
+			<xsd:element name="assocserviceinfo" type="tpspagw:serviceinfo"
+				minOccurs="0" maxOccurs="unbounded" />
+
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="serviceinfo">
+		<xsd:all>
+			<xsd:element name="quantity" type="tpspagw:quantity" />
+			<xsd:element name="totalquantity" type="tpspagw:quantity" />
+			<xsd:element name="units" type="tpspagw:units" />
+			<xsd:element name="unitsdescription" type="tpspagw:unitsdescription"
+				minOccurs="0" />
+			<xsd:element name="servicetype" type="tpspagw:servicetype"
+				minOccurs="0" />
+			<xsd:element name="servicecode" type="tpspagw:servicecode"
+				minOccurs="0" />
+		</xsd:all>
+	</xsd:complexType>
+	<xsd:complexType name="featureactioninfo">
+		<xsd:all>
+			<xsd:element name="featurecode" type="tpspagw:featurecode" />
+			<xsd:element name="action" type="tpspagw:action" />
+		</xsd:all>
+	</xsd:complexType>
+	<xsd:complexType name="featureactionresponseinfo">
+		<xsd:all>
+			<xsd:element name="featurecode" type="tpspagw:featurecode" />
+			<xsd:element name="featureactionresultcode" type="tpspagw:featureactionresultcode" />
+			<xsd:element name="featurebalanceinfo" type="tpspagw:featurebalanceinfo"
+				minOccurs="0" />
+			<xsd:element name="featurebalancechangeinfo" type="tpspagw:featurebalancechangeinfo"
+				minOccurs="0" />
+			<xsd:element name="servicebalanceinfo" type="tpspagw:servicebalanceinfo"
+				minOccurs="0" />
+			<xsd:element name="servicebalancechangeinfo" type="tpspagw:servicebalancechangeinfo"
+				minOccurs="0" />
+			<xsd:element name="genericstring" type="tpspagw:genericstring"
+				minOccurs="0" />
+		</xsd:all>
+	</xsd:complexType>
+	<xsd:complexType name="featurebalancechangeinfo">
+		<xsd:all>
+			<xsd:element name="balanceinfo" type="tpspagw:balanceinfo" />
+		</xsd:all>
+	</xsd:complexType>
+	<xsd:complexType name="featurebalanceinfo">
+		<xsd:all>
+			<xsd:element name="balanceinfo" type="tpspagw:balanceinfo" />
+		</xsd:all>
+	</xsd:complexType>
+	<xsd:complexType name="featureinfo">
+		<xsd:all>
+			<xsd:element name="featurecode" type="tpspagw:featurecode" />
+			<xsd:element name="featurestatus" type="tpspagw:featurestatus" />
+			<xsd:element name="featurechargeinfo" type="tpspagw:featurechargeinfo"
+					minOccurs="0" />
+			<xsd:element name="featurebalanceinfo" type="tpspagw:featurebalanceinfo"
+				minOccurs="0" />
+			<xsd:element name="servicebalanceinfo" type="tpspagw:servicebalanceinfo"
+				minOccurs="0" />
+			<xsd:element name="expirationdate" type="tpspagw:expirationdate"
+				minOccurs="0" />
+			<!--Feature F446 : Grace Period Expiration date is the date after which the feature will be removed from the account.
+			 Grace Period End Date will only be returned for Built-In features. The value will be returned if present on the 
+			 Ericsson system, whether the subscriber is in grace period or not.-->
+			<xsd:element name="graceperiodexpirationdate" type="tpspagw:expirationdate"	minOccurs="0" />
+		</xsd:all>
+	</xsd:complexType>
+	<xsd:complexType name="featurechargeinfo">
+		<xsd:all>
+			<xsd:element name="moneyinformation" type="tpspagw:moneyinformation" />
+		</xsd:all>
+	</xsd:complexType> 
+	<xsd:complexType name="featurestatus">
+		<xsd:all>
+			<xsd:element name="status" type="tpspagw:status" />
+		</xsd:all>
+	</xsd:complexType>
+	<xsd:complexType name="ivrussdstatus">
+		<xsd:all>
+			<xsd:element name="status" type="tpspagw:status" />
+		</xsd:all>
+	</xsd:complexType>
+	<xsd:complexType name="languageupdateinfo">
+		<xsd:all>
+			<xsd:element name="ivrlanguage" type="tpspagw:ivrlanguage" />
+		</xsd:all>
+	</xsd:complexType>
+	<xsd:complexType name="languageupdateresponseinfo">
+		<xsd:all>
+			<xsd:element name="subupdateresultcode" type="tpspagw:subupdateresultcode" />
+		</xsd:all>
+	</xsd:complexType>
+	<xsd:complexType name="moneybalancechangeinfo">
+		<xsd:all>
+			<xsd:element name="balanceinfo" type="tpspagw:balanceinfo" />
+		</xsd:all>
+	</xsd:complexType>
+	<xsd:complexType name="moneybalanceinfo">
+		<xsd:all>
+			<xsd:element name="balanceinfo" type="tpspagw:balanceinfo" />
+		</xsd:all>
+	</xsd:complexType>
+	<xsd:complexType name="moneyinformation">
+		<xsd:all>
+			<xsd:element name="quantity" type="tpspagw:quantity" />
+			<xsd:element name="units" type="tpspagw:units" />
+		</xsd:all>
+	</xsd:complexType>
+	<xsd:complexType name="passcodeupdateinfo">
+		<xsd:all>
+			<xsd:element name="passcode" type="tpspagw:passcode" minOccurs="0" />
+			<xsd:element name="resetpasscodeflag" type="tpspagw:resetpasscodeflag" />
+		</xsd:all>
+	</xsd:complexType>
+	<xsd:complexType name="passcodeupdateresponseinfo">
+		<xsd:all>
+			<xsd:element name="subupdateresultcode" type="tpspagw:subupdateresultcode" />
+		</xsd:all>
+	</xsd:complexType>
+	<xsd:complexType name="paymentinfo">
+		<xsd:all>
+			<xsd:element name="moneyinformation" type="tpspagw:moneyinformation" />
+			<xsd:element name="paymenttypecode" type="tpspagw:paymenttypecode" />
+		</xsd:all>
+	</xsd:complexType>
+	<xsd:complexType name="paymentresponseinfo">
+		<xsd:all>
+			<xsd:element name="airtimeexpiration" type="tpspagw:airtimeexpiration" />
+			<xsd:element name="servicebalancechangeinfo" type="tpspagw:servicebalancechangeinfo" />
+			<xsd:element name="moneybalanceinfo" type="tpspagw:moneybalanceinfo" />
+			<xsd:element name="promotionalairtimedays" type="tpspagw:promotionalairtimedays"
+				minOccurs="0" />
+			<xsd:element name="promotionalvalue" type="tpspagw:promotionalvalue"
+				minOccurs="0" />
+		</xsd:all>
+	</xsd:complexType>
+	<xsd:complexType name="promotionalvalue">
+		<xsd:all>
+			<xsd:element name="balanceinfo" type="tpspagw:balanceinfo" />
+		</xsd:all>
+	</xsd:complexType>
+	<xsd:complexType name="rateplaninfo">
+		<xsd:sequence>
+			<xsd:element name="rateplancode" type="tpspagw:rateplancode" />
+			<xsd:element name="rateplanstatus" type="tpspagw:rateplanstatus" />
+			<xsd:element name="rateplanexpirationdate" type="tpspagw:expirationdate"
+				minOccurs="0" />
+			<xsd:element name="rateplanserviceinfo" type="tpspagw:rateplanserviceinfo"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element name="rateplanfamily" type="tpspagw:rateplanfamily" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="rateplanchangehistoryinfo">
+		<xsd:all>
+			<xsd:element name="rateplanchangecounter" type="tpspagw:rateplanchangecounter" />
+			<xsd:element name="lastchangedate" type="tpspagw:datetime" />
+		</xsd:all>
+	</xsd:complexType>
+	<xsd:complexType name="rateplanstatus">
+		<xsd:all>
+			<xsd:element name="status" type="tpspagw:status" />
+		</xsd:all>
+	</xsd:complexType>
+	<xsd:complexType name="rechargeinfo">
+		<xsd:all>
+			<xsd:element name="voucheractivationnumber" type="tpspagw:voucheractivationnumber" />
+		</xsd:all>
+	</xsd:complexType>
+	<xsd:complexType name="rechargeresultinfo">
+		<xsd:all>
+			<xsd:element name="moneybalancechangeinfo" type="tpspagw:moneybalancechangeinfo" />
+			<xsd:element name="moneybalanceinfo" type="tpspagw:moneybalanceinfo" />
+			<xsd:element name="airtimeexpiration" type="tpspagw:airtimeexpiration" />
+			<xsd:element name="airtimedays" type="tpspagw:airtimedays" />
+			<xsd:element name="promotionalairtimedays" type="tpspagw:promotionalairtimedays"
+				minOccurs="0" />
+			<xsd:element name="promotionalvalue" type="tpspagw:promotionalvalue"
+				minOccurs="0" />
+		</xsd:all>
+	</xsd:complexType>
+	<xsd:complexType name="resultdetails">
+		<xsd:all>
+			<xsd:element name="resultcode" type="tpspagw:resultcode" />
+			<xsd:element name="resultstring" type="tpspagw:resultstring"
+				minOccurs="0" />
+		</xsd:all>
+	</xsd:complexType>
+	<xsd:complexType name="multilineinfo">
+		<xsd:all>
+			<xsd:element name="primaryinfo" type="tpspagw:primaryinfo" />
+			<xsd:element name="members" type="tpspagw:members"
+				minOccurs="0" />
+		</xsd:all>
+	</xsd:complexType>
+
+	<xsd:complexType name="servicebalancechangeinfo">
+		<xsd:all>
+			<xsd:element name="balanceinfo" type="tpspagw:balanceinfo" />
+		</xsd:all>
+	</xsd:complexType>
+	<xsd:complexType name="servicebalanceinfo">
+		<xsd:all>
+			<xsd:element name="balanceinfo" type="tpspagw:balanceinfo" />
+		</xsd:all>
+	</xsd:complexType>
+	<xsd:complexType name="status">
+		<xsd:all>
+			<xsd:element name="statuscode" type="tpspagw:statuscode" />
+			<xsd:element name="statusreasoncode" type="tpspagw:statusreasoncode"
+				minOccurs="0" />
+			<xsd:element name="genericstring" type="tpspagw:genericstring"
+				minOccurs="0" />
+		</xsd:all>
+	</xsd:complexType>
+	<xsd:complexType name="subscriptionstatus">
+		<xsd:all>
+			<xsd:element name="status" type="tpspagw:status" />
+		</xsd:all>
+	</xsd:complexType>
+	<xsd:complexType name="rechargehistory">
+		<xsd:all>
+			<xsd:element name="recharge" type="tpspagw:recharge" />
+		</xsd:all>
+	</xsd:complexType>
+	<xsd:complexType name="recharge">
+		<xsd:all>
+			<xsd:element name="voucheractivationnumber" type="tpspagw:voucheractivationnumber" />
+			<xsd:element name="rechargevalue" type="tpspagw:quantity" />
+			<xsd:element name="rechargedatetime" type="tpspagw:datetime" />
+			<xsd:element name="rechargetimezone" type="tpspagw:timezone" />
+		</xsd:all>
+	</xsd:complexType>
+	<xsd:complexType name="paymenthistory">
+		<xsd:all>
+			<xsd:element name="payment" type="tpspagw:payment" />
+		</xsd:all>
+	</xsd:complexType>
+	<xsd:complexType name="payment">
+		<xsd:all>
+			<xsd:element name="paymentamount" type="tpspagw:quantity" />
+			<xsd:element name="paymentdatetime" type="tpspagw:datetime" />
+			<xsd:element name="paymenttimezone" type="tpspagw:timezone" />
+		</xsd:all>
+	</xsd:complexType>
+	<xsd:complexType name="promotionalhistory">
+		<xsd:all>
+			<xsd:element name="promotioncredit" type="tpspagw:promotioncredit" />
+		</xsd:all>
+	</xsd:complexType>
+	<xsd:complexType name="promotioncredit">
+		<xsd:all>
+			<xsd:element name="promotioncreditamount" type="tpspagw:quantity" />
+			<xsd:element name="promotioncreditdatetime" type="tpspagw:datetime" />
+			<xsd:element name="promotioncredittimezone" type="tpspagw:timezone" />
+		</xsd:all>
+	</xsd:complexType>
+
+	<xsd:complexType name="refillhistory">
+		<xsd:sequence>
+			<xsd:element name="rechargehistory" type="tpspagw:rechargehistory"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element name="paymenthistory" type="tpspagw:paymenthistory"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element name="promotionalhistory" type="tpspagw:promotionalhistory"
+				minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="serviceactioninfo">
+		<xsd:all>
+			<xsd:element name="serviceaction" type="tpspagw:serviceaction" />
+			<xsd:element name="servicequantity" type="tpspagw:servicequantity" />
+			<xsd:element name="servicetype" type="tpspagw:servicetype" />
+		</xsd:all>
+
+	</xsd:complexType>
+
+	<xsd:complexType name="serviceactionresponseinfo">
+		<xsd:all>
+			<xsd:element name="servicetype" type="tpspagw:servicetype" />
+			<xsd:element name="serviceactionresultcode" type="tpspagw:serviceactionresultcode" />
+		</xsd:all>
+	</xsd:complexType>
+
+	<xsd:complexType name="autorenewinfo">
+		<xsd:all>
+			<xsd:element name="autorenewstatus" type="tpspagw:autorenewstatus" />
+			<xsd:element name="autorenewexpirationdate" type="tpspagw:autorenewexpirationdate"
+				minOccurs="0" />
+			<xsd:element name="autorenewexecutiondate" type="tpspagw:autorenewexecutiondate"
+				minOccurs="0" />
+		</xsd:all>
+	</xsd:complexType>
+
+	<!-- ======================================================================= 
+		Parameters begin ======================================================================= -->
+	<xsd:simpleType name="accountbalanceflag">
+		<xsd:restriction base="xsd:integer">
+			<xsd:enumeration value="0" />
+			<xsd:enumeration value="1" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="accountnumber">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1" />
+			<xsd:maxLength value="12" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="accounttype">
+		<xsd:restriction base="xsd:integer">
+			<xsd:enumeration value="0" />
+			<xsd:enumeration value="1" />
+			<xsd:enumeration value="2" />
+			<xsd:enumeration value="3" />
+			<xsd:enumeration value="4" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="action">
+		<xsd:restriction base="xsd:integer">
+			<xsd:enumeration value="600" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="activationdate">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[0-9]{2}-[0-9]{2}-[0-9]{4}" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="actor">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1" />
+			<xsd:maxLength value="10" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="airtimedays">
+		<xsd:restriction base="xsd:integer">
+			<xsd:minInclusive value="0" />
+			<xsd:maxInclusive value="9999" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="airtimeexpiration">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[0-9]{2}-[0-9]{2}-[0-9]{4}" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="boltonbalanceflag">
+		<xsd:restriction base="xsd:integer">
+			<xsd:enumeration value="0" />
+			<xsd:enumeration value="1" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="cgsa">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1" />
+			<xsd:maxLength value="10" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="data">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1" />
+			<xsd:maxLength value="200" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="expirationdate">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[0-9]{2}-[0-9]{2}-[0-9]{4}" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="featureactionresultcode">
+		<xsd:restriction base="xsd:integer">
+			<xsd:enumeration value="2000" />
+			<xsd:enumeration value="2001" />
+			<xsd:enumeration value="2002" />
+			<xsd:enumeration value="2003" />
+			<xsd:enumeration value="2004" />
+			<xsd:enumeration value="2005" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="featurecode">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="2" />
+			<xsd:maxLength value="8" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="genericstring">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1" />
+			<xsd:maxLength value="200" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ivrlanguage">
+		<xsd:restriction base="xsd:integer">
+			<xsd:enumeration value="700" />
+			<xsd:enumeration value="701" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="rateplanchangecounter">
+		<xsd:restriction base="xsd:integer">
+			<xsd:minInclusive value="0" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="market">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1" />
+			<xsd:maxLength value="10" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="msisdn">
+		<xsd:restriction base="xsd:integer">
+			<xsd:minInclusive value="0" />
+			<xsd:maxInclusive value="9999999999" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="passcode">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[0-9]{4}" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="passcodestatus">
+		<xsd:restriction base="xsd:integer">
+			<xsd:enumeration value="0" />
+			<xsd:enumeration value="1" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="Password">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1" />
+			<xsd:maxLength value="12" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="paymenttypecode">
+		<xsd:restriction base="xsd:integer">
+			<xsd:minInclusive value="0" />
+			<xsd:maxInclusive value="999999" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="promotionalairtimedays">
+		<xsd:restriction base="xsd:integer">
+			<xsd:minInclusive value="0" />
+			<xsd:maxInclusive value="9999" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="quantity">
+		<xsd:restriction base="xsd:string" />
+	</xsd:simpleType>
+	<xsd:simpleType name="rateplancode">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1" />
+			<xsd:maxLength value="10" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="requestopid">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1" />
+			<xsd:maxLength value="8" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="resultcode">
+		<xsd:restriction base="xsd:integer">
+			<xsd:enumeration value="1000" />
+			<xsd:enumeration value="1001" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="resultstring">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1" />
+			<xsd:maxLength value="200" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="servicecanceldate">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[0-9]{2}-[0-9]{2}-[0-9]{4}" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="statuscode">
+		<xsd:restriction base="xsd:integer">
+			<xsd:enumeration value="100" />
+			<xsd:enumeration value="101" />
+			<xsd:enumeration value="300" />
+			<xsd:enumeration value="301" />
+			<xsd:enumeration value="302" />
+			<xsd:enumeration value="303" />
+			<xsd:enumeration value="305" />
+			<xsd:enumeration value="400" />
+			<xsd:enumeration value="401" />
+			<xsd:enumeration value="402" />
+			<xsd:enumeration value="500" />
+			<xsd:enumeration value="501" />
+			<xsd:enumeration value="600" />
+			<xsd:enumeration value="601" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="statusreasoncode">
+		<xsd:restriction base="xsd:integer">
+			<xsd:enumeration value="600" />
+			<xsd:enumeration value="601" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="submarket">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1" />
+			<xsd:maxLength value="10" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="subupdateresultcode">
+		<xsd:restriction base="xsd:integer">
+			<xsd:enumeration value="4000" />
+			<xsd:enumeration value="4001" />
+			<xsd:enumeration value="4002" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="subscriptionstatusflag">
+		<xsd:restriction base="xsd:integer">
+			<xsd:enumeration value="0" />
+			<xsd:enumeration value="1" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="rateplanchangehistoryflag">
+		<xsd:restriction base="xsd:integer">
+			<xsd:enumeration value="0" />
+			<xsd:enumeration value="1" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="Transaction">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1" />
+			<xsd:maxLength value="32" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="units">
+		<xsd:restriction base="xsd:integer">
+			<xsd:enumeration value="501" />
+			<xsd:enumeration value="503" />
+			<xsd:enumeration value="506" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="unitsdescription">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1" />
+			<xsd:maxLength value="40" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="servicetype">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1" />
+			<xsd:maxLength value="40" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="Userid">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1" />
+			<xsd:maxLength value="12" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="voucheractivationnumber">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[0-9]{1,20}" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="startdate">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[0-9]{2}-[0-9]{2}-[0-9]{4}" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="enddate">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[0-9]{2}-[0-9]{2}-[0-9]{4}" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+
+	<xsd:simpleType name="datetime">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern
+				value="[0-9]{2}-[a-zA-Z]{3}-[0-9]{4} [0-9]{2}:[0-9]{2}:[0-9]{2}" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="timezone">
+		<xsd:restriction base="xsd:string" />
+	</xsd:simpleType>
+	<xsd:simpleType name="numberofrecords">
+		<xsd:restriction base="xsd:integer">
+			<xsd:minInclusive value="0" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="adjustmenttypecode">
+		<xsd:restriction base="xsd:integer">
+			<xsd:minInclusive value="0" />
+			<xsd:maxInclusive value="999999" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="servicequantity">
+		<xsd:restriction base="xsd:integer">
+			<xsd:minInclusive value="0" />
+			<xsd:maxInclusive value="2147483647" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="serviceaction">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="ADD" />
+			<xsd:enumeration value="SUBTRACT" />
+			<xsd:enumeration value="SET" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="serviceactionresultcode">
+		<xsd:restriction base="xsd:integer">
+			<xsd:enumeration value="2100" />
+			<xsd:enumeration value="2101" />
+			<xsd:enumeration value="2102" />
+			<xsd:enumeration value="2103" />
+			<xsd:enumeration value="2104" />
+			<xsd:enumeration value="2105" />
+			<xsd:enumeration value="2106" />
+			<xsd:enumeration value="2107" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="autorenewaction">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="ADD" />
+			<xsd:enumeration value="REMOVE" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="autorenewstatus">
+		<xsd:restriction base="xsd:integer">
+			<xsd:enumeration value="500" />
+			<xsd:enumeration value="501" />
+			<xsd:enumeration value="502" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+
+	<xsd:simpleType name="autorenewflag">
+		<xsd:restriction base="xsd:integer">
+			<xsd:enumeration value="0" />
+			<xsd:enumeration value="1" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="autorenewexpirationdate">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[0-9]{2}-[0-9]{2}-[0-9]{4}" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="autorenewexecutiondate">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[0-9]{2}-[0-9]{2}-[0-9]{4}" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="rateplanfamily">
+		<xsd:restriction base="xsd:integer">
+			<xsd:minInclusive value="1"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="servicecode">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1" />
+			<xsd:maxLength value="40" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:complexType name="members">
+		<xsd:sequence>
+			<xsd:element name="member" type="tpspagw:member"
+				maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="member">
+		<xsd:sequence>
+			<xsd:element name="msisdn" type="tpspagw:msisdn" />
+			<xsd:element name="rateplancode" type="tpspagw:rateplancode" />
+			<xsd:element name="rateplanstatus" type="tpspagw:rateplanstatus" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="primaryinfo">
+		<xsd:sequence>
+			<xsd:element name="msisdn" type="tpspagw:msisdn" />
+			<xsd:element name="totalamtdue" type="tpspagw:moneybalanceinfo" />
+		</xsd:sequence>
+	</xsd:complexType>
+<xsd:simpleType name="resetpasscodeflag">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="0"/>
+			<xsd:enumeration value="1"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+</xsd:schema>
+
+
+	<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+		<xsd:import namespace="http://www.ericsson.com/pps/tpspagw/fault/03.02.00"
+			schemaLocation="tpspFault_3.2.xsd" />
+	</xsd:schema>
+  </wsdl:types>
+ 
+ <wsdl:message name="TPSPAdjustmentReq">
+    <wsdl:part element="tns:RequestHeader" name="RequestHeader"></wsdl:part>
+    <wsdl:part element="tns:TPSPAdjustmentReq" name="TPSPAdjustmentReq">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="TPSPEchoReq">
+    <wsdl:part element="tns:RequestHeader" name="RequestHeader"></wsdl:part>
+    <wsdl:part element="tns:TPSPEchoReq" name="TPSPEchoReq">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="TPSPChangeAutoRenewReq">
+    <wsdl:part element="tns:RequestHeader" name="RequestHeader"></wsdl:part>
+    <wsdl:part element="tns:TPSPChangeAutoRenewReq" name="TPSPChangeAutoRenewReq">
+    </wsdl:part>
+  </wsdl:message>
+  
+  <wsdl:message name="TPSPRetrieveAcctDetailsReq">
+    <wsdl:part element="tns:RequestHeader" name="RequestHeader"></wsdl:part>
+    <wsdl:part element="tns:TPSPRetrieveAcctDetailsReq" name="TPSPRetrieveAcctDetailsReq">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="TPSPPaymentResp">
+    <wsdl:part element="tns:ResponseHeader" name="ResponseHeader"></wsdl:part>
+    <wsdl:part element="tns:TPSPPaymentResp" name="TPSPPaymentResp">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="TPSPRetrieveAcctDetailsResp">
+    <wsdl:part element="tns:ResponseHeader" name="ResponseHeader"></wsdl:part>
+    <wsdl:part element="tns:TPSPRetrieveAcctDetailsResp" name="TPSPRetrieveAcctDetailsResp">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="TPSPChangeAutoRenewResp">
+    <wsdl:part element="tns:ResponseHeader" name="ResponseHeader"></wsdl:part>
+    <wsdl:part element="tns:TPSPChangeAutoRenewResp" name="TPSPChangeAutoRenewResp">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="TPSPPaymentReq">
+    <wsdl:part element="tns:RequestHeader" name="RequestHeader"></wsdl:part>
+    <wsdl:part element="tns:TPSPPaymentReq" name="TPSPPaymentReq">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="TPSPUpdateServicePackageReq">
+    <wsdl:part element="tns:RequestHeader" name="RequestHeader"></wsdl:part>
+    <wsdl:part element="tns:TPSPUpdateServicePackageReq" name="TPSPUpdateServicePackageReq">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="TPSPUpdateServicePackageResp">
+    <wsdl:part element="tns:ResponseHeader" name="ResponseHeader"></wsdl:part>
+    <wsdl:part element="tns:TPSPUpdateServicePackageResp" name="TPSPUpdateServicePackageResp">
+    </wsdl:part>
+  </wsdl:message>
+   <wsdl:message name="TPSPUpdateServicePackageReq">
+    <wsdl:part element="tns:RequestHeader" name="RequestHeader"></wsdl:part>
+    <wsdl:part element="tns:TPSPUpdateServicePackageReq" name="TPSPUpdateServicePackageReq">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="TPSPEchoResp">
+    <wsdl:part element="tns:ResponseHeader" name="ResponseHeader"></wsdl:part>
+    <wsdl:part element="tns:TPSPEchoResp" name="TPSPEchoResp">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="FaultDetails">
+	<wsdl:part element="tnsfault:FaultDetails" name="FaultDetails">
+	</wsdl:part>
+  </wsdl:message>
+  
+  <wsdl:message name="TPSPChangeFeatureReq">
+    <wsdl:part element="tns:RequestHeader" name="RequestHeader"></wsdl:part>
+    <wsdl:part element="tns:TPSPChangeFeatureReq" name="TPSPChangeFeatureReq">
+    </wsdl:part>
+  </wsdl:message>
+  
+   <wsdl:message name="TPSPChangeFeatureResp">
+    <wsdl:part element="tns:ResponseHeader" name="ResponseHeader"></wsdl:part>
+    <wsdl:part element="tns:TPSPChangeFeatureResp" name="TPSPChangeFeatureResp">
+    </wsdl:part>
+  </wsdl:message>
+  
+  <wsdl:message name="TPSPChangeRatePlanReq">
+    <wsdl:part element="tns:RequestHeader" name="RequestHeader"></wsdl:part>
+    <wsdl:part element="tns:TPSPChangeRatePlanReq" name="TPSPChangeRatePlanReq">
+    </wsdl:part>
+  </wsdl:message>
+  
+   <wsdl:message name="TPSPChangeRatePlanResp">
+    <wsdl:part element="tns:ResponseHeader" name="ResponseHeader"></wsdl:part>
+    <wsdl:part element="tns:TPSPChangeRatePlanResp" name="TPSPChangeRatePlanResp">
+    </wsdl:part>
+  </wsdl:message>
+  
+   <wsdl:message name="TPSPRechargeReq">
+    <wsdl:part element="tns:RequestHeader" name="RequestHeader"></wsdl:part>
+    <wsdl:part element="tns:TPSPRechargeReq" name="TPSPRechargeReq">
+    </wsdl:part>
+  </wsdl:message>
+  
+   <wsdl:message name="TPSPRechargeResp">
+    <wsdl:part element="tns:ResponseHeader" name="ResponseHeader"></wsdl:part>
+    <wsdl:part element="tns:TPSPRechargeResp" name="TPSPRechargeResp">
+    </wsdl:part>
+  </wsdl:message>
+  
+   <wsdl:message name="TPSPUpdateAirtimeExpirationDateReq">
+    <wsdl:part element="tns:RequestHeader" name="RequestHeader"></wsdl:part>
+    <wsdl:part element="tns:TPSPUpdateAirtimeExpirationDateReq" name="TPSPUpdateAirtimeExpirationDateReq">
+    </wsdl:part>
+  </wsdl:message>
+  
+   <wsdl:message name="TPSPUpdateAirtimeExpirationDateResp">
+    <wsdl:part element="tns:ResponseHeader" name="ResponseHeader"></wsdl:part>
+    <wsdl:part element="tns:TPSPUpdateAirtimeExpirationDateResp" name="TPSPUpdateAirtimeExpirationDateResp">
+    </wsdl:part>
+  </wsdl:message>
+
+ 
+  
+  <wsdl:message name="TPSPGetAccountsReq">
+    <wsdl:part element="tns:RequestHeader" name="RequestHeader"></wsdl:part>
+    <wsdl:part element="tns:TPSPGetAccountsReq" name="TPSPGetAccountsReq">
+    </wsdl:part>
+  </wsdl:message>
+  
+   <wsdl:message name="TPSPGetAccountsResp">
+    <wsdl:part element="tns:ResponseHeader" name="ResponseHeader"></wsdl:part>
+    <wsdl:part element="tns:TPSPGetAccountsResp" name="TPSPGetAccountsResp">
+    </wsdl:part>
+  </wsdl:message>
+
+  
+ 
+  <wsdl:message name="TPSPRetrieveRefillHistoryReq">
+    <wsdl:part element="tns:RequestHeader" name="RequestHeader"></wsdl:part>
+    <wsdl:part element="tns:TPSPRetrieveRefillHistoryReq" name="TPSPRetrieveRefillHistoryReq">
+    </wsdl:part>
+  </wsdl:message>
+  
+   <wsdl:message name="TPSPRetrieveRefillHistoryResp">
+    <wsdl:part element="tns:ResponseHeader" name="ResponseHeader"></wsdl:part>
+    <wsdl:part element="tns:TPSPRetrieveRefillHistoryResp" name="TPSPRetrieveRefillHistoryResp">
+    </wsdl:part>
+  </wsdl:message>
+  
+  
+ 
+  <wsdl:message name="TPSPUpdateSubInfoReq">
+    <wsdl:part element="tns:RequestHeader" name="RequestHeader"></wsdl:part>
+    <wsdl:part element="tns:TPSPUpdateSubInfoReq" name="TPSPUpdateSubInfoReq">
+    </wsdl:part>
+  </wsdl:message>
+  
+   <wsdl:message name="TPSPUpdateSubInfoResp">
+    <wsdl:part element="tns:ResponseHeader" name="ResponseHeader"></wsdl:part>
+    <wsdl:part element="tns:TPSPUpdateSubInfoResp" name="TPSPUpdateSubInfoResp">
+    </wsdl:part>
+  </wsdl:message>
+ 
+<wsdl:portType name="tpspagw_3_2">      
+    <wsdl:operation name="TPSPEcho">
+      <wsdl:input message="tns:TPSPEchoReq" name="TPSPEchoReq">
+    </wsdl:input>
+      <wsdl:output message="tns:TPSPEchoResp" name="TPSPEchoResp">
+    </wsdl:output>
+    <wsdl:fault name="FaultDetails" message="tns:FaultDetails" />
+    </wsdl:operation>
+    <wsdl:operation name="TPSPChangeAutoRenew">
+      <wsdl:input message="tns:TPSPChangeAutoRenewReq" name="TPSPChangeAutoRenewReq">
+    </wsdl:input>
+      <wsdl:output message="tns:TPSPChangeAutoRenewResp" name="TPSPChangeAutoRenewResp">
+    </wsdl:output>
+    <wsdl:fault name="FaultDetails" message="tns:FaultDetails" />
+    </wsdl:operation>
+    <wsdl:operation name="TPSPRetrieveAcctDetails">
+      <wsdl:input message="tns:TPSPRetrieveAcctDetailsReq" name="TPSPRetrieveAcctDetailsReq">
+    </wsdl:input>
+      <wsdl:output message="tns:TPSPRetrieveAcctDetailsResp" name="TPSPRetrieveAcctDetailsResp">
+    </wsdl:output>
+    <wsdl:fault name="FaultDetails" message="tns:FaultDetails" />
+    </wsdl:operation>
+    <wsdl:operation name="TPSPPayment">
+      <wsdl:input message="tns:TPSPPaymentReq" name="TPSPPaymentReq">
+    </wsdl:input>
+      <wsdl:output message="tns:TPSPPaymentResp" name="TPSPPaymentResp">
+    </wsdl:output>
+    <wsdl:fault name="FaultDetails" message="tns:FaultDetails" />
+    </wsdl:operation>
+   	<wsdl:operation name="TPSPAdjustment">
+      <wsdl:input message="tns:TPSPAdjustmentReq" name="TPSPAdjustmentReq">
+    </wsdl:input>
+      <wsdl:output message="tns:TPSPAdjustmentResp" name="TPSPAdjustmentResp">
+    </wsdl:output>
+    <wsdl:fault name="FaultDetails" message="tns:FaultDetails" />
+    </wsdl:operation> 
+	<wsdl:operation name="TPSPUpdateServicePackage">
+      <wsdl:input message="tns:TPSPUpdateServicePackageReq" name="TPSPUpdateServicePackageReq">
+    </wsdl:input>
+      <wsdl:output message="tns:TPSPUpdateServicePackageResp" name="TPSPUpdateServicePackageResp">
+    </wsdl:output>
+    <wsdl:fault name="FaultDetails" message="tns:FaultDetails" />
+    </wsdl:operation>
+	
+		<wsdl:operation name="TPSPChangeFeature">
+      <wsdl:input message="tns:TPSPChangeFeatureReq" name="TPSPChangeFeatureReq">
+    </wsdl:input>
+      <wsdl:output message="tns:TPSPChangeFeatureResp" name="TPSPChangeFeatureResp">
+    </wsdl:output>
+    <wsdl:fault name="FaultDetails" message="tns:FaultDetails" />
+    </wsdl:operation> 
+	
+		<wsdl:operation name="TPSPChangeRatePlan">
+      <wsdl:input message="tns:TPSPChangeRatePlanReq" name="TPSPChangeRatePlanReq">
+    </wsdl:input>
+      <wsdl:output message="tns:TPSPChangeRatePlanResp" name="TPSPChangeRatePlanResp">
+    </wsdl:output>
+    <wsdl:fault name="FaultDetails" message="tns:FaultDetails" />
+    </wsdl:operation> 
+	
+		<wsdl:operation name="TPSPRecharge">
+      <wsdl:input message="tns:TPSPRechargeReq" name="TPSPRechargeReq">
+    </wsdl:input>
+      <wsdl:output message="tns:TPSPRechargeResp" name="TPSPRechargeResp">
+    </wsdl:output>
+    <wsdl:fault name="FaultDetails" message="tns:FaultDetails" />
+    </wsdl:operation> 
+	
+		<wsdl:operation name="TPSPUpdateAirtimeExpirationDate">
+      <wsdl:input message="tns:TPSPUpdateAirtimeExpirationDateReq" name="TPSPUpdateAirtimeExpirationDateReq">
+    </wsdl:input>
+      <wsdl:output message="tns:TPSPUpdateAirtimeExpirationDateResp" name="TPSPUpdateAirtimeExpirationDateResp">
+    </wsdl:output>
+    <wsdl:fault name="FaultDetails" message="tns:FaultDetails" />
+    </wsdl:operation> 
+
+	<wsdl:operation name="TPSPGetAccounts">
+      <wsdl:input message="tns:TPSPGetAccountsReq" name="TPSPGetAccountsReq">
+    </wsdl:input>
+      <wsdl:output message="tns:TPSPGetAccountsResp" name="TPSPGetAccountsResp">
+    </wsdl:output>
+    <wsdl:fault name="FaultDetails" message="tns:FaultDetails" />
+    </wsdl:operation> 
+	
+		<wsdl:operation name="TPSPRetrieveRefillHistory">
+      <wsdl:input message="tns:TPSPRetrieveRefillHistoryReq" name="TPSPRetrieveRefillHistoryReq">
+    </wsdl:input>
+      <wsdl:output message="tns:TPSPRetrieveRefillHistoryResp" name="TPSPRetrieveRefillHistoryResp">
+    </wsdl:output>
+    <wsdl:fault name="FaultDetails" message="tns:FaultDetails" />
+    </wsdl:operation> 
+	 
+		<wsdl:operation name="TPSPUpdateSubInfo">
+      <wsdl:input message="tns:TPSPUpdateSubInfoReq" name="TPSPUpdateSubInfoReq">
+    </wsdl:input>
+      <wsdl:output message="tns:TPSPUpdateSubInfoResp" name="TPSPUpdateSubInfoResp">
+    </wsdl:output>
+    <wsdl:fault name="FaultDetails" message="tns:FaultDetails" />
+    </wsdl:operation> 
+	
+
+  </wsdl:portType>
+  <wsdl:binding name="tpspagw_3_2Soap11" type="tns:tpspagw_3_2">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="TPSPEcho">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="TPSPEchoReq">
+	<soap:header message="tns:TPSPEchoReq" part="RequestHeader" use="literal" />
+	<soap:body parts="TPSPEchoReq" use="literal" />
+      </wsdl:input>
+      <wsdl:output name="TPSPEchoResp">
+	<soap:header message="tns:TPSPEchoResp" part="ResponseHeader" use="literal" />
+	<soap:body parts="TPSPEchoResp" use="literal" />
+      </wsdl:output>
+    <wsdl:fault name="FaultDetails">
+	<soap:fault name="FaultDetails" use="literal" />
+	  </wsdl:fault>
+	  </wsdl:operation>
+    <wsdl:operation name="TPSPChangeAutoRenew">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="TPSPChangeAutoRenewReq">
+	<soap:header message="tns:TPSPChangeAutoRenewReq" part="RequestHeader" use="literal" />
+	<soap:body parts="TPSPChangeAutoRenewReq" use="literal" />
+      </wsdl:input>
+      <wsdl:output name="TPSPChangeAutoRenewResp">
+	<soap:header message="tns:TPSPChangeAutoRenewResp" part="ResponseHeader" use="literal" />
+	<soap:body parts="TPSPChangeAutoRenewResp" use="literal" />
+      </wsdl:output>
+    <wsdl:fault name="FaultDetails">
+	<soap:fault name="FaultDetails" use="literal" />
+	  </wsdl:fault>
+	  </wsdl:operation>
+    <wsdl:operation name="TPSPRetrieveAcctDetails">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="TPSPRetrieveAcctDetailsReq">
+        <soap:header message="tns:TPSPRetrieveAcctDetailsReq" part="RequestHeader" use="literal"/>
+	<soap:body parts="TPSPRetrieveAcctDetailsReq" use="literal" />
+      </wsdl:input>
+      <wsdl:output name="TPSPRetrieveAcctDetailsResp">
+        <soap:header message="tns:TPSPRetrieveAcctDetailsResp" part="ResponseHeader" use="literal"/>
+	<soap:body parts="TPSPRetrieveAcctDetailsResp" use="literal" />
+      </wsdl:output>
+    <wsdl:fault name="FaultDetails">
+	<soap:fault name="FaultDetails" use="literal" />
+	  </wsdl:fault>
+	  </wsdl:operation>   
+    <wsdl:operation name="TPSPPayment">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="TPSPPaymentReq">
+	<soap:header message="tns:TPSPPaymentReq" part="RequestHeader" use="literal" />
+	<soap:body parts="TPSPPaymentReq" use="literal" />
+      </wsdl:input>
+      <wsdl:output name="TPSPPaymentResp">
+	<soap:header message="tns:TPSPPaymentResp" part="ResponseHeader" use="literal" />
+	<soap:body parts="TPSPPaymentResp" use="literal" />
+      </wsdl:output>
+    <wsdl:fault name="FaultDetails">
+	<soap:fault name="FaultDetails" use="literal" />
+	  </wsdl:fault>
+	  </wsdl:operation> 
+   	<wsdl:operation name="TPSPAdjustment">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="TPSPAdjustmentReq">
+	<soap:header message="tns:TPSPAdjustmentReq" part="RequestHeader" use="literal" />
+	<soap:body parts="TPSPAdjustmentReq" use="literal" />
+      </wsdl:input>
+      <wsdl:output name="TPSPAdjustmentResp">
+	<soap:header message="tns:TPSPAdjustmentResp" part="ResponseHeader" use="literal" />
+	<soap:body parts="TPSPAdjustmentResp" use="literal" />
+      </wsdl:output>
+    <wsdl:fault name="FaultDetails">
+	<soap:fault name="FaultDetails" use="literal" />
+	  </wsdl:fault>
+	  </wsdl:operation>
+	<wsdl:operation name="TPSPUpdateServicePackage">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="TPSPUpdateServicePackageReq">
+	<soap:header message="tns:TPSPUpdateServicePackageReq" part="RequestHeader" use="literal" />
+	<soap:body parts="TPSPUpdateServicePackageReq" use="literal" />
+      </wsdl:input>
+      <wsdl:output name="TPSPUpdateServicePackageResp">
+	<soap:header message="tns:TPSPUpdateServicePackageResp" part="ResponseHeader" use="literal" />
+	<soap:body parts="TPSPUpdateServicePackageResp" use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="FaultDetails">
+	<soap:fault name="FaultDetails" use="literal" />
+	  </wsdl:fault>
+    </wsdl:operation>	
+	 
+	 <wsdl:operation name="TPSPChangeFeature">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="TPSPChangeFeatureReq">
+	<soap:header message="tns:TPSPChangeFeatureReq" part="RequestHeader" use="literal" />
+	<soap:body parts="TPSPChangeFeatureReq" use="literal" />
+      </wsdl:input>
+      <wsdl:output name="TPSPChangeFeatureResp">
+	<soap:header message="tns:TPSPChangeFeatureResp" part="ResponseHeader" use="literal" />
+	<soap:body parts="TPSPChangeFeatureResp" use="literal" />
+      </wsdl:output>
+    <wsdl:fault name="FaultDetails">
+	<soap:fault name="FaultDetails" use="literal" />
+	  </wsdl:fault>
+	  </wsdl:operation>
+	  
+	  
+	  <wsdl:operation name="TPSPChangeRatePlan">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="TPSPChangeRatePlanReq">
+	<soap:header message="tns:TPSPChangeRatePlanReq" part="RequestHeader" use="literal" />
+	<soap:body parts="TPSPChangeRatePlanReq" use="literal" />
+      </wsdl:input>
+      <wsdl:output name="TPSPChangeRatePlanResp">
+	<soap:header message="tns:TPSPChangeRatePlanResp" part="ResponseHeader" use="literal" />
+	<soap:body parts="TPSPChangeRatePlanResp" use="literal" />
+      </wsdl:output>
+    <wsdl:fault name="FaultDetails">
+	<soap:fault name="FaultDetails" use="literal" />
+	  </wsdl:fault>
+	  </wsdl:operation>
+	  
+	  
+	  <wsdl:operation name="TPSPRecharge">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="TPSPRechargeReq">
+	<soap:header message="tns:TPSPRechargeReq" part="RequestHeader" use="literal" />
+	<soap:body parts="TPSPRechargeReq" use="literal" />
+      </wsdl:input>
+      <wsdl:output name="TPSPRechargeResp">
+	<soap:header message="tns:TPSPRechargeResp" part="ResponseHeader" use="literal" />
+	<soap:body parts="TPSPRechargeResp" use="literal" />
+      </wsdl:output>
+    <wsdl:fault name="FaultDetails">
+	<soap:fault name="FaultDetails" use="literal" />
+	  </wsdl:fault>
+	  </wsdl:operation>
+	  
+	  
+	  <wsdl:operation name="TPSPUpdateAirtimeExpirationDate">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="TPSPUpdateAirtimeExpirationDateReq">
+	<soap:header message="tns:TPSPUpdateAirtimeExpirationDateReq" part="RequestHeader" use="literal" />
+	<soap:body parts="TPSPUpdateAirtimeExpirationDateReq" use="literal" />
+      </wsdl:input>
+      <wsdl:output name="TPSPUpdateAirtimeExpirationDateResp">
+	<soap:header message="tns:TPSPUpdateAirtimeExpirationDateResp" part="ResponseHeader" use="literal" />
+	<soap:body parts="TPSPUpdateAirtimeExpirationDateResp" use="literal" />
+      </wsdl:output>
+    <wsdl:fault name="FaultDetails">
+	<soap:fault name="FaultDetails" use="literal" />
+	  </wsdl:fault>
+	  </wsdl:operation>
+
+  <wsdl:operation name="TPSPGetAccounts">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="TPSPGetAccountsReq">
+	<soap:header message="tns:TPSPGetAccountsReq" part="RequestHeader" use="literal" />
+	<soap:body parts="TPSPGetAccountsReq" use="literal" />
+      </wsdl:input>
+      <wsdl:output name="TPSPGetAccountsResp">
+	<soap:header message="tns:TPSPGetAccountsResp" part="ResponseHeader" use="literal" />
+	<soap:body parts="TPSPGetAccountsResp" use="literal" />
+      </wsdl:output>
+    <wsdl:fault name="FaultDetails">
+	<soap:fault name="FaultDetails" use="literal" />
+	  </wsdl:fault>
+	  </wsdl:operation>
+	  -->
+	
+
+	
+	   <wsdl:operation name="TPSPRetrieveRefillHistory">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="TPSPRetrieveRefillHistoryReq">
+	<soap:header message="tns:TPSPRetrieveRefillHistoryReq" part="RequestHeader" use="literal" />
+	<soap:body parts="TPSPRetrieveRefillHistoryReq" use="literal" />
+      </wsdl:input>
+      <wsdl:output name="TPSPRetrieveRefillHistoryResp">
+	<soap:header message="tns:TPSPRetrieveRefillHistoryResp" part="ResponseHeader" use="literal" />
+	<soap:body parts="TPSPRetrieveRefillHistoryResp" use="literal" />
+      </wsdl:output>
+    <wsdl:fault name="FaultDetails">
+	<soap:fault name="FaultDetails" use="literal" />
+	  </wsdl:fault>
+	  </wsdl:operation>
+	  
+	  
+	
+	
+	   <wsdl:operation name="TPSPUpdateSubInfo">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="TPSPUpdateSubInfoReq">
+	<soap:header message="tns:TPSPUpdateSubInfoReq" part="RequestHeader" use="literal" />
+	<soap:body parts="TPSPUpdateSubInfoReq" use="literal" />
+      </wsdl:input>
+      <wsdl:output name="TPSPUpdateSubInfoResp">
+	<soap:header message="tns:TPSPUpdateSubInfoResp" part="ResponseHeader" use="literal" />
+	<soap:body parts="TPSPUpdateSubInfoResp" use="literal" />
+      </wsdl:output>
+    <wsdl:fault name="FaultDetails">
+	<soap:fault name="FaultDetails" use="literal" />
+	  </wsdl:fault>
+	  </wsdl:operation>
+	 
+	 
+
+  </wsdl:binding>
+  <wsdl:service name="tpspagw_3_2Service">
+    <wsdl:port binding="tns:tpspagw_3_2Soap11" name="tpspagw_3_2Soap11">
+      <soap:address location="/agw/EbiService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
