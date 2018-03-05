@@ -8,7 +8,6 @@ import com.ws.applcation.handle.dataProvider;
 import com.ws.application.beans.fileProcessBean;
 import com.ws.application.beans.packageNamebean;
 import com.ws.application.common.wsConstants;
-import com.ws.application.common.xjcConversionClasses;
 
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -32,9 +31,7 @@ public abstract class wsdlFileSelection {
 	public static Alert CONFIRMATION = null;
 	final static int MAX = 10;
 	final static Label labelProcessIndicator = new Label();
-	static TextField xsdFilePathField = new TextField();
-	static xjcConversionClasses xjcConvertor = new xjcConversionClasses();
-	static StringBuffer result = null;
+	static TextField wsdlfilepath = new TextField();
 	nodeCreationDyanamic node = null;
 
 	public static void NewProject(Stage primaryStage, BorderPane borderpane, Scene scene, SplitPane splitPane2, MenuItem ImportNewXSDFile) throws FileNotFoundException {
@@ -48,7 +45,7 @@ public abstract class wsdlFileSelection {
 		Stage secondStage = new Stage();
 		secondStage.setTitle(wsConstants.title.NEW_PROJECT);
 		Label Text_1 = new Label(wsConstants.extentionsAndOthers.LABEL_ENTER_LOCATION_PATH);
-		xsdFilePathField.setMaxWidth(300);
+		wsdlfilepath.setMaxWidth(300);
 		Button buttonLoad = new Button(wsConstants.appButtons.BUTTON_LOAD_XSD);
 		Button buttonSubmit = new Button(wsConstants.appButtons.BUTTON_XSD_SUBMIT);
 
@@ -58,7 +55,7 @@ public abstract class wsdlFileSelection {
 			fileChooser.getExtensionFilters().add(extFilter);
 			file = fileChooser.showOpenDialog(secondStage);
 			if (file.toString() != null) {
-				xsdFilePathField.setText(file.toString());
+				wsdlfilepath.setText(file.toString());
 				fileProcessBean.setFilelocation(file.toString());
 				packageNamebean.setXsdFileName(file.getName());
 			} else {
@@ -70,11 +67,11 @@ public abstract class wsdlFileSelection {
 		pbar.setProgress(0);
 		buttonSubmit.setOnAction(e -> {
 			labelProcessIndicator.setVisible(true);
-			fileProcessBean.setFilelocation(xsdFilePathField.getText());
-			File fileOnField = new File(xsdFilePathField.getText());
+			fileProcessBean.setFilelocation(wsdlfilepath.getText());
+			File fileOnField = new File(wsdlfilepath.getText());
 			packageNamebean.setXsdFileName(fileOnField.getName());
 
-			if (xsdFilePathField.getText().isEmpty()) {
+			if (wsdlfilepath.getText().isEmpty()) {
 				Alert errorAlert = new Alert(AlertType.ERROR);
 				errorAlert.setContentText(wsConstants.fileProcessMessages.PATH_EMPTY);
 				DialogPane dialogPane = errorAlert.getDialogPane();
@@ -86,7 +83,7 @@ public abstract class wsdlFileSelection {
 			}
 
 			try {
-				File sourcefile = new File(xsdFilePathField.getText());
+				File sourcefile = new File(wsdlfilepath.getText());
 				File distibationAddress = new File("wsdlFiles");
 				dataProvider.copyFileInWorkSpace(sourcefile, distibationAddress);
 				secondStage.close();
@@ -96,20 +93,17 @@ public abstract class wsdlFileSelection {
 				e1.printStackTrace();
 			}
 			guiAgent agent = new nodeCreationDyanamic();
-			agent.nodeCreation(borderpane, xsdFilePathField.getText(), scene, splitPane2, primaryStage);
+			agent.nodeCreation(borderpane, wsdlfilepath.getText(), scene, splitPane2, primaryStage);
 			ImportNewXSDFile.setDisable(true);
 
 		});
 		BPane.add(Text_1, 0, 0);
-		BPane.add(xsdFilePathField, 0, 1);
+		BPane.add(wsdlfilepath, 0, 1);
 		BPane.add(buttonLoad, 1, 3);
 		BPane.add(buttonSubmit, 0, 4);
 		BPane.add(labelProcessIndicator, 0, 5);
 		secondScene.getStylesheets().add("style.css");
 		secondStage.setScene(secondScene);
-
-		// Set position of IMPORT_NEW_XSD_TITLE window, related to primary
-		// window.
 		secondStage.setX(primaryStage.getX() + 250);
 		secondStage.setY(primaryStage.getY() + 100);
 		secondStage.setResizable(false);

@@ -1,5 +1,7 @@
 package com.ws.application.gui;
 
+import com.ws.application.tcasewindow.mainwindow;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -32,32 +34,26 @@ public class nodeCreationDyanamic extends TextFieldTreeCell<String> implements g
 
 			@Override
 			public void handle(ActionEvent event) {
-				// TODO Auto-generated method stub
 
-				// if (actionDropDown.getValue().equals("Creat new step")) {
 				try {
 					System.out.println("repeated");
-					new itemContentFactoryImpl();
+					// new itemContentFactoryImpl();
+					new mainwindow();
+
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
+
 					e.printStackTrace();
 				}
 			}
-			// }
 
 		});
 
 		TabPane tabPane = new TabPane();
 		tabPane.getStylesheets().add("style.css");
-		// tabPane.prefWidthProperty().bind(treeContainer.widthProperty());
-		// tabPane.prefHeightProperty().bind(treeContainer.heightProperty());
-
 		Tab tab = new Tab();
 		tab.setText("new tab");
 		tab.setContent(new Rectangle());
 		tabPane.getTabs().add(tab);
-		// tabPane.getTabs().add(new Tab());
-
 		TreeItem<String> RootItem = new TreeItem<>(projectName);
 		RootItem.setExpanded(true);
 		TreeView<String> tree = new TreeView<>(RootItem);

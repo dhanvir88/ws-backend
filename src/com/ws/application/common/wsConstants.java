@@ -1,6 +1,12 @@
 package com.ws.application.common;
 
+import java.awt.Color;
+
+import javax.swing.ImageIcon;
+
 public class wsConstants {
+
+	public final static String PATH_PROPERTY = "config/config.properties";
 
 	public static class SoapHeaderConstants {
 		public static final String PPS_AGW_NAME_SPACE_PREFIX = "ppsagw";
@@ -69,4 +75,16 @@ public class wsConstants {
 		public static final String DELETE = "Rename";
 	}
 
+	public static class tcmainwindow {
+		public final static int MAIN_WINDOW_X = 240;
+		public final static int MAIN_WINDOW_Y = 100;
+		public final static int MAIN_WINDOW_WIDTH = 885;
+		public final static int MAIN_WINDOW_HEIGHT = 636;
+		public final static String TEST_NAME = " New Test Case";
+		public final static Color MAIN_BACK_COLOR = Color.WHITE;
+		public final static Color TOOL_BAR_BACK_COLOR = new Color(37, 174, 96);
+	}
+
+	public final static ImageIcon ICON_SETTING = new ImageIcon("images/setting.png");
+	public final static ImageIcon ICON_SETTING_ENABLE = new ImageIcon("images/settingEnable.png");
 }
