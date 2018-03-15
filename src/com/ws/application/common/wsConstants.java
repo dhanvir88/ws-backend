@@ -1,8 +1,11 @@
 package com.ws.application.common;
 
 import java.awt.Color;
+import java.awt.Font;
 
 import javax.swing.ImageIcon;
+
+import com.ws.application.tcasewindow.propertyUtil;
 
 public class wsConstants {
 
@@ -83,8 +86,12 @@ public class wsConstants {
 		public final static String TEST_NAME = " New Test Case";
 		public final static Color MAIN_BACK_COLOR = Color.WHITE;
 		public final static Color TOOL_BAR_BACK_COLOR = new Color(37, 174, 96);
+		public final static int MAIN_H_GAP = 50;
 	}
 
+	public final static Font FONT_TITLE = new Font(propertyUtil.getProperty("ds.ui.font.family"), 0, 27);
 	public final static ImageIcon ICON_SETTING = new ImageIcon("images/setting.png");
 	public final static ImageIcon ICON_SETTING_ENABLE = new ImageIcon("images/settingEnable.png");
+	public final static ImageIcon ICON_STATUS = new ImageIcon("images/status.png");
+	public final static ImageIcon ICON_STATUS_ENABLE = new ImageIcon("images/statusEnable.png");
 }

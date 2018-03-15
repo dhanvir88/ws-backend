@@ -14,6 +14,9 @@ public class mainwindow {
 
 	private JFrame frame;
 	private static JPanel mainPanel;
+	private static JPanel mainPanelCenter;
+	public static newTcstartUp newTcstartUp;
+	public static addingTestSteps addingTestSteps;
 
 	public mainwindow() {
 		initialize();
@@ -35,6 +38,13 @@ public class mainwindow {
 		mainPanel.setLayout(new BorderLayout());
 		leftToolBar lefttoolbar = new leftToolBar();
 		mainPanel.add(lefttoolbar, BorderLayout.WEST);
+		newTcstartUp = new newTcstartUp();
+		addingTestSteps = new addingTestSteps();
+		mainPanelCenter = new JPanel(true);
+		mainPanelCenter.setLayout(new BorderLayout());
+		mainPanelCenter.add(newTcstartUp, BorderLayout.CENTER);
+
+		mainPanel.add(mainPanelCenter, BorderLayout.CENTER);
 		frame.add(mainPanel);
 		frame.setVisible(true);
 	}
